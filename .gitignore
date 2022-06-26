@@ -1,0 +1,7 @@
+JWasm/Win32/
+JWasm/x64/
+JWlink/Win32/
+JWlink/x64/
+Win32/
+x64/
+.vs/
