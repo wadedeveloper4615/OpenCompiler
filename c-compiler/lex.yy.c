@@ -685,16 +685,19 @@ char *yytext;
 
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "c.tab.h"
+#include "global.h"
+#include "c.l.h"
+#include "symtab.h"
 
-int yywrap(void);
-void comment(void);
-void count(void);
-int check_type(void);
-void yyerror(const char* s);
-#line 696 "lex.yy.c"
-#line 697 "lex.yy.c"
+#define FILE_LEX_LOG          "lexic.log"
+
+FILE * fileLexLog;
+
+int numFila = 1, numColumna = 1;
+int estat_tipus = 0;
+#line 699 "lex.yy.c"
+#line 700 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -911,9 +914,9 @@ YY_DECL
 		}
 
 	{
-#line 23 "c.l"
+#line 26 "c.l"
 
-#line 916 "lex.yy.c"
+#line 919 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -972,506 +975,506 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 24 "c.l"
+#line 27 "c.l"
 { comment(); }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 25 "c.l"
+#line 28 "c.l"
 { /* consume //-comment */ }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 28 "c.l"
-{ count(); return(AUTO); }
+#line 31 "c.l"
+{ return(AUTO); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 29 "c.l"
-{ count(); return(BOOL); }
+#line 32 "c.l"
+{ return(BOOL); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 30 "c.l"
-{ count(); return(BREAK); }
+#line 33 "c.l"
+{ return(BREAK); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 31 "c.l"
-{ count(); return(CASE); }
+#line 34 "c.l"
+{ return(CASE); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 32 "c.l"
-{ count(); return(CHAR); }
+#line 35 "c.l"
+{ return(CHAR); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 33 "c.l"
-{ count(); return(COMPLEX); }
+#line 36 "c.l"
+{ return(COMPLEX); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 34 "c.l"
-{ count(); return(CONST); }
+#line 37 "c.l"
+{ return(CONST); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 35 "c.l"
-{ count(); return(CONTINUE); }
+#line 38 "c.l"
+{ return(CONTINUE); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 36 "c.l"
-{ count(); return(DEFAULT); }
+#line 39 "c.l"
+{ return(DEFAULT); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 37 "c.l"
-{ count(); return(DO); }
+#line 40 "c.l"
+{ return(DO); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 38 "c.l"
-{ count(); return(DOUBLE); }
+#line 41 "c.l"
+{ return(DOUBLE); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 39 "c.l"
-{ count(); return(ELSE); }
+#line 42 "c.l"
+{ return(ELSE); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 40 "c.l"
-{ count(); return(ENUM); }
+#line 43 "c.l"
+{ return(ENUM); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 41 "c.l"
-{ count(); return(EXTERN); }
+#line 44 "c.l"
+{ return(EXTERN); }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 42 "c.l"
-{ count(); return(FLOAT); }
+#line 45 "c.l"
+{ return(FLOAT); }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 43 "c.l"
-{ count(); return(FOR); }
+#line 46 "c.l"
+{ return(FOR); }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 44 "c.l"
-{ count(); return(GOTO); }
+#line 47 "c.l"
+{ return(GOTO); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 45 "c.l"
-{ count(); return(IF); }
+#line 48 "c.l"
+{ return(IF); }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 46 "c.l"
-{ count(); return(IMAGINARY); }
+#line 49 "c.l"
+{ return(IMAGINARY); }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 47 "c.l"
-{ count(); return(INLINE); }
+#line 50 "c.l"
+{ return(INLINE); }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 48 "c.l"
-{ count(); return(INT); }
+#line 51 "c.l"
+{ return(INT); }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 49 "c.l"
-{ count(); return(LONG); }
+#line 52 "c.l"
+{ return(LONG); }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 50 "c.l"
-{ count(); return(REGISTER); }
+#line 53 "c.l"
+{ return(REGISTER); }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 51 "c.l"
-{ count(); return(RESTRICT); }
+#line 54 "c.l"
+{ return(RESTRICT); }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 52 "c.l"
-{ count(); return(RETURN); }
+#line 55 "c.l"
+{ return(RETURN); }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 53 "c.l"
-{ count(); return(SHORT); }
+#line 56 "c.l"
+{ return(SHORT); }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 54 "c.l"
-{ count(); return(SIGNED); }
+#line 57 "c.l"
+{ return(SIGNED); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 55 "c.l"
-{ count(); return(SIZEOF); }
+#line 58 "c.l"
+{ return(SIZEOF); }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 56 "c.l"
-{ count(); return(STATIC); }
+#line 59 "c.l"
+{ return(STATIC); }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 57 "c.l"
-{ count(); return(STRUCT); }
+#line 60 "c.l"
+{ return(STRUCT); }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 58 "c.l"
-{ count(); return(SWITCH); }
+#line 61 "c.l"
+{ return(SWITCH); }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 59 "c.l"
-{ count(); return(TYPEDEF); }
+#line 62 "c.l"
+{ return(TYPEDEF); }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 60 "c.l"
-{ count(); return(UNION); }
+#line 63 "c.l"
+{ return(UNION); }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 61 "c.l"
-{ count(); return(UNSIGNED); }
+#line 64 "c.l"
+{ return(UNSIGNED); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 62 "c.l"
-{ count(); return(VOID); }
+#line 65 "c.l"
+{ return(VOID); }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 63 "c.l"
-{ count(); return(VOLATILE); }
+#line 66 "c.l"
+{ return(VOLATILE); }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 64 "c.l"
-{ count(); return(WHILE); }
+#line 67 "c.l"
+{ return(WHILE); }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 66 "c.l"
-{ count(); return(check_type()); }
+#line 69 "c.l"
+{ return(handleIndentifier()); }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 68 "c.l"
-{ count(); return(CONSTANT); }
+#line 71 "c.l"
+{ return(CONSTANT); }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 69 "c.l"
-{ count(); return(CONSTANT); }
+#line 72 "c.l"
+{ return(CONSTANT); }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 70 "c.l"
-{ count(); return(CONSTANT); }
+#line 73 "c.l"
+{ return(CONSTANT); }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 71 "c.l"
-{ count(); return(CONSTANT); }
+#line 74 "c.l"
+{ return(CONSTANT); }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 73 "c.l"
-{ count(); return(CONSTANT); }
+#line 76 "c.l"
+{ return(CONSTANT); }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 74 "c.l"
-{ count(); return(CONSTANT); }
+#line 77 "c.l"
+{ return(CONSTANT); }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 75 "c.l"
-{ count(); return(CONSTANT); }
+#line 78 "c.l"
+{ return(CONSTANT); }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 76 "c.l"
-{ count(); return(CONSTANT); }
+#line 79 "c.l"
+{ return(CONSTANT); }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 77 "c.l"
-{ count(); return(CONSTANT); }
+#line 80 "c.l"
+{ return(CONSTANT); }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 78 "c.l"
-{ count(); return(CONSTANT); }
+#line 81 "c.l"
+{ return(CONSTANT); }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 81 "c.l"
-{ count(); return(STRING_LITERAL); }
+#line 83 "c.l"
+{ return(STRING_LITERAL); }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 83 "c.l"
-{ count(); return(ELLIPSIS); }
+#line 85 "c.l"
+{ return(ELLIPSIS); }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 84 "c.l"
-{ count(); return(RIGHT_ASSIGN); }
+#line 86 "c.l"
+{ return(RIGHT_ASSIGN); }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 85 "c.l"
-{ count(); return(LEFT_ASSIGN); }
+#line 87 "c.l"
+{ return(LEFT_ASSIGN); }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 86 "c.l"
-{ count(); return(ADD_ASSIGN); }
+#line 88 "c.l"
+{ return(ADD_ASSIGN); }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 87 "c.l"
-{ count(); return(SUB_ASSIGN); }
+#line 89 "c.l"
+{ return(SUB_ASSIGN); }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 88 "c.l"
-{ count(); return(MUL_ASSIGN); }
+#line 90 "c.l"
+{ return(MUL_ASSIGN); }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 89 "c.l"
-{ count(); return(DIV_ASSIGN); }
+#line 91 "c.l"
+{ return(DIV_ASSIGN); }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 90 "c.l"
-{ count(); return(MOD_ASSIGN); }
+#line 92 "c.l"
+{ return(MOD_ASSIGN); }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 91 "c.l"
-{ count(); return(AND_ASSIGN); }
+#line 93 "c.l"
+{ return(AND_ASSIGN); }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 92 "c.l"
-{ count(); return(XOR_ASSIGN); }
+#line 94 "c.l"
+{ return(XOR_ASSIGN); }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 93 "c.l"
-{ count(); return(OR_ASSIGN); }
+#line 95 "c.l"
+{ return(OR_ASSIGN); }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 94 "c.l"
-{ count(); return(RIGHT_OP); }
+#line 96 "c.l"
+{ return(RIGHT_OP); }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 95 "c.l"
-{ count(); return(LEFT_OP); }
+#line 97 "c.l"
+{ return(LEFT_OP); }
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 96 "c.l"
-{ count(); return(INC_OP); }
+#line 98 "c.l"
+{ return(INC_OP); }
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 97 "c.l"
-{ count(); return(DEC_OP); }
+#line 99 "c.l"
+{ return(DEC_OP); }
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 98 "c.l"
-{ count(); return(PTR_OP); }
+#line 100 "c.l"
+{ return(PTR_OP); }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 99 "c.l"
-{ count(); return(AND_OP); }
+#line 101 "c.l"
+{ return(AND_OP); }
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 100 "c.l"
-{ count(); return(OR_OP); }
+#line 102 "c.l"
+{ return(OR_OP); }
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 101 "c.l"
-{ count(); return(LE_OP); }
+#line 103 "c.l"
+{ return(LE_OP); }
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 102 "c.l"
-{ count(); return(GE_OP); }
+#line 104 "c.l"
+{ return(GE_OP); }
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 103 "c.l"
-{ count(); return(EQ_OP); }
+#line 105 "c.l"
+{ return(EQ_OP); }
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 104 "c.l"
-{ count(); return(NE_OP); }
+#line 106 "c.l"
+{ return(NE_OP); }
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 105 "c.l"
-{ count(); return(';'); }
+#line 107 "c.l"
+{ return(';'); }
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 106 "c.l"
-{ count(); return('{'); }
+#line 108 "c.l"
+{ return('{'); }
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 107 "c.l"
-{ count(); return('}'); }
+#line 109 "c.l"
+{ return('}'); }
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 108 "c.l"
-{ count(); return(','); }
+#line 110 "c.l"
+{ return(','); }
 	YY_BREAK
 case 78:
 YY_RULE_SETUP
-#line 109 "c.l"
-{ count(); return(':'); }
+#line 111 "c.l"
+{ return(':'); }
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
-#line 110 "c.l"
-{ count(); return('='); }
+#line 112 "c.l"
+{ return('='); }
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
-#line 111 "c.l"
-{ count(); return('('); }
+#line 113 "c.l"
+{ return('('); }
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 112 "c.l"
-{ count(); return(')'); }
+#line 114 "c.l"
+{ return(')'); }
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 113 "c.l"
-{ count(); return('['); }
+#line 115 "c.l"
+{ return('['); }
 	YY_BREAK
 case 83:
 YY_RULE_SETUP
-#line 114 "c.l"
-{ count(); return(']'); }
+#line 116 "c.l"
+{ return(']'); }
 	YY_BREAK
 case 84:
 YY_RULE_SETUP
-#line 115 "c.l"
-{ count(); return('.'); }
+#line 117 "c.l"
+{ return('.'); }
 	YY_BREAK
 case 85:
 YY_RULE_SETUP
-#line 116 "c.l"
-{ count(); return('&'); }
+#line 118 "c.l"
+{ return('&'); }
 	YY_BREAK
 case 86:
 YY_RULE_SETUP
-#line 117 "c.l"
-{ count(); return('!'); }
+#line 119 "c.l"
+{ return('!'); }
 	YY_BREAK
 case 87:
 YY_RULE_SETUP
-#line 118 "c.l"
-{ count(); return('~'); }
+#line 120 "c.l"
+{ return('~'); }
 	YY_BREAK
 case 88:
 YY_RULE_SETUP
-#line 119 "c.l"
-{ count(); return('-'); }
+#line 121 "c.l"
+{ return(MINUS); }
 	YY_BREAK
 case 89:
 YY_RULE_SETUP
-#line 120 "c.l"
-{ count(); return('+'); }
+#line 122 "c.l"
+{ return(PLUS); }
 	YY_BREAK
 case 90:
 YY_RULE_SETUP
-#line 121 "c.l"
-{ count(); return('*'); }
+#line 123 "c.l"
+{ return(MUL); }
 	YY_BREAK
 case 91:
 YY_RULE_SETUP
-#line 122 "c.l"
-{ count(); return('/'); }
+#line 124 "c.l"
+{ return(DIV); }
 	YY_BREAK
 case 92:
 YY_RULE_SETUP
-#line 123 "c.l"
-{ count(); return('%'); }
+#line 125 "c.l"
+{ return(MOD); }
 	YY_BREAK
 case 93:
 YY_RULE_SETUP
-#line 124 "c.l"
-{ count(); return('<'); }
+#line 126 "c.l"
+{ return('<'); }
 	YY_BREAK
 case 94:
 YY_RULE_SETUP
-#line 125 "c.l"
-{ count(); return('>'); }
+#line 127 "c.l"
+{ return('>'); }
 	YY_BREAK
 case 95:
 YY_RULE_SETUP
-#line 126 "c.l"
-{ count(); return('^'); }
+#line 128 "c.l"
+{ return('^'); }
 	YY_BREAK
 case 96:
 YY_RULE_SETUP
-#line 127 "c.l"
-{ count(); return('|'); }
+#line 129 "c.l"
+{ return('|'); }
 	YY_BREAK
 case 97:
 YY_RULE_SETUP
-#line 128 "c.l"
-{ count(); return('?'); }
+#line 130 "c.l"
+{ return('?'); }
 	YY_BREAK
 case 98:
 /* rule 98 can match eol */
 YY_RULE_SETUP
-#line 130 "c.l"
-{ count(); }
+#line 132 "c.l"
+{ }
 	YY_BREAK
 case 99:
 YY_RULE_SETUP
-#line 131 "c.l"
+#line 133 "c.l"
 { /* Add code to complain about unmatched characters */ }
 	YY_BREAK
 case 100:
 YY_RULE_SETUP
-#line 133 "c.l"
+#line 135 "c.l"
 ECHO;
 	YY_BREAK
-#line 1474 "lex.yy.c"
+#line 1477 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2476,14 +2479,13 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 133 "c.l"
+#line 135 "c.l"
 
 
 int yywrap(void)
 {
 	return 1;
 }
-
 
 void comment(void)
 {
@@ -2498,39 +2500,89 @@ void comment(void)
 	yyerror("unterminated comment");
 }
 
-
-int column = 0;
-
-void count(void)
+int handleIndentifier(void)
 {
-	int i;
-
-	for (i = 0; yytext[i] != '\0'; i++)
-		if (yytext[i] == '\n')
-			column = 0;
-		else if (yytext[i] == '\t')
-			column += 8 - (column % 8);
-		else
-			column++;
-
-	ECHO;
+   struct t_simbol simbol;
+   
+   if ((yytext[0] >= 48) && (yytext[0] <= 57)) {
+      printErrorLex("Identificador", yytext, numFila, numColumna);
+   }
+   else {
+      if (sym_lookup(yytext, &simbol) == SYMTAB_OK) {
+         writeLexLog(simbol.nomLexic, simbol.idLexic);
+      
+         yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+         strcpy(yylval.infoBison.valor, yytext);
+         yylval.infoBison.tipus_var = simbol.tipus_var;  
+         
+         numColumna += yyleng;
+         return simbol.idLexic;   
+      } 
+      else {
+         writeLexLog("IDENTIFICADOR", IDENTIFIER);
+      
+         yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+         strcpy(yylval.infoBison.valor, yytext);
+         yylval.infoBison.tipus_var = TIPUS_NULL;
+      
+         numColumna += yyleng;
+      
+         printf("got here to handleIndentifier ==> %s\n",yylval.infoBison.valor);
+		 
+         return IDENTIFIER;
+      }	
+   }	   
 }
 
+int init_analisi_lexic_I(char * fileInput) {
+   int error; 
+   yyin = fopen(fileInput, "r");
 
-int check_type(void)
-{
-/*
-* pseudo code --- this is what it should check
-*
-*	if (yytext == type_name)
-*		return TYPE_NAME;
-*
-*	return IDENTIFIER;
-*/
+   if(yyin == NULL) error = EXIT_FAILURE;
+   else { 
+      fileLexLog = fopen(FILE_LEX_LOG, "w");
+      
+      if (fileLexLog == NULL) error = EXIT_FAILURE;
+      else error = EXIT_SUCCESS;
+   }
 
-/*
-*	it actually will only return IDENTIFIER
-*/
+   return error;
+}
 
-	return IDENTIFIER;
+int end_analisi_lexic_I() {
+   int error; 
+   
+   error = fclose(yyin);
+   if (error == 0) { 
+      error = fclose(fileLexLog);
+      if (error == 0) error = EXIT_SUCCESS;
+      else error = EXIT_FAILURE;
+   }
+   else error = EXIT_FAILURE;
+   
+   return error; 
+}
+
+void printErrorLex(char * str, char * lexema, int numFila, int numColumna) {
+   if (stdout != yyout) {
+      fprintf(stdout, "\n[ LEXIC -> Error ] >>> linia %i columna %i: %s %s no reconegut\n", numFila, numColumna, str, lexema);
+      fprintf(yyout, "[ LEXIC -> Error ] >>> linia %i columna %i: %s %s no reconegut\n", numFila, numColumna, str, lexema);
+   }
+   else fprintf(stderr, "\n[ LEXIC -> Error ] >>> linia %i columna %i: %s %s no reconegut\n", numFila, numColumna, str, lexema);    
+}
+
+void printErrorLexFull(char * str, char * lexema, char * str2, int numFila, int numColumna) {
+   
+   if (stdout != yyout) {
+      fprintf(stdout, "\n[ LEXIC -> Error ] >>> linia %i columna %i: %s %s %s no reconegut\n", numFila, numColumna, str, lexema, str2);   
+      fprintf(yyout, "[ LEXIC -> Error ] >>> linia %i columna %i: %s %s %s no reconegut\n", numFila, numColumna, str, lexema, str2);   
+   }
+   else fprintf(stderr, "[ LEXIC -> Error ] >>> linia %i columna %i: %s %s %s no reconegut\n", numFila, numColumna, str, lexema, str2);   
+}
+
+void writeLexLog(char * token, int id_token) {
+   fprintf(fileLexLog, "%s %s %d %d %d\n", token, yytext, id_token, numFila, numColumna);   
+}
+
+void gestioParaulesReservades() {
 }

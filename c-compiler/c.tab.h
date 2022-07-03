@@ -72,49 +72,85 @@ extern int yydebug;
      XOR_ASSIGN = 281,
      OR_ASSIGN = 282,
      TYPE_NAME = 283,
-     TYPEDEF = 284,
-     EXTERN = 285,
-     STATIC = 286,
-     AUTO = 287,
-     REGISTER = 288,
-     INLINE = 289,
-     RESTRICT = 290,
-     CHAR = 291,
-     SHORT = 292,
-     INT = 293,
-     LONG = 294,
-     SIGNED = 295,
-     UNSIGNED = 296,
-     FLOAT = 297,
-     DOUBLE = 298,
-     CONST = 299,
-     VOLATILE = 300,
-     VOID = 301,
-     BOOL = 302,
-     COMPLEX = 303,
-     IMAGINARY = 304,
-     STRUCT = 305,
-     UNION = 306,
-     ENUM = 307,
-     ELLIPSIS = 308,
-     CASE = 309,
-     DEFAULT = 310,
-     IF = 311,
-     ELSE = 312,
-     SWITCH = 313,
-     WHILE = 314,
-     DO = 315,
-     FOR = 316,
-     GOTO = 317,
-     CONTINUE = 318,
-     BREAK = 319,
-     RETURN = 320
+     PLUS = 284,
+     MINUS = 285,
+     MUL = 286,
+     DIV = 287,
+     MOD = 288,
+     TYPEDEF = 289,
+     EXTERN = 290,
+     STATIC = 291,
+     AUTO = 292,
+     REGISTER = 293,
+     INLINE = 294,
+     RESTRICT = 295,
+     CHAR = 296,
+     SHORT = 297,
+     INT = 298,
+     LONG = 299,
+     SIGNED = 300,
+     UNSIGNED = 301,
+     FLOAT = 302,
+     DOUBLE = 303,
+     CONST = 304,
+     VOLATILE = 305,
+     VOID = 306,
+     BOOL = 307,
+     COMPLEX = 308,
+     IMAGINARY = 309,
+     STRUCT = 310,
+     UNION = 311,
+     ENUM = 312,
+     ELLIPSIS = 313,
+     CASE = 314,
+     DEFAULT = 315,
+     IF = 316,
+     ELSE = 317,
+     SWITCH = 318,
+     WHILE = 319,
+     DO = 320,
+     FOR = 321,
+     GOTO = 322,
+     CONTINUE = 323,
+     BREAK = 324,
+     RETURN = 325
    };
 #endif
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+typedef union YYSTYPE
+{
+/* Line 2058 of yacc.c  */
+#line 37 "c.y"
+ 	   
+    struct t_infoBison {   
+       char * valor;
+       char * valorC3A;
+       int constant;      
+       int tipus_var;
+       int array;
+       long tam_array;
+       int array_indexat;
+       char * array_indexat_offset;
+       int camp_struct_indexat;
+       int offset_camp_struct_indexat;
+       int funcio;
+       int num_funcio_parametres;
+       int num_struct_camps;
+       struct t_infoBison * seguent_param_funcio;
+       struct t_infoBison * seguent_camp_struct;
+	   struct Cua * llista_certs;       
+  	   struct Cua * llista_falsos;
+	   struct Cua * llista_seguents;
+	   int punter_quadruple;
+       void * no_definit;	
+    } infoBison;
+
+
+/* Line 2058 of yacc.c  */
+#line 153 "c.tab.h"
+} YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

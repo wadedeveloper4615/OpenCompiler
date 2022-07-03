@@ -1,65 +1,71 @@
 %{
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
+#include "global.h"
+#include "cua.h"
+#include "c.y.h"
+#include "c.l.h"
 
-extern int yylex();
-extern int yyparse();
-extern FILE* yyin;
-
-void yyerror(const char* s);
-
-typedef struct Tipus_Node_Cua {
-   void *node;
-   struct Tipus_Node_Cua *anterior;
-} Node_Cua;
-
-typedef struct Tipus_Cua {
-   Node_Cua *primer;
-   Node_Cua *ultim;
-   Node_Cua *pdi;
-} Cua;       
-   
-typedef struct t_cadenaRegistreActivacio {
-   char * nom;    
-   int tam_tipus;
-   int tipus;
-   int es_array;
-   long tam_array;
-   long tam_total;
-   long offset;
-   struct t_cadenaRegistreActivacio * seguent;
-} t_cadenaRegistreActivacio;
-
-typedef struct t_registreActivacio {
-    char * nom_registre;  
-    long currentOffset; 
-	int num_llista_parametres, num_llista_locals, num_llista_temporals;
-	
-	t_cadenaRegistreActivacio * primer_llista_parametres, * primer_llista_locals, * primer_llista_temporals;
-	t_cadenaRegistreActivacio * ultim_llista_parametres, * ultim_llista_locals, * ultim_llista_temporals;
-} t_registreActivacio;
-
-typedef struct t_registreC3A {
-	int num_quadruples;
-	Cua * quadrupleC3A;
-} t_registreC3A;
-
-typedef struct t_quadrupleC3A {
-	int num_sentencia;
-	char * sentenciaC3A;
-} t_quadrupleC3A;
-
+char * idSimbol;
+char * nom_fitxerRA, * nom_fitxerC3A;
+struct t_simbol simbol, simbol_tmp;
+int currentScope;
+long long tmpValor;
+Boolean arrayDeclaracio = FALSE;
+struct t_infoBison * pparam;
+struct t_infoBison * pcamp;
+struct t_infoBison * recordsetParam;
+struct t_infoBison * recordsetCamp;
+struct t_infoBison * tmpCondicio;
+int num_errors;
+int tipus_var_funcio_retorn;
+char * valor_retorn;
+struct Cua * llista_seguents_funcio_retorn;
+int count;
+int funcioDeclaradaCorrecte = FALSE;
+Boolean errFuncDeclaration = FALSE;
+t_registreActivacio * registreActivacioGlobal, * registreActivacioFuncions;
+t_registreC3A * C3AGlobal, * C3AFuncions;
+char strCastingC3A[4], strOperacioC3A[5];
+t_quadrupleC3A * quadrupleC3A;
+int conditional_if_while_for;
+int tipus_var_tmp;
 %}
 
-%token IDENTIFIER CONSTANT STRING_LITERAL SIZEOF
+%union { 	   
+    struct t_infoBison {   
+       char * valor;
+       char * valorC3A;
+       int constant;      
+       int tipus_var;
+       int array;
+       long tam_array;
+       int array_indexat;
+       char * array_indexat_offset;
+       int camp_struct_indexat;
+       int offset_camp_struct_indexat;
+       int funcio;
+       int num_funcio_parametres;
+       int num_struct_camps;
+       struct t_infoBison * seguent_param_funcio;
+       struct t_infoBison * seguent_camp_struct;
+	   struct Cua * llista_certs;       
+  	   struct Cua * llista_falsos;
+	   struct Cua * llista_seguents;
+	   int punter_quadruple;
+       void * no_definit;	
+    } infoBison;
+}
+
+%token<infoBison> IDENTIFIER 
+%token CONSTANT STRING_LITERAL SIZEOF
 %token PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
 %token AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
 %token SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
 %token XOR_ASSIGN OR_ASSIGN TYPE_NAME
-
+%token PLUS MINUS MUL DIV MOD
 %token TYPEDEF EXTERN STATIC AUTO REGISTER INLINE RESTRICT
 %token CHAR SHORT INT LONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
 %token BOOL COMPLEX IMAGINARY
@@ -106,9 +112,9 @@ unary_expression
 
 unary_operator
 	: '&'
-	| '*'
-	| '+'
-	| '-'
+	| MUL
+	| PLUS
+	| MINUS
 	| '~'
 	| '!'
 	;
@@ -120,15 +126,15 @@ cast_expression
 
 multiplicative_expression
 	: cast_expression
-	| multiplicative_expression '*' cast_expression
-	| multiplicative_expression '/' cast_expression
-	| multiplicative_expression '%' cast_expression
+	| multiplicative_expression MUL cast_expression
+	| multiplicative_expression DIV cast_expression
+	| multiplicative_expression MOD cast_expression
 	;
 
 additive_expression
 	: multiplicative_expression
-	| additive_expression '+' multiplicative_expression
-	| additive_expression '-' multiplicative_expression
+	| additive_expression PLUS multiplicative_expression
+	| additive_expression MINUS multiplicative_expression
 	;
 
 shift_expression
@@ -519,17 +525,249 @@ declaration_list
 extern char yytext[];
 extern int column;
 
-int main(int argc, char *argv[]) {
-	yyin = fopen(argv[1], "r");//stdin;
+void printC3AFuncions(t_registreC3A * pC3A, char * nom_funcio) {
+   t_quadrupleC3A * pQuadruple;
+   Cua * llista_quadruples;
 
-	do {
-		yyparse();
-	} while(!feof(yyin));
-
-	return 0;
+   fprintf(fCodi3A, "SUBRUTINA %s:\n\n", nom_funcio);
+   
+   llista_quadruples = pC3A -> quadrupleC3A;
+    
+   for (;primer(llista_quadruples);) {
+      pQuadruple = (struct t_quadrupleC3A *) primer(llista_quadruples);
+      fprintf(fCodi3A, "\tLINIA %d: %s\n", pQuadruple -> num_sentencia, pQuadruple -> sentenciaC3A);
+      
+      desencuar(llista_quadruples);
+   }
+   fprintf(fCodi3A, "\n");
+   
+   fprintf(fCodi3A, "HALT\n\n");
 }
 
-void yyerror(const char* s) {
-	fprintf(stderr, "Parse error: %s\n", s);
+void printC3AGlobal(t_registreC3A * pC3A) {
+   t_quadrupleC3A * pQuadruple;
+   Cua * llista_quadruples;
+
+   fprintf(fCodi3A, "GLOBAL:\n\n");
+   
+   llista_quadruples = pC3A -> quadrupleC3A;
+    
+   for (;primer(llista_quadruples);) {
+      pQuadruple = (struct t_quadrupleC3A *) primer(llista_quadruples);
+      fprintf(fCodi3A, "\tLINIA %d: %s\n", pQuadruple -> num_sentencia, pQuadruple -> sentenciaC3A);
+      
+      desencuar(llista_quadruples);
+   }
+}
+ 
+char * tipusDadesID(int idTipus, int espais) {
+   char * tdades = (char *) malloc(10);
+   
+   strcpy(tdades, "");
+   
+   if (espais) {
+      switch (idTipus) {
+         case -1: strcpy(tdades, "NULL     "); break;
+         case 0: strcpy(tdades, "VOID     "); break;
+         case 1: strcpy(tdades, "CHAR     "); break;
+         case 2: strcpy(tdades, "SHORT    "); break;
+         case 3: strcpy(tdades, "INT      "); break;
+         case 4: strcpy(tdades, "LONG     "); break;
+         case 5: strcpy(tdades, "FLOAT    "); break;
+         case 6: strcpy(tdades, "DOUBLE   "); break;
+         case 7: strcpy(tdades, "STRING   "); break;
+         case 8: strcpy(tdades, "STRUCT   "); break;
+      }
+   }
+   else {
+      switch (idTipus) {
+         case -1: strcpy(tdades, "NULL"); break;
+         case 0: strcpy(tdades, "VOID"); break;
+         case 1: strcpy(tdades, "CHAR"); break;
+         case 2: strcpy(tdades, "SHORT"); break;
+         case 3: strcpy(tdades, "INT"); break;
+         case 4: strcpy(tdades, "LONG"); break;
+         case 5: strcpy(tdades, "FLOAT"); break;
+         case 6: strcpy(tdades, "DOUBLE"); break;
+         case 7: strcpy(tdades, "STRING"); break;
+         case 8: strcpy(tdades, "STRUCT"); break;
+      }   
+   }
+   return tdades;
+}
+
+int init_analisi_sintactic_O(char * fileOutput, char * nomFitxerRA, char * nomFitxerC3A) {
+   int error; 
+   
+   nom_fitxerRA = nomFitxerRA;
+   nom_fitxerC3A = nomFitxerC3A;
+   yyout = fopen(fileOutput, "w");
+
+   fRegActivacio = fopen(nomFitxerRA, "w");
+   fCodi3A = fopen(nomFitxerC3A, "w");
+   
+   num_errors = 0; valor_retorn = NULL;
+   if ((yyout == NULL) || (fRegActivacio == NULL) || (fCodi3A == NULL)) 
+    { error = EXIT_FAILURE; }
+   else 
+   { error = EXIT_SUCCESS; }
+
+   return error;
+
+}
+
+void printRegistreActivacioGlobal(t_registreActivacio * pRegistreActivacio) {
+   t_cadenaRegistreActivacio * pvalors;
+   
+   fprintf(fRegActivacio, "GLOBAL\n");
+      
+   pvalors = pRegistreActivacio -> primer_llista_locals;
+   fprintf(fRegActivacio, "\n[ + ] Variables Globals (nom_param tipus_param tipus_param_tamany offset)\n\n");
+   
+   for (;pvalors;) {
+      if (pvalors -> es_array == FALSE) { 
+         fprintf(fRegActivacio, "\t\t[ - ] %s %s %d %d\n", pvalors -> nom, tipusDadesID(pvalors -> tipus, 0), pvalors -> tam_tipus, pvalors -> offset);
+      }
+      else {
+         fprintf(fRegActivacio, "\t\t[ - ] %s %s[%lu] %d %d\n", pvalors -> nom, tipusDadesID(pvalors -> tipus, 0), pvalors -> tam_array, pvalors -> tam_tipus, pvalors -> offset);
+      }
+      
+      pvalors = pvalors -> seguent;
+   }
+   
+   pvalors = pRegistreActivacio -> primer_llista_temporals;
+   fprintf(fRegActivacio, "\n[ + ] Variables Temporals (nom_param tipus_param tipus_param_tamany offset)\n\n");
+   
+   for (;pvalors;) {
+      fprintf(fRegActivacio, "\t\t[ - ] %s %s %d %d\n", pvalors -> nom, tipusDadesID(pvalors -> tipus, 0), pvalors -> tam_tipus, pvalors -> offset);
+      
+      pvalors = pvalors -> seguent;
+   }     
+   fprintf(fRegActivacio, "\n\n"); 
+}
+
+int end_analisi_sintactic_O() {
+   int error;
+   
+   printRegistreActivacioGlobal(registreActivacioGlobal);
+   printC3AGlobal(C3AGlobal);
+   error = fclose(yyout);
+   error |= fclose(fRegActivacio);
+   error |= fclose(fCodi3A);
+   
+   if (num_errors > 0) {
+      remove(nom_fitxerRA);
+      remove(nom_fitxerC3A);         
+      fprintf(stdout, "\n\n\t-----------------------------------------------------");
+      fprintf(stdout, "\n\t\t[ ERR ] Compiled with %d error/s\n", num_errors);
+      fprintf(stdout, "\t-----------------------------------------------------\n\n");
+   }
+   else {
+      fprintf(stdout, "\n\n\t-----------------------------------------------------");
+      fprintf(stdout, "\n\t\t[ OK ] Compilation generated successfully\n"); 
+      fprintf(stdout, "\t-----------------------------------------------------\n\n");
+   }
+   
+   if (error == 0) 
+    { error = EXIT_SUCCESS; }
+   else
+    { error = EXIT_FAILURE; }
+   
+   return error; 
+}
+
+int iniC3A(t_registreC3A * pC3A) {
+     
+   if (pC3A != NULL) {
+
+      pC3A -> num_quadruples = 0;
+	  pC3A -> quadrupleC3A = crear_cua();
+
+      return 0;         
+   }
+   return -1;
+}
+
+int iniRegistreActivacio(t_registreActivacio * pRegistreActivacio, char * nom_registre) {
+     
+   if (pRegistreActivacio != NULL) {
+      pRegistreActivacio -> nom_registre = malloc(strlen(nom_registre) + 1); strcpy(pRegistreActivacio -> nom_registre, nom_registre);                    
+      pRegistreActivacio -> num_llista_parametres = 0;
+      pRegistreActivacio -> num_llista_locals = 0;
+      pRegistreActivacio -> num_llista_temporals = 0;
+      pRegistreActivacio -> currentOffset = 0; 
+      
+      pRegistreActivacio -> primer_llista_parametres = NULL;
+      pRegistreActivacio -> primer_llista_locals = NULL;
+      pRegistreActivacio -> primer_llista_temporals = NULL;
+      pRegistreActivacio -> ultim_llista_parametres = NULL;
+      pRegistreActivacio -> ultim_llista_locals = NULL;
+      pRegistreActivacio -> ultim_llista_temporals = NULL;
+      
+      return 0;         
+   }
+   return -1;
+}
+
+int analisi_semantic() {
+   int error;
+   
+   registreActivacioGlobal = (t_registreActivacio *) malloc(sizeof(t_registreActivacio));
+   iniRegistreActivacio(registreActivacioGlobal, "GLOBAL");
+   
+   C3AGlobal = (t_registreC3A *) malloc(sizeof(t_registreC3A));
+   iniC3A(C3AGlobal);
+   
+   if (yyparse() == 0)
+    { error =  EXIT_SUCCESS; }
+   else
+    { error =  EXIT_FAILURE; }
+   
+   return error;
+}
+
+int main(int argc, char *argv[]) {
+    if (argc == 3) {
+      char * fRA, * fC3A;
+      if (init_analisi_lexic_I(argv[1]) == EXIT_SUCCESS) {
+         fRA = (char *) malloc(strlen(argv[2]) + 4);
+         fC3A = (char *) malloc(strlen(argv[2]) + 5); 
+         sprintf(fRA, "%s.ra", argv[2]);
+         sprintf(fC3A, "%s.c3a", argv[2]);                               
+         if (init_analisi_sintactic_O(argv[2], fRA, fC3A) == EXIT_SUCCESS) {
+            gestioParaulesReservades();       
+            analisi_semantic();
+         
+            end_analisi_lexic_I(); 
+            end_analisi_sintactic_O();
+         }
+         else {
+            printf("\n\n###########################################################\n");
+            printf("###\t\t\t\t\t\t\t###\n");
+            printf("###\t[ ERR ] El fitxers de sortida %s %s %s no s'han creat\t###\n", argv[2], fRA, fC3A);
+            printf("###\t\t\t\t\t\t\t###\n");      
+            printf("###########################################################\n\n");       
+         }
+      }
+      else {
+         printf("\n\n###########################################################\n");
+         printf("###\t\t\t\t\t\t\t###\n");
+         printf("###\t[ ERR ] El fitxer d'entrada %s no existeix\t###\n", argv[1]);
+         printf("###\t\t\t\t\t\t\t###\n");      
+         printf("###########################################################\n\n");       
+      }
+   }         
+   else {
+      printf("\n\n###########################################################################\n");
+      printf("###\t\t\t\t\t\t\t\t\t###\n");
+      printf("###\t[ USE ] %s [ F_IN ] [ F_OUT ]      \t\t\t###\n", argv[0]);
+      printf("###\t[ EX  ] %s input.txt output.txt\t\t\t###\n", argv[0]);
+      printf("###\t\t\t\t\t\t\t\t\t###\n");      
+      printf("###########################################################################\n\n");
+   }
+}
+
+void yyerror(char * explanation){
+	fprintf(stderr, "Parse error: %s\n", explanation);
 	exit(1);
 }
