@@ -1451,7 +1451,7 @@ YY_RULE_SETUP
 case 96:
 YY_RULE_SETUP
 #line 129 "c.l"
-{ return('|'); }
+{ return(BIT_OR); }
 	YY_BREAK
 case 97:
 YY_RULE_SETUP
@@ -2505,7 +2505,7 @@ int handleIndentifier(void)
    struct t_simbol simbol;
    
    if ((yytext[0] >= 48) && (yytext[0] <= 57)) {
-      printErrorLex("Identificador", yytext, numFila, numColumna);
+      printErrorLex("Identifier", yytext, numFila, numColumna);
    }
    else {
       if (sym_lookup(yytext, &simbol) == SYMTAB_OK) {
@@ -2519,7 +2519,7 @@ int handleIndentifier(void)
          return simbol.idLexic;   
       } 
       else {
-         writeLexLog("IDENTIFICADOR", IDENTIFIER);
+         writeLexLog("IDENTIFIER", IDENTIFIER);
       
          yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
          strcpy(yylval.infoBison.valor, yytext);

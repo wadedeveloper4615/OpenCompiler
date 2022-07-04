@@ -65,7 +65,7 @@ int tipus_var_tmp;
 %token AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
 %token SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
 %token XOR_ASSIGN OR_ASSIGN TYPE_NAME
-%token PLUS MINUS MUL DIV MOD
+%token PLUS MINUS MUL DIV MOD BIT_OR BIT_AND
 %token TYPEDEF EXTERN STATIC AUTO REGISTER INLINE RESTRICT
 %token CHAR SHORT INT LONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
 %token BOOL COMPLEX IMAGINARY
@@ -111,7 +111,7 @@ unary_expression
 	;
 
 unary_operator
-	: '&'
+	: BIT_AND
 	| MUL
 	| PLUS
 	| MINUS
@@ -159,7 +159,7 @@ equality_expression
 
 and_expression
 	: equality_expression
-	| and_expression '&' equality_expression
+	| and_expression BIT_AND equality_expression
 	;
 
 exclusive_or_expression
@@ -169,7 +169,7 @@ exclusive_or_expression
 
 inclusive_or_expression
 	: exclusive_or_expression
-	| inclusive_or_expression '|' exclusive_or_expression
+	| inclusive_or_expression BIT_OR exclusive_or_expression
 	;
 
 logical_and_expression

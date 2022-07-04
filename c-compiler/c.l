@@ -115,7 +115,7 @@ L?\"(\\.|[^\\"\n])*\"	{ return(STRING_LITERAL); }
 ("["|"<:")		{ return('['); }
 ("]"|":>")		{ return(']'); }
 "."			    { return('.'); }
-"&"			    { return('&'); }
+"&"			    { return(BIT_AND); }
 "!"			    { return('!'); }
 "~"			    { return('~'); }
 "-"			    { return(MINUS); }
@@ -126,7 +126,7 @@ L?\"(\\.|[^\\"\n])*\"	{ return(STRING_LITERAL); }
 "<"			    { return('<'); }
 ">"			    { return('>'); }
 "^"			    { return('^'); }
-"|"			    { return('|'); }
+"|"			    { return(BIT_OR); }
 "?"			    { return('?'); }
 
 [ \t\v\n\f]		{ }
@@ -157,7 +157,7 @@ int handleIndentifier(void)
    struct t_simbol simbol;
    
    if ((yytext[0] >= 48) && (yytext[0] <= 57)) {
-      printErrorLex("Identificador", yytext, numFila, numColumna);
+      printErrorLex("Identifier", yytext, numFila, numColumna);
    }
    else {
       if (sym_lookup(yytext, &simbol) == SYMTAB_OK) {
@@ -171,7 +171,7 @@ int handleIndentifier(void)
          return simbol.idLexic;   
       } 
       else {
-         writeLexLog("IDENTIFICADOR", IDENTIFIER);
+         writeLexLog("IDENTIFIER", IDENTIFIER);
       
          yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
          strcpy(yylval.infoBison.valor, yytext);

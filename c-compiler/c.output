@@ -31,7 +31,7 @@ Grammar
    21                 | SIZEOF unary_expression
    22                 | SIZEOF '(' type_name ')'
 
-   23 unary_operator: '&'
+   23 unary_operator: BIT_AND
    24               | MUL
    25               | PLUS
    26               | MINUS
@@ -65,13 +65,13 @@ Grammar
    48                    | equality_expression NE_OP relational_expression
 
    49 and_expression: equality_expression
-   50               | and_expression '&' equality_expression
+   50               | and_expression BIT_AND equality_expression
 
    51 exclusive_or_expression: and_expression
    52                        | exclusive_or_expression '^' and_expression
 
    53 inclusive_or_expression: exclusive_or_expression
-   54                        | inclusive_or_expression '|' exclusive_or_expression
+   54                        | inclusive_or_expression BIT_OR exclusive_or_expression
 
    55 logical_and_expression: inclusive_or_expression
    56                       | logical_and_expression AND_OP inclusive_or_expression
@@ -315,7 +315,6 @@ Terminals, with rules where they appear
 
 $end (0) 0
 '!' (33) 28
-'&' (38) 23 50
 '(' (40) 4 7 8 13 14 22 30 144 153 154 155 176 183 184 185 186 216
     217 218 219 220 221 222 223 224
 ')' (41) 4 7 8 13 14 22 30 144 153 154 155 176 183 184 185 186 216
@@ -335,7 +334,6 @@ $end (0) 0
     197
 '^' (94) 52
 '{' (123) 13 14 111 112 128 129 130 131 188 189 208 209
-'|' (124) 54
 '}' (125) 13 14 111 112 128 129 130 131 188 189 208 209
 '~' (126) 27
 error (256)
@@ -371,43 +369,45 @@ MINUS (285) 26 37
 MUL (286) 24 32
 DIV (287) 33
 MOD (288) 34
-TYPEDEF (289) 91
-EXTERN (290) 92
-STATIC (291) 93 148 149
-AUTO (292) 94
-REGISTER (293) 95
-INLINE (294) 140
-RESTRICT (295) 138
-CHAR (296) 97
-SHORT (297) 98
-INT (298) 99
-LONG (299) 100
-SIGNED (300) 103
-UNSIGNED (301) 104
-FLOAT (302) 101
-DOUBLE (303) 102
-CONST (304) 137
-VOLATILE (305) 139
-VOID (306) 96
-BOOL (307) 105
-COMPLEX (308) 106
-IMAGINARY (309) 107
-STRUCT (310) 114
-UNION (311) 115
-ENUM (312) 128 129 130 131 132
-ELLIPSIS (313) 163
-CASE (314) 206
-DEFAULT (315) 207
-IF (316) 216 217
-ELSE (317) 217
-SWITCH (318) 218
-WHILE (319) 219 220
-DO (320) 220
-FOR (321) 221 222 223 224
-GOTO (322) 225
-CONTINUE (323) 226
-BREAK (324) 227
-RETURN (325) 228 229
+BIT_OR (289) 54
+BIT_AND (290) 23 50
+TYPEDEF (291) 91
+EXTERN (292) 92
+STATIC (293) 93 148 149
+AUTO (294) 94
+REGISTER (295) 95
+INLINE (296) 140
+RESTRICT (297) 138
+CHAR (298) 97
+SHORT (299) 98
+INT (300) 99
+LONG (301) 100
+SIGNED (302) 103
+UNSIGNED (303) 104
+FLOAT (304) 101
+DOUBLE (305) 102
+CONST (306) 137
+VOLATILE (307) 139
+VOID (308) 96
+BOOL (309) 105
+COMPLEX (310) 106
+IMAGINARY (311) 107
+STRUCT (312) 114
+UNION (313) 115
+ENUM (314) 128 129 130 131 132
+ELLIPSIS (315) 163
+CASE (316) 206
+DEFAULT (317) 207
+IF (318) 216 217
+ELSE (319) 217
+SWITCH (320) 218
+WHILE (321) 219 220
+DO (322) 220
+FOR (323) 221 222 223 224
+GOTO (324) 225
+CONTINUE (325) 226
+BREAK (326) 227
+RETURN (327) 228 229
 
 
 Nonterminals, with rules where they appear
@@ -1427,6 +1427,7 @@ State 67
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
+    BIT_AND         shift, and go to state 100
     TYPEDEF         shift, and go to state 2
     EXTERN          shift, and go to state 3
     STATIC          shift, and go to state 4
@@ -1451,21 +1452,20 @@ State 67
     STRUCT          shift, and go to state 23
     UNION           shift, and go to state 24
     ENUM            shift, and go to state 25
-    CASE            shift, and go to state 100
-    DEFAULT         shift, and go to state 101
-    IF              shift, and go to state 102
-    SWITCH          shift, and go to state 103
-    WHILE           shift, and go to state 104
-    DO              shift, and go to state 105
-    FOR             shift, and go to state 106
-    GOTO            shift, and go to state 107
-    CONTINUE        shift, and go to state 108
-    BREAK           shift, and go to state 109
-    RETURN          shift, and go to state 110
-    '('             shift, and go to state 111
+    CASE            shift, and go to state 101
+    DEFAULT         shift, and go to state 102
+    IF              shift, and go to state 103
+    SWITCH          shift, and go to state 104
+    WHILE           shift, and go to state 105
+    DO              shift, and go to state 106
+    FOR             shift, and go to state 107
+    GOTO            shift, and go to state 108
+    CONTINUE        shift, and go to state 109
+    BREAK           shift, and go to state 110
+    RETURN          shift, and go to state 111
+    '('             shift, and go to state 112
     '{'             shift, and go to state 67
-    '}'             shift, and go to state 112
-    '&'             shift, and go to state 113
+    '}'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 116
@@ -1521,9 +1521,9 @@ State 68
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '{'             shift, and go to state 146
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -1690,13 +1690,13 @@ State 74
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
+    BIT_AND         shift, and go to state 100
     STATIC          shift, and go to state 158
     RESTRICT        shift, and go to state 8
     CONST           shift, and go to state 17
     VOLATILE        shift, and go to state 18
-    '('             shift, and go to state 111
+    '('             shift, and go to state 112
     ']'             shift, and go to state 159
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     '*'             shift, and go to state 160
@@ -1928,8 +1928,8 @@ State 83
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -2046,8 +2046,8 @@ State 94
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
+    BIT_AND         shift, and go to state 100
     '('             shift, and go to state 180
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -2070,8 +2070,8 @@ State 95
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
+    BIT_AND         shift, and go to state 100
     '('             shift, and go to state 182
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -2094,8 +2094,8 @@ State 96
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
+    BIT_AND         shift, and go to state 100
     '('             shift, and go to state 182
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -2128,6 +2128,13 @@ State 99
 
 State 100
 
+   23 unary_operator: BIT_AND .
+
+    $default  reduce using rule 23 (unary_operator)
+
+
+State 101
+
   206 labeled_statement: CASE . constant_expression ':' statement
 
     IDENTIFIER      shift, and go to state 145
@@ -2139,8 +2146,8 @@ State 100
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -2163,14 +2170,14 @@ State 100
     constant_expression        go to state 185
 
 
-State 101
+State 102
 
   207 labeled_statement: DEFAULT . ':' statement
 
     ':'  shift, and go to state 186
 
 
-State 102
+State 103
 
   216 selection_statement: IF . '(' expression ')' statement
   217                    | IF . '(' expression ')' statement ELSE statement
@@ -2178,21 +2185,21 @@ State 102
     '('  shift, and go to state 187
 
 
-State 103
+State 104
 
   218 selection_statement: SWITCH . '(' expression ')' statement
 
     '('  shift, and go to state 188
 
 
-State 104
+State 105
 
   219 iteration_statement: WHILE . '(' expression ')' statement
 
     '('  shift, and go to state 189
 
 
-State 105
+State 106
 
   220 iteration_statement: DO . statement WHILE '(' expression ')' ';'
 
@@ -2205,20 +2212,20 @@ State 105
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    CASE            shift, and go to state 100
-    DEFAULT         shift, and go to state 101
-    IF              shift, and go to state 102
-    SWITCH          shift, and go to state 103
-    WHILE           shift, and go to state 104
-    DO              shift, and go to state 105
-    FOR             shift, and go to state 106
-    GOTO            shift, and go to state 107
-    CONTINUE        shift, and go to state 108
-    BREAK           shift, and go to state 109
-    RETURN          shift, and go to state 110
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    CASE            shift, and go to state 101
+    DEFAULT         shift, and go to state 102
+    IF              shift, and go to state 103
+    SWITCH          shift, and go to state 104
+    WHILE           shift, and go to state 105
+    DO              shift, and go to state 106
+    FOR             shift, and go to state 107
+    GOTO            shift, and go to state 108
+    CONTINUE        shift, and go to state 109
+    BREAK           shift, and go to state 110
+    RETURN          shift, and go to state 111
+    '('             shift, and go to state 112
     '{'             shift, and go to state 67
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 116
@@ -2250,7 +2257,7 @@ State 105
     jump_statement             go to state 144
 
 
-State 106
+State 107
 
   221 iteration_statement: FOR . '(' expression_statement expression_statement ')' statement
   222                    | FOR . '(' expression_statement expression_statement expression ')' statement
@@ -2260,28 +2267,28 @@ State 106
     '('  shift, and go to state 191
 
 
-State 107
+State 108
 
   225 jump_statement: GOTO . IDENTIFIER ';'
 
     IDENTIFIER  shift, and go to state 192
 
 
-State 108
+State 109
 
   226 jump_statement: CONTINUE . ';'
 
     ';'  shift, and go to state 193
 
 
-State 109
+State 110
 
   227 jump_statement: BREAK . ';'
 
     ';'  shift, and go to state 194
 
 
-State 110
+State 111
 
   228 jump_statement: RETURN . ';'
   229               | RETURN . expression ';'
@@ -2295,8 +2302,8 @@ State 110
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 195
@@ -2321,7 +2328,7 @@ State 110
     expression                 go to state 196
 
 
-State 111
+State 112
 
     4 primary_expression: '(' . expression ')'
    13 postfix_expression: '(' . type_name ')' '{' initializer_list '}'
@@ -2338,6 +2345,7 @@ State 111
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
+    BIT_AND         shift, and go to state 100
     RESTRICT        shift, and go to state 8
     CHAR            shift, and go to state 9
     SHORT           shift, and go to state 10
@@ -2356,8 +2364,7 @@ State 111
     STRUCT          shift, and go to state 23
     UNION           shift, and go to state 24
     ENUM            shift, and go to state 25
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -2388,18 +2395,11 @@ State 111
     type_name                  go to state 199
 
 
-State 112
+State 113
 
   208 compound_statement: '{' '}' .
 
     $default  reduce using rule 208 (compound_statement)
-
-
-State 113
-
-   23 unary_operator: '&' .
-
-    $default  reduce using rule 23 (unary_operator)
 
 
 State 114
@@ -2486,8 +2486,8 @@ State 120
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -2573,10 +2573,10 @@ State 126
 
 State 127
 
-   50 and_expression: and_expression . '&' equality_expression
+   50 and_expression: and_expression . BIT_AND equality_expression
    51 exclusive_or_expression: and_expression .
 
-    '&'  shift, and go to state 232
+    BIT_AND  shift, and go to state 232
 
     $default  reduce using rule 51 (exclusive_or_expression)
 
@@ -2593,10 +2593,10 @@ State 128
 
 State 129
 
-   54 inclusive_or_expression: inclusive_or_expression . '|' exclusive_or_expression
+   54 inclusive_or_expression: inclusive_or_expression . BIT_OR exclusive_or_expression
    55 logical_and_expression: inclusive_or_expression .
 
-    '|'  shift, and go to state 234
+    BIT_OR  shift, and go to state 234
 
     $default  reduce using rule 55 (logical_and_expression)
 
@@ -2689,6 +2689,7 @@ State 139
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
+    BIT_AND         shift, and go to state 100
     TYPEDEF         shift, and go to state 2
     EXTERN          shift, and go to state 3
     STATIC          shift, and go to state 4
@@ -2713,21 +2714,20 @@ State 139
     STRUCT          shift, and go to state 23
     UNION           shift, and go to state 24
     ENUM            shift, and go to state 25
-    CASE            shift, and go to state 100
-    DEFAULT         shift, and go to state 101
-    IF              shift, and go to state 102
-    SWITCH          shift, and go to state 103
-    WHILE           shift, and go to state 104
-    DO              shift, and go to state 105
-    FOR             shift, and go to state 106
-    GOTO            shift, and go to state 107
-    CONTINUE        shift, and go to state 108
-    BREAK           shift, and go to state 109
-    RETURN          shift, and go to state 110
-    '('             shift, and go to state 111
+    CASE            shift, and go to state 101
+    DEFAULT         shift, and go to state 102
+    IF              shift, and go to state 103
+    SWITCH          shift, and go to state 104
+    WHILE           shift, and go to state 105
+    DO              shift, and go to state 106
+    FOR             shift, and go to state 107
+    GOTO            shift, and go to state 108
+    CONTINUE        shift, and go to state 109
+    BREAK           shift, and go to state 110
+    RETURN          shift, and go to state 111
+    '('             shift, and go to state 112
     '{'             shift, and go to state 67
     '}'             shift, and go to state 240
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 116
@@ -2825,11 +2825,11 @@ State 146
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '['             shift, and go to state 242
     '.'             shift, and go to state 243
     '{'             shift, and go to state 146
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -3003,13 +3003,13 @@ State 162
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
+    BIT_AND         shift, and go to state 100
     STATIC          shift, and go to state 262
     RESTRICT        shift, and go to state 8
     CONST           shift, and go to state 17
     VOLATILE        shift, and go to state 18
-    '('             shift, and go to state 111
+    '('             shift, and go to state 112
     ']'             shift, and go to state 263
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     '*'             shift, and go to state 264
@@ -3103,8 +3103,8 @@ State 167
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -3226,20 +3226,20 @@ State 179
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    CASE            shift, and go to state 100
-    DEFAULT         shift, and go to state 101
-    IF              shift, and go to state 102
-    SWITCH          shift, and go to state 103
-    WHILE           shift, and go to state 104
-    DO              shift, and go to state 105
-    FOR             shift, and go to state 106
-    GOTO            shift, and go to state 107
-    CONTINUE        shift, and go to state 108
-    BREAK           shift, and go to state 109
-    RETURN          shift, and go to state 110
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    CASE            shift, and go to state 101
+    DEFAULT         shift, and go to state 102
+    IF              shift, and go to state 103
+    SWITCH          shift, and go to state 104
+    WHILE           shift, and go to state 105
+    DO              shift, and go to state 106
+    FOR             shift, and go to state 107
+    GOTO            shift, and go to state 108
+    CONTINUE        shift, and go to state 109
+    BREAK           shift, and go to state 110
+    RETURN          shift, and go to state 111
+    '('             shift, and go to state 112
     '{'             shift, and go to state 67
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 116
@@ -3288,6 +3288,7 @@ State 180
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
+    BIT_AND         shift, and go to state 100
     RESTRICT        shift, and go to state 8
     CHAR            shift, and go to state 9
     SHORT           shift, and go to state 10
@@ -3306,8 +3307,7 @@ State 180
     STRUCT          shift, and go to state 23
     UNION           shift, and go to state 24
     ENUM            shift, and go to state 25
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -3361,6 +3361,7 @@ State 182
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
+    BIT_AND         shift, and go to state 100
     RESTRICT        shift, and go to state 8
     CHAR            shift, and go to state 9
     SHORT           shift, and go to state 10
@@ -3379,8 +3380,7 @@ State 182
     STRUCT          shift, and go to state 23
     UNION           shift, and go to state 24
     ENUM            shift, and go to state 25
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -3445,20 +3445,20 @@ State 186
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    CASE            shift, and go to state 100
-    DEFAULT         shift, and go to state 101
-    IF              shift, and go to state 102
-    SWITCH          shift, and go to state 103
-    WHILE           shift, and go to state 104
-    DO              shift, and go to state 105
-    FOR             shift, and go to state 106
-    GOTO            shift, and go to state 107
-    CONTINUE        shift, and go to state 108
-    BREAK           shift, and go to state 109
-    RETURN          shift, and go to state 110
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    CASE            shift, and go to state 101
+    DEFAULT         shift, and go to state 102
+    IF              shift, and go to state 103
+    SWITCH          shift, and go to state 104
+    WHILE           shift, and go to state 105
+    DO              shift, and go to state 106
+    FOR             shift, and go to state 107
+    GOTO            shift, and go to state 108
+    CONTINUE        shift, and go to state 109
+    BREAK           shift, and go to state 110
+    RETURN          shift, and go to state 111
+    '('             shift, and go to state 112
     '{'             shift, and go to state 67
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 116
@@ -3504,8 +3504,8 @@ State 187
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -3542,8 +3542,8 @@ State 188
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -3580,8 +3580,8 @@ State 189
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -3629,6 +3629,7 @@ State 191
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
+    BIT_AND         shift, and go to state 100
     TYPEDEF         shift, and go to state 2
     EXTERN          shift, and go to state 3
     STATIC          shift, and go to state 4
@@ -3653,8 +3654,7 @@ State 191
     STRUCT          shift, and go to state 23
     UNION           shift, and go to state 24
     ENUM            shift, and go to state 25
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 116
@@ -3795,9 +3795,9 @@ State 203
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     ')'             shift, and go to state 291
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -3834,8 +3834,8 @@ State 204
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -3956,8 +3956,8 @@ State 217
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4000,8 +4000,8 @@ State 219
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4025,8 +4025,8 @@ State 220
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4050,8 +4050,8 @@ State 221
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4075,8 +4075,8 @@ State 222
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4101,8 +4101,8 @@ State 223
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4127,8 +4127,8 @@ State 224
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4154,8 +4154,8 @@ State 225
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4181,8 +4181,8 @@ State 226
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4209,8 +4209,8 @@ State 227
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4237,8 +4237,8 @@ State 228
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4265,8 +4265,8 @@ State 229
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4293,8 +4293,8 @@ State 230
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4322,8 +4322,8 @@ State 231
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4340,7 +4340,7 @@ State 231
 
 State 232
 
-   50 and_expression: and_expression '&' . equality_expression
+   50 and_expression: and_expression BIT_AND . equality_expression
 
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
@@ -4351,8 +4351,8 @@ State 232
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4381,8 +4381,8 @@ State 233
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4401,7 +4401,7 @@ State 233
 
 State 234
 
-   54 inclusive_or_expression: inclusive_or_expression '|' . exclusive_or_expression
+   54 inclusive_or_expression: inclusive_or_expression BIT_OR . exclusive_or_expression
 
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
@@ -4412,8 +4412,8 @@ State 234
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4444,8 +4444,8 @@ State 235
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4477,8 +4477,8 @@ State 236
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4511,8 +4511,8 @@ State 237
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4549,8 +4549,8 @@ State 238
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4607,8 +4607,8 @@ State 242
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4669,9 +4669,9 @@ State 246
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '{'             shift, and go to state 146
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4785,9 +4785,9 @@ State 250
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     ']'             shift, and go to state 327
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     '*'             shift, and go to state 328
@@ -4934,11 +4934,11 @@ State 259
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
+    BIT_AND         shift, and go to state 100
     RESTRICT        shift, and go to state 8
     CONST           shift, and go to state 17
     VOLATILE        shift, and go to state 18
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -4989,8 +4989,8 @@ State 262
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -5083,8 +5083,8 @@ State 270
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -5151,20 +5151,20 @@ State 275
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    CASE            shift, and go to state 100
-    DEFAULT         shift, and go to state 101
-    IF              shift, and go to state 102
-    SWITCH          shift, and go to state 103
-    WHILE           shift, and go to state 104
-    DO              shift, and go to state 105
-    FOR             shift, and go to state 106
-    GOTO            shift, and go to state 107
-    CONTINUE        shift, and go to state 108
-    BREAK           shift, and go to state 109
-    RETURN          shift, and go to state 110
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    CASE            shift, and go to state 101
+    DEFAULT         shift, and go to state 102
+    IF              shift, and go to state 103
+    SWITCH          shift, and go to state 104
+    WHILE           shift, and go to state 105
+    DO              shift, and go to state 106
+    FOR             shift, and go to state 107
+    GOTO            shift, and go to state 108
+    CONTINUE        shift, and go to state 109
+    BREAK           shift, and go to state 110
+    RETURN          shift, and go to state 111
+    '('             shift, and go to state 112
     '{'             shift, and go to state 67
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 116
@@ -5252,8 +5252,8 @@ State 281
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 116
@@ -5293,8 +5293,8 @@ State 282
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 116
@@ -5428,9 +5428,9 @@ State 289
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '{'             shift, and go to state 351
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -5651,7 +5651,7 @@ State 310
 
    47 equality_expression: equality_expression . EQ_OP relational_expression
    48                    | equality_expression . NE_OP relational_expression
-   50 and_expression: and_expression '&' equality_expression .
+   50 and_expression: and_expression BIT_AND equality_expression .
 
     EQ_OP  shift, and go to state 230
     NE_OP  shift, and go to state 231
@@ -5661,10 +5661,10 @@ State 310
 
 State 311
 
-   50 and_expression: and_expression . '&' equality_expression
+   50 and_expression: and_expression . BIT_AND equality_expression
    52 exclusive_or_expression: exclusive_or_expression '^' and_expression .
 
-    '&'  shift, and go to state 232
+    BIT_AND  shift, and go to state 232
 
     $default  reduce using rule 52 (exclusive_or_expression)
 
@@ -5672,7 +5672,7 @@ State 311
 State 312
 
    52 exclusive_or_expression: exclusive_or_expression . '^' and_expression
-   54 inclusive_or_expression: inclusive_or_expression '|' exclusive_or_expression .
+   54 inclusive_or_expression: inclusive_or_expression BIT_OR exclusive_or_expression .
 
     '^'  shift, and go to state 233
 
@@ -5681,10 +5681,10 @@ State 312
 
 State 313
 
-   54 inclusive_or_expression: inclusive_or_expression . '|' exclusive_or_expression
+   54 inclusive_or_expression: inclusive_or_expression . BIT_OR exclusive_or_expression
    56 logical_and_expression: logical_and_expression AND_OP inclusive_or_expression .
 
-    '|'  shift, and go to state 234
+    BIT_OR  shift, and go to state 234
 
     $default  reduce using rule 56 (logical_and_expression)
 
@@ -5751,12 +5751,12 @@ State 320
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '['             shift, and go to state 242
     '.'             shift, and go to state 243
     '{'             shift, and go to state 146
     '}'             shift, and go to state 358
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -5921,9 +5921,9 @@ State 332
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     ']'             shift, and go to state 367
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     '*'             shift, and go to state 368
@@ -6050,20 +6050,20 @@ State 345
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    CASE            shift, and go to state 100
-    DEFAULT         shift, and go to state 101
-    IF              shift, and go to state 102
-    SWITCH          shift, and go to state 103
-    WHILE           shift, and go to state 104
-    DO              shift, and go to state 105
-    FOR             shift, and go to state 106
-    GOTO            shift, and go to state 107
-    CONTINUE        shift, and go to state 108
-    BREAK           shift, and go to state 109
-    RETURN          shift, and go to state 110
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    CASE            shift, and go to state 101
+    DEFAULT         shift, and go to state 102
+    IF              shift, and go to state 103
+    SWITCH          shift, and go to state 104
+    WHILE           shift, and go to state 105
+    DO              shift, and go to state 106
+    FOR             shift, and go to state 107
+    GOTO            shift, and go to state 108
+    CONTINUE        shift, and go to state 109
+    BREAK           shift, and go to state 110
+    RETURN          shift, and go to state 111
+    '('             shift, and go to state 112
     '{'             shift, and go to state 67
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 116
@@ -6108,20 +6108,20 @@ State 346
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    CASE            shift, and go to state 100
-    DEFAULT         shift, and go to state 101
-    IF              shift, and go to state 102
-    SWITCH          shift, and go to state 103
-    WHILE           shift, and go to state 104
-    DO              shift, and go to state 105
-    FOR             shift, and go to state 106
-    GOTO            shift, and go to state 107
-    CONTINUE        shift, and go to state 108
-    BREAK           shift, and go to state 109
-    RETURN          shift, and go to state 110
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    CASE            shift, and go to state 101
+    DEFAULT         shift, and go to state 102
+    IF              shift, and go to state 103
+    SWITCH          shift, and go to state 104
+    WHILE           shift, and go to state 105
+    DO              shift, and go to state 106
+    FOR             shift, and go to state 107
+    GOTO            shift, and go to state 108
+    CONTINUE        shift, and go to state 109
+    BREAK           shift, and go to state 110
+    RETURN          shift, and go to state 111
+    '('             shift, and go to state 112
     '{'             shift, and go to state 67
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 116
@@ -6166,20 +6166,20 @@ State 347
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    CASE            shift, and go to state 100
-    DEFAULT         shift, and go to state 101
-    IF              shift, and go to state 102
-    SWITCH          shift, and go to state 103
-    WHILE           shift, and go to state 104
-    DO              shift, and go to state 105
-    FOR             shift, and go to state 106
-    GOTO            shift, and go to state 107
-    CONTINUE        shift, and go to state 108
-    BREAK           shift, and go to state 109
-    RETURN          shift, and go to state 110
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    CASE            shift, and go to state 101
+    DEFAULT         shift, and go to state 102
+    IF              shift, and go to state 103
+    SWITCH          shift, and go to state 104
+    WHILE           shift, and go to state 105
+    DO              shift, and go to state 106
+    FOR             shift, and go to state 107
+    GOTO            shift, and go to state 108
+    CONTINUE        shift, and go to state 109
+    BREAK           shift, and go to state 110
+    RETURN          shift, and go to state 111
+    '('             shift, and go to state 112
     '{'             shift, and go to state 67
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 116
@@ -6224,8 +6224,8 @@ State 348
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -6263,9 +6263,9 @@ State 349
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     ')'             shift, and go to state 376
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -6303,9 +6303,9 @@ State 350
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     ')'             shift, and go to state 378
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -6343,11 +6343,11 @@ State 351
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '['             shift, and go to state 242
     '.'             shift, and go to state 243
     '{'             shift, and go to state 146
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -6402,8 +6402,8 @@ State 354
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -6446,8 +6446,8 @@ State 356
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
-    '&'             shift, and go to state 113
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -6503,9 +6503,9 @@ State 360
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '{'             shift, and go to state 146
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 
@@ -6653,20 +6653,20 @@ State 376
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    CASE            shift, and go to state 100
-    DEFAULT         shift, and go to state 101
-    IF              shift, and go to state 102
-    SWITCH          shift, and go to state 103
-    WHILE           shift, and go to state 104
-    DO              shift, and go to state 105
-    FOR             shift, and go to state 106
-    GOTO            shift, and go to state 107
-    CONTINUE        shift, and go to state 108
-    BREAK           shift, and go to state 109
-    RETURN          shift, and go to state 110
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    CASE            shift, and go to state 101
+    DEFAULT         shift, and go to state 102
+    IF              shift, and go to state 103
+    SWITCH          shift, and go to state 104
+    WHILE           shift, and go to state 105
+    DO              shift, and go to state 106
+    FOR             shift, and go to state 107
+    GOTO            shift, and go to state 108
+    CONTINUE        shift, and go to state 109
+    BREAK           shift, and go to state 110
+    RETURN          shift, and go to state 111
+    '('             shift, and go to state 112
     '{'             shift, and go to state 67
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 116
@@ -6720,20 +6720,20 @@ State 378
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    CASE            shift, and go to state 100
-    DEFAULT         shift, and go to state 101
-    IF              shift, and go to state 102
-    SWITCH          shift, and go to state 103
-    WHILE           shift, and go to state 104
-    DO              shift, and go to state 105
-    FOR             shift, and go to state 106
-    GOTO            shift, and go to state 107
-    CONTINUE        shift, and go to state 108
-    BREAK           shift, and go to state 109
-    RETURN          shift, and go to state 110
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    CASE            shift, and go to state 101
+    DEFAULT         shift, and go to state 102
+    IF              shift, and go to state 103
+    SWITCH          shift, and go to state 104
+    WHILE           shift, and go to state 105
+    DO              shift, and go to state 106
+    FOR             shift, and go to state 107
+    GOTO            shift, and go to state 108
+    CONTINUE        shift, and go to state 109
+    BREAK           shift, and go to state 110
+    RETURN          shift, and go to state 111
+    '('             shift, and go to state 112
     '{'             shift, and go to state 67
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 116
@@ -6840,20 +6840,20 @@ State 387
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    CASE            shift, and go to state 100
-    DEFAULT         shift, and go to state 101
-    IF              shift, and go to state 102
-    SWITCH          shift, and go to state 103
-    WHILE           shift, and go to state 104
-    DO              shift, and go to state 105
-    FOR             shift, and go to state 106
-    GOTO            shift, and go to state 107
-    CONTINUE        shift, and go to state 108
-    BREAK           shift, and go to state 109
-    RETURN          shift, and go to state 110
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    CASE            shift, and go to state 101
+    DEFAULT         shift, and go to state 102
+    IF              shift, and go to state 103
+    SWITCH          shift, and go to state 104
+    WHILE           shift, and go to state 105
+    DO              shift, and go to state 106
+    FOR             shift, and go to state 107
+    GOTO            shift, and go to state 108
+    CONTINUE        shift, and go to state 109
+    BREAK           shift, and go to state 110
+    RETURN          shift, and go to state 111
+    '('             shift, and go to state 112
     '{'             shift, and go to state 67
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 116
@@ -6912,20 +6912,20 @@ State 390
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    CASE            shift, and go to state 100
-    DEFAULT         shift, and go to state 101
-    IF              shift, and go to state 102
-    SWITCH          shift, and go to state 103
-    WHILE           shift, and go to state 104
-    DO              shift, and go to state 105
-    FOR             shift, and go to state 106
-    GOTO            shift, and go to state 107
-    CONTINUE        shift, and go to state 108
-    BREAK           shift, and go to state 109
-    RETURN          shift, and go to state 110
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    CASE            shift, and go to state 101
+    DEFAULT         shift, and go to state 102
+    IF              shift, and go to state 103
+    SWITCH          shift, and go to state 104
+    WHILE           shift, and go to state 105
+    DO              shift, and go to state 106
+    FOR             shift, and go to state 107
+    GOTO            shift, and go to state 108
+    CONTINUE        shift, and go to state 109
+    BREAK           shift, and go to state 110
+    RETURN          shift, and go to state 111
+    '('             shift, and go to state 112
     '{'             shift, and go to state 67
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 116
@@ -6977,20 +6977,20 @@ State 392
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    CASE            shift, and go to state 100
-    DEFAULT         shift, and go to state 101
-    IF              shift, and go to state 102
-    SWITCH          shift, and go to state 103
-    WHILE           shift, and go to state 104
-    DO              shift, and go to state 105
-    FOR             shift, and go to state 106
-    GOTO            shift, and go to state 107
-    CONTINUE        shift, and go to state 108
-    BREAK           shift, and go to state 109
-    RETURN          shift, and go to state 110
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    CASE            shift, and go to state 101
+    DEFAULT         shift, and go to state 102
+    IF              shift, and go to state 103
+    SWITCH          shift, and go to state 104
+    WHILE           shift, and go to state 105
+    DO              shift, and go to state 106
+    FOR             shift, and go to state 107
+    GOTO            shift, and go to state 108
+    CONTINUE        shift, and go to state 109
+    BREAK           shift, and go to state 110
+    RETURN          shift, and go to state 111
+    '('             shift, and go to state 112
     '{'             shift, and go to state 67
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
     ';'             shift, and go to state 116
@@ -7044,12 +7044,12 @@ State 394
     PLUS            shift, and go to state 97
     MINUS           shift, and go to state 98
     MUL             shift, and go to state 99
-    '('             shift, and go to state 111
+    BIT_AND         shift, and go to state 100
+    '('             shift, and go to state 112
     '['             shift, and go to state 242
     '.'             shift, and go to state 243
     '{'             shift, and go to state 146
     '}'             shift, and go to state 399
-    '&'             shift, and go to state 113
     '~'             shift, and go to state 114
     '!'             shift, and go to state 115
 

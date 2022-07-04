@@ -10,3 +10,4 @@ void printErrorLex(char * str, char * lexema, int numFila, int numColumna);
 void printErrorLexFull(char * str, char * lexema, char * str2, int numFila, int numColumna);
 void writeLexLog(char * token, int id_token);
 void gestioParaulesReservades();
+int handleOperator(int op);
