@@ -60,8 +60,10 @@ int tipus_var_tmp;
 }
 
 %token<infoBison> IDENTIFIER 
-%token CONSTANT STRING_LITERAL SIZEOF
+%token<infoBison> CONSTANT 
+%token STRING_LITERAL SIZEOF
 %token PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
+%token SEMI_OP OCURLY_OP CCURLY_OP COMMA_OP
 %token AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
 %token SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
 %token XOR_ASSIGN OR_ASSIGN TYPE_NAME
@@ -92,8 +94,8 @@ postfix_expression
 	| postfix_expression PTR_OP IDENTIFIER
 	| postfix_expression INC_OP
 	| postfix_expression DEC_OP
-	| '(' type_name ')' '{' initializer_list '}'
-	| '(' type_name ')' '{' initializer_list ',' '}'
+	| '(' type_name ')' OCURLY_OP initializer_list CCURLY_OP
+	| '(' type_name ')' OCURLY_OP initializer_list COMMA_OP CCURLY_OP
 	;
 
 argument_expression_list
@@ -208,7 +210,7 @@ assignment_operator
 
 expression
 	: assignment_expression
-	| expression ',' assignment_expression
+	| expression COMMA_OP assignment_expression
 	;
 
 constant_expression
@@ -216,8 +218,8 @@ constant_expression
 	;
 
 declaration
-	: declaration_specifiers ';'
-	| declaration_specifiers init_declarator_list ';'
+	: declaration_specifiers SEMI_OP
+	| declaration_specifiers init_declarator_list SEMI_OP
 	;
 
 declaration_specifiers
@@ -233,7 +235,7 @@ declaration_specifiers
 
 init_declarator_list
 	: init_declarator
-	| init_declarator_list ',' init_declarator
+	| init_declarator_list COMMA_OP init_declarator
 	;
 
 init_declarator
@@ -268,8 +270,8 @@ type_specifier
 	;
 
 struct_or_union_specifier
-	: struct_or_union IDENTIFIER '{' struct_declaration_list '}'
-	| struct_or_union '{' struct_declaration_list '}'
+	: struct_or_union IDENTIFIER OCURLY_OP struct_declaration_list CCURLY_OP
+	| struct_or_union OCURLY_OP struct_declaration_list CCURLY_OP
 	| struct_or_union IDENTIFIER
 	;
 
@@ -284,7 +286,7 @@ struct_declaration_list
 	;
 
 struct_declaration
-	: specifier_qualifier_list struct_declarator_list ';'
+	: specifier_qualifier_list struct_declarator_list SEMI_OP
 	;
 
 specifier_qualifier_list
@@ -296,7 +298,7 @@ specifier_qualifier_list
 
 struct_declarator_list
 	: struct_declarator
-	| struct_declarator_list ',' struct_declarator
+	| struct_declarator_list COMMA_OP struct_declarator
 	;
 
 struct_declarator
@@ -306,16 +308,16 @@ struct_declarator
 	;
 
 enum_specifier
-	: ENUM '{' enumerator_list '}'
-	| ENUM IDENTIFIER '{' enumerator_list '}'
-	| ENUM '{' enumerator_list ',' '}'
-	| ENUM IDENTIFIER '{' enumerator_list ',' '}'
+	: ENUM OCURLY_OP enumerator_list CCURLY_OP
+	| ENUM IDENTIFIER OCURLY_OP enumerator_list CCURLY_OP
+	| ENUM OCURLY_OP enumerator_list COMMA_OP CCURLY_OP
+	| ENUM IDENTIFIER OCURLY_OP enumerator_list COMMA_OP CCURLY_OP
 	| ENUM IDENTIFIER
 	;
 
 enumerator_list
 	: enumerator
-	| enumerator_list ',' enumerator
+	| enumerator_list COMMA_OP enumerator
 	;
 
 enumerator
@@ -370,12 +372,12 @@ type_qualifier_list
 
 parameter_type_list
 	: parameter_list
-	| parameter_list ',' ELLIPSIS
+	| parameter_list COMMA_OP ELLIPSIS
 	;
 
 parameter_list
 	: parameter_declaration
-	| parameter_list ',' parameter_declaration
+	| parameter_list COMMA_OP parameter_declaration
 	;
 
 parameter_declaration
@@ -386,7 +388,7 @@ parameter_declaration
 
 identifier_list
 	: IDENTIFIER
-	| identifier_list ',' IDENTIFIER
+	| identifier_list COMMA_OP IDENTIFIER
 	;
 
 type_name
@@ -416,15 +418,15 @@ direct_abstract_declarator
 
 initializer
 	: assignment_expression
-	| '{' initializer_list '}'
-	| '{' initializer_list ',' '}'
+	| OCURLY_OP initializer_list CCURLY_OP
+	| OCURLY_OP initializer_list COMMA_OP CCURLY_OP
 	;
 
 initializer_list
 	: initializer
 	| designation initializer
-	| initializer_list ',' initializer
-	| initializer_list ',' designation initializer
+	| initializer_list COMMA_OP initializer
+	| initializer_list COMMA_OP designation initializer
 	;
 
 designation
@@ -457,8 +459,8 @@ labeled_statement
 	;
 
 compound_statement
-	: '{' '}'
-	| '{' block_item_list '}'
+	: OCURLY_OP CCURLY_OP
+	| OCURLY_OP block_item_list CCURLY_OP
 	;
 
 block_item_list
@@ -484,7 +486,7 @@ selection_statement
 
 iteration_statement
 	: WHILE '(' expression ')' statement
-	| DO statement WHILE '(' expression ')' ';'
+	| DO statement WHILE '(' expression ')' SEMI_OP
 	| FOR '(' expression_statement expression_statement ')' statement
 	| FOR '(' expression_statement expression_statement expression ')' statement
 	| FOR '(' declaration expression_statement ')' statement
@@ -492,11 +494,11 @@ iteration_statement
 	;
 
 jump_statement
-	: GOTO IDENTIFIER ';'
-	| CONTINUE ';'
-	| BREAK ';'
-	| RETURN ';'
-	| RETURN expression ';'
+	: GOTO IDENTIFIER SEMI_OP
+	| CONTINUE SEMI_OP
+	| BREAK SEMI_OP
+	| RETURN SEMI_OP
+	| RETURN expression SEMI_OP
 	;
 
 translation_unit

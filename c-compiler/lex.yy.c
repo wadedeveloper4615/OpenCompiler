@@ -1176,305 +1176,371 @@ YY_RULE_SETUP
 case 41:
 YY_RULE_SETUP
 #line 71 "c.l"
-{ return(CONSTANT); }
+{ 
+                             writeLexLog("HEX CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 72 "c.l"
-{ return(CONSTANT); }
+#line 78 "c.l"
+{ 
+                             writeLexLog("OCTAL CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 73 "c.l"
-{ return(CONSTANT); }
+#line 85 "c.l"
+{ 
+                             writeLexLog("DIGIT CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 74 "c.l"
-{ return(CONSTANT); }
+#line 92 "c.l"
+{ 
+                             writeLexLog("OCTAL CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 76 "c.l"
-{ return(CONSTANT); }
+#line 99 "c.l"
+{ 
+                             writeLexLog("OCTAL CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 77 "c.l"
-{ return(CONSTANT); }
+#line 106 "c.l"
+{ 
+                             writeLexLog("OCTAL CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 78 "c.l"
-{ return(CONSTANT); }
+#line 113 "c.l"
+{ 
+                             writeLexLog("OCTAL CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 79 "c.l"
-{ return(CONSTANT); }
+#line 120 "c.l"
+{ 
+                             writeLexLog("HEX CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 80 "c.l"
-{ return(CONSTANT); }
+#line 127 "c.l"
+{ 
+                             writeLexLog("HEX CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 81 "c.l"
-{ return(CONSTANT); }
+#line 134 "c.l"
+{ 
+                             writeLexLog("HEX CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 83 "c.l"
-{ return(STRING_LITERAL); }
+#line 141 "c.l"
+{ 
+                             writeLexLog("STRING CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(STRING_LITERAL); 
+                           }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 85 "c.l"
+#line 149 "c.l"
 { return(ELLIPSIS); }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 86 "c.l"
+#line 150 "c.l"
 { return(RIGHT_ASSIGN); }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 87 "c.l"
+#line 151 "c.l"
 { return(LEFT_ASSIGN); }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 88 "c.l"
+#line 152 "c.l"
 { return(ADD_ASSIGN); }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 89 "c.l"
+#line 153 "c.l"
 { return(SUB_ASSIGN); }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 90 "c.l"
+#line 154 "c.l"
 { return(MUL_ASSIGN); }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 91 "c.l"
+#line 155 "c.l"
 { return(DIV_ASSIGN); }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 92 "c.l"
+#line 156 "c.l"
 { return(MOD_ASSIGN); }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 93 "c.l"
+#line 157 "c.l"
 { return(AND_ASSIGN); }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 94 "c.l"
+#line 158 "c.l"
 { return(XOR_ASSIGN); }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 95 "c.l"
+#line 159 "c.l"
 { return(OR_ASSIGN); }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 96 "c.l"
+#line 160 "c.l"
 { return(RIGHT_OP); }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 97 "c.l"
+#line 161 "c.l"
 { return(LEFT_OP); }
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 98 "c.l"
+#line 162 "c.l"
 { return(INC_OP); }
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 99 "c.l"
+#line 163 "c.l"
 { return(DEC_OP); }
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 100 "c.l"
+#line 164 "c.l"
 { return(PTR_OP); }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 101 "c.l"
+#line 165 "c.l"
 { return(AND_OP); }
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 102 "c.l"
+#line 166 "c.l"
 { return(OR_OP); }
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 103 "c.l"
+#line 167 "c.l"
 { return(LE_OP); }
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 104 "c.l"
+#line 168 "c.l"
 { return(GE_OP); }
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 105 "c.l"
+#line 169 "c.l"
 { return(EQ_OP); }
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 106 "c.l"
+#line 170 "c.l"
 { return(NE_OP); }
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 107 "c.l"
-{ return(';'); }
+#line 171 "c.l"
+{ return(SEMI_OP); }
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 108 "c.l"
-{ return('{'); }
+#line 172 "c.l"
+{ return(OCURLY_OP); }
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 109 "c.l"
-{ return('}'); }
+#line 173 "c.l"
+{ return(CCURLY_OP); }
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 110 "c.l"
-{ return(','); }
+#line 174 "c.l"
+{ return(COMMA_OP); }
 	YY_BREAK
 case 78:
 YY_RULE_SETUP
-#line 111 "c.l"
+#line 175 "c.l"
 { return(':'); }
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
-#line 112 "c.l"
+#line 176 "c.l"
 { return('='); }
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
-#line 113 "c.l"
+#line 177 "c.l"
 { return('('); }
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 114 "c.l"
+#line 178 "c.l"
 { return(')'); }
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 115 "c.l"
+#line 179 "c.l"
 { return('['); }
 	YY_BREAK
 case 83:
 YY_RULE_SETUP
-#line 116 "c.l"
+#line 180 "c.l"
 { return(']'); }
 	YY_BREAK
 case 84:
 YY_RULE_SETUP
-#line 117 "c.l"
+#line 181 "c.l"
 { return('.'); }
 	YY_BREAK
 case 85:
 YY_RULE_SETUP
-#line 118 "c.l"
-{ return('&'); }
+#line 182 "c.l"
+{ return(BIT_AND); }
 	YY_BREAK
 case 86:
 YY_RULE_SETUP
-#line 119 "c.l"
+#line 183 "c.l"
 { return('!'); }
 	YY_BREAK
 case 87:
 YY_RULE_SETUP
-#line 120 "c.l"
+#line 184 "c.l"
 { return('~'); }
 	YY_BREAK
 case 88:
 YY_RULE_SETUP
-#line 121 "c.l"
+#line 185 "c.l"
 { return(MINUS); }
 	YY_BREAK
 case 89:
 YY_RULE_SETUP
-#line 122 "c.l"
+#line 186 "c.l"
 { return(PLUS); }
 	YY_BREAK
 case 90:
 YY_RULE_SETUP
-#line 123 "c.l"
+#line 187 "c.l"
 { return(MUL); }
 	YY_BREAK
 case 91:
 YY_RULE_SETUP
-#line 124 "c.l"
+#line 188 "c.l"
 { return(DIV); }
 	YY_BREAK
 case 92:
 YY_RULE_SETUP
-#line 125 "c.l"
+#line 189 "c.l"
 { return(MOD); }
 	YY_BREAK
 case 93:
 YY_RULE_SETUP
-#line 126 "c.l"
+#line 190 "c.l"
 { return('<'); }
 	YY_BREAK
 case 94:
 YY_RULE_SETUP
-#line 127 "c.l"
+#line 191 "c.l"
 { return('>'); }
 	YY_BREAK
 case 95:
 YY_RULE_SETUP
-#line 128 "c.l"
+#line 192 "c.l"
 { return('^'); }
 	YY_BREAK
 case 96:
 YY_RULE_SETUP
-#line 129 "c.l"
+#line 193 "c.l"
 { return(BIT_OR); }
 	YY_BREAK
 case 97:
 YY_RULE_SETUP
-#line 130 "c.l"
+#line 194 "c.l"
 { return('?'); }
 	YY_BREAK
 case 98:
 /* rule 98 can match eol */
 YY_RULE_SETUP
-#line 132 "c.l"
+#line 196 "c.l"
 { }
 	YY_BREAK
 case 99:
 YY_RULE_SETUP
-#line 133 "c.l"
+#line 197 "c.l"
 { /* Add code to complain about unmatched characters */ }
 	YY_BREAK
 case 100:
 YY_RULE_SETUP
-#line 135 "c.l"
+#line 199 "c.l"
 ECHO;
 	YY_BREAK
-#line 1477 "lex.yy.c"
+#line 1543 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2479,7 +2545,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 135 "c.l"
+#line 199 "c.l"
 
 
 int yywrap(void)
@@ -2581,7 +2647,7 @@ void printErrorLexFull(char * str, char * lexema, char * str2, int numFila, int 
 }
 
 void writeLexLog(char * token, int id_token) {
-   fprintf(fileLexLog, "%s %s %d %d %d\n", token, yytext, id_token, numFila, numColumna);   
+   fprintf(fileLexLog, "% 35s % 35s %d %d %d\n", token, yytext, id_token, numFila, numColumna);   
 }
 
 void gestioParaulesReservades() {

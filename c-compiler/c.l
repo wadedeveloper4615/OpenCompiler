@@ -68,19 +68,83 @@ int estat_tipus = 0;
 
 {L}({L}|{D})*		       { return(handleIndentifier()); }
 
-0[xX]{H}+{IS}?		       { return(CONSTANT); }
-0[0-7]*{IS}?		       { return(CONSTANT); }
-[1-9]{D}*{IS}?		       { return(CONSTANT); }
-L?'(\\.|[^\\'\n])+'	       { return(CONSTANT); }
-
-{D}+{E}{FS}?		       { return(CONSTANT); }
-{D}*"."{D}+{E}?{FS}?	   { return(CONSTANT); }
-{D}+"."{D}*{E}?{FS}?	   { return(CONSTANT); }
-0[xX]{H}+{P}{FS}?	       { return(CONSTANT); }
-0[xX]{H}*"."{H}+{P}?{FS}?  { return(CONSTANT); }
-0[xX]{H}+"."{H}*{P}?{FS}?  { return(CONSTANT); }
-
-L?\"(\\.|[^\\"\n])*\"	{ return(STRING_LITERAL); }
+0[xX]{H}+{IS}?		       { 
+                             writeLexLog("HEX CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
+0[0-7]*{IS}?		       { 
+                             writeLexLog("OCTAL CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
+[1-9]{D}*{IS}?		       { 
+                             writeLexLog("DIGIT CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
+L?'(\\.|[^\\'\n])+'	       { 
+                             writeLexLog("OCTAL CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
+{D}+{E}{FS}?		       { 
+                             writeLexLog("OCTAL CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
+{D}*"."{D}+{E}?{FS}?	   { 
+                             writeLexLog("OCTAL CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
+{D}+"."{D}*{E}?{FS}?	   { 
+                             writeLexLog("OCTAL CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
+0[xX]{H}+{P}{FS}?	       { 
+                             writeLexLog("HEX CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
+0[xX]{H}*"."{H}+{P}?{FS}?  { 
+                             writeLexLog("HEX CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
+0[xX]{H}+"."{H}*{P}?{FS}?  { 
+                             writeLexLog("HEX CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(CONSTANT); 
+                           }
+L?\"(\\.|[^\\"\n])*\"	   { 
+                             writeLexLog("STRING CONSTANT", CONSTANT);
+                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             numColumna += yyleng;
+                             return(STRING_LITERAL); 
+                           }
 
 "..."			{ return(ELLIPSIS); }
 ">>="			{ return(RIGHT_ASSIGN); }
@@ -104,10 +168,10 @@ L?\"(\\.|[^\\"\n])*\"	{ return(STRING_LITERAL); }
 ">="			{ return(GE_OP); }
 "=="			{ return(EQ_OP); }
 "!="			{ return(NE_OP); }
-";"			    { return(';'); }
-("{"|"<%")		{ return('{'); }
-("}"|"%>")		{ return('}'); }
-","			    { return(','); }
+";"			    { return(SEMI_OP); }
+("{"|"<%")		{ return(OCURLY_OP); }
+("}"|"%>")		{ return(CCURLY_OP); }
+","			    { return(COMMA_OP); }
 ":"			    { return(':'); }
 "="			    { return('='); }
 "("			    { return('('); }
@@ -233,7 +297,7 @@ void printErrorLexFull(char * str, char * lexema, char * str2, int numFila, int 
 }
 
 void writeLexLog(char * token, int id_token) {
-   fprintf(fileLexLog, "%s %s %d %d %d\n", token, yytext, id_token, numFila, numColumna);   
+   fprintf(fileLexLog, "% 35s % 35s %d %d %d\n", token, yytext, id_token, numFila, numColumna);   
 }
 
 void gestioParaulesReservades() {
