@@ -362,22 +362,22 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[317] =
     {   0,
-        0,    0,  101,   99,   98,   98,   86,   99,   92,   85,
-       99,   80,   81,   90,   89,   77,   88,   84,   91,   42,
-       43,   78,   74,   93,   79,   94,   97,   40,   40,   82,
-       83,   95,   40,   40,   40,   40,   40,   40,   40,   40,
-       40,   40,   40,   40,   40,   40,   40,   40,   75,   96,
-       76,   87,   73,    0,   51,    0,   59,   76,   68,   60,
-        0,    0,   57,   65,   55,   66,   56,   67,    0,   46,
-        1,    2,   58,   47,   42,    0,    0,   42,   42,    0,
-       42,   43,   43,   43,   43,   83,   75,   82,   64,   70,
-       72,   71,   63,   40,    0,    0,   61,   40,   40,   40,
+        0,    0,  101,   99,   98,   98,   89,   99,   97,   91,
+       99,   59,   60,   95,   94,   57,   93,   63,   96,   42,
+       43,   58,   54,   83,   65,   84,   53,   40,   40,   61,
+       62,   90,   40,   40,   40,   40,   40,   40,   40,   40,
+       40,   40,   40,   40,   40,   40,   40,   40,   55,   92,
+       56,   64,   88,    0,   51,    0,   72,   56,   81,   73,
+        0,    0,   70,   78,   68,   79,   69,   80,    0,   46,
+        1,    2,   71,   47,   42,    0,    0,   42,   42,    0,
+       42,   43,   43,   43,   43,   62,   55,   61,   77,   85,
+       87,   86,   76,   40,    0,    0,   74,   40,   40,   40,
 
        40,   40,   40,   40,   40,   40,   12,   40,   40,   40,
        40,   40,   40,   20,   40,   40,   40,   40,   40,   40,
-       40,   40,   40,   40,   40,   62,   69,   44,   52,    0,
+       40,   40,   40,   40,   40,   75,   82,   44,   52,    0,
        46,    2,   46,    0,   47,    0,   45,   42,   42,   42,
-       42,    0,   41,   43,   43,   43,   43,   54,   53,   40,
+       42,    0,   41,   43,   43,   43,   43,   67,   66,   40,
        40,   40,   40,   40,   40,   40,   40,   40,   40,   40,
        40,   40,   40,   18,   40,   40,   23,   40,   40,   40,
        40,   40,   40,   40,   40,   40,   40,   40,   40,   40,
@@ -1302,242 +1302,242 @@ YY_RULE_SETUP
 case 53:
 YY_RULE_SETUP
 #line 150 "c.l"
-{ return(RIGHT_ASSIGN); }
+{ return(QUESTION_OP); }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
 #line 151 "c.l"
-{ return(LEFT_ASSIGN); }
+{ return(SEMI_OP); }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
 #line 152 "c.l"
-{ return(ADD_ASSIGN); }
+{ return(OCURLY_OP); }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
 #line 153 "c.l"
-{ return(SUB_ASSIGN); }
+{ return(CCURLY_OP); }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
 #line 154 "c.l"
-{ return(MUL_ASSIGN); }
+{ return(COMMA_OP); }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
 #line 155 "c.l"
-{ return(DIV_ASSIGN); }
+{ return(COLON_OP); }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
 #line 156 "c.l"
-{ return(MOD_ASSIGN); }
+{ return(OPENPAREN_OP); }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
 #line 157 "c.l"
-{ return(AND_ASSIGN); }
+{ return(CLOSEPAREN_OP); }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
 #line 158 "c.l"
-{ return(XOR_ASSIGN); }
+{ return(OPENBRACE_OP); }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
 #line 159 "c.l"
-{ return(OR_ASSIGN); }
+{ return(CLOSEBRACE_OP); }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
 #line 160 "c.l"
-{ return(RIGHT_OP); }
+{ return(PERIOD_OP); }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
 #line 161 "c.l"
-{ return(LEFT_OP); }
+{ return(TILDE_OP); }
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 162 "c.l"
-{ return(INC_OP); }
+#line 163 "c.l"
+{ return(EQUAL_OP); }
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 163 "c.l"
-{ return(DEC_OP); }
+#line 164 "c.l"
+{ return(RIGHT_ASSIGN); }
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 164 "c.l"
-{ return(PTR_OP); }
+#line 165 "c.l"
+{ return(LEFT_ASSIGN); }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 165 "c.l"
-{ return(AND_OP); }
+#line 166 "c.l"
+{ return(ADD_ASSIGN); }
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 166 "c.l"
-{ return(OR_OP); }
+#line 167 "c.l"
+{ return(SUB_ASSIGN); }
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 167 "c.l"
-{ return(LE_OP); }
+#line 168 "c.l"
+{ return(MUL_ASSIGN); }
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 168 "c.l"
-{ return(GE_OP); }
+#line 169 "c.l"
+{ return(DIV_ASSIGN); }
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 169 "c.l"
-{ return(EQ_OP); }
+#line 170 "c.l"
+{ return(MOD_ASSIGN); }
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 170 "c.l"
-{ return(NE_OP); }
+#line 171 "c.l"
+{ return(AND_ASSIGN); }
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 171 "c.l"
-{ return(SEMI_OP); }
+#line 172 "c.l"
+{ return(XOR_ASSIGN); }
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 172 "c.l"
-{ return(OCURLY_OP); }
+#line 173 "c.l"
+{ return(OR_ASSIGN); }
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 173 "c.l"
-{ return(CCURLY_OP); }
+#line 174 "c.l"
+{ return(RIGHT_OP); }
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 174 "c.l"
-{ return(COMMA_OP); }
+#line 175 "c.l"
+{ return(LEFT_OP); }
 	YY_BREAK
 case 78:
 YY_RULE_SETUP
-#line 175 "c.l"
-{ return(':'); }
+#line 176 "c.l"
+{ return(INC_OP); }
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
-#line 176 "c.l"
-{ return('='); }
+#line 177 "c.l"
+{ return(DEC_OP); }
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
-#line 177 "c.l"
-{ return('('); }
+#line 178 "c.l"
+{ return(PTR_OP); }
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 178 "c.l"
-{ return(')'); }
+#line 180 "c.l"
+{ return(AND_OP); }
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 179 "c.l"
-{ return('['); }
+#line 181 "c.l"
+{ return(OR_OP); }
 	YY_BREAK
 case 83:
 YY_RULE_SETUP
-#line 180 "c.l"
-{ return(']'); }
+#line 182 "c.l"
+{ return(LESS_OP); }
 	YY_BREAK
 case 84:
 YY_RULE_SETUP
-#line 181 "c.l"
-{ return('.'); }
+#line 183 "c.l"
+{ return(GREATER_OP); }
 	YY_BREAK
 case 85:
 YY_RULE_SETUP
-#line 182 "c.l"
-{ return(BIT_AND); }
+#line 184 "c.l"
+{ return(LE_OP); }
 	YY_BREAK
 case 86:
 YY_RULE_SETUP
-#line 183 "c.l"
-{ return('!'); }
+#line 185 "c.l"
+{ return(GE_OP); }
 	YY_BREAK
 case 87:
 YY_RULE_SETUP
-#line 184 "c.l"
-{ return('~'); }
+#line 186 "c.l"
+{ return(EQ_OP); }
 	YY_BREAK
 case 88:
 YY_RULE_SETUP
-#line 185 "c.l"
-{ return(MINUS); }
+#line 187 "c.l"
+{ return(NE_OP); }
 	YY_BREAK
 case 89:
 YY_RULE_SETUP
-#line 186 "c.l"
-{ return(PLUS); }
+#line 188 "c.l"
+{ return(NOT_OP); }
 	YY_BREAK
 case 90:
 YY_RULE_SETUP
-#line 187 "c.l"
-{ return(MUL); }
+#line 189 "c.l"
+{ return(XOR_OP); }
 	YY_BREAK
 case 91:
 YY_RULE_SETUP
-#line 188 "c.l"
-{ return(DIV); }
+#line 190 "c.l"
+{ return(BIT_AND); }
 	YY_BREAK
 case 92:
 YY_RULE_SETUP
-#line 189 "c.l"
-{ return(MOD); }
+#line 191 "c.l"
+{ return(BIT_OR); }
 	YY_BREAK
 case 93:
 YY_RULE_SETUP
-#line 190 "c.l"
-{ return('<'); }
+#line 193 "c.l"
+{ return(MINUS_OP); }
 	YY_BREAK
 case 94:
 YY_RULE_SETUP
-#line 191 "c.l"
-{ return('>'); }
+#line 194 "c.l"
+{ return(PLUS_OP); }
 	YY_BREAK
 case 95:
 YY_RULE_SETUP
-#line 192 "c.l"
-{ return('^'); }
+#line 195 "c.l"
+{ return(TIMES_OP); }
 	YY_BREAK
 case 96:
 YY_RULE_SETUP
-#line 193 "c.l"
-{ return(BIT_OR); }
+#line 196 "c.l"
+{ return(DIV_OP); }
 	YY_BREAK
 case 97:
 YY_RULE_SETUP
-#line 194 "c.l"
-{ return('?'); }
+#line 197 "c.l"
+{ return(MOD_OP); }
 	YY_BREAK
 case 98:
 /* rule 98 can match eol */
 YY_RULE_SETUP
-#line 196 "c.l"
+#line 200 "c.l"
 { }
 	YY_BREAK
 case 99:
 YY_RULE_SETUP
-#line 197 "c.l"
+#line 201 "c.l"
 { /* Add code to complain about unmatched characters */ }
 	YY_BREAK
 case 100:
 YY_RULE_SETUP
-#line 199 "c.l"
+#line 203 "c.l"
 ECHO;
 	YY_BREAK
 #line 1543 "lex.yy.c"
@@ -2545,7 +2545,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 199 "c.l"
+#line 203 "c.l"
 
 
 int yywrap(void)

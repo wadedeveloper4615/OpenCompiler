@@ -147,6 +147,20 @@ L?\"(\\.|[^\\"\n])*\"	   {
                            }
 
 "..."			{ return(ELLIPSIS); }
+"?"			    { return(QUESTION_OP); }
+";"			    { return(SEMI_OP); }
+("{"|"<%")		{ return(OCURLY_OP); }
+("}"|"%>")		{ return(CCURLY_OP); }
+","			    { return(COMMA_OP); }
+":"			    { return(COLON_OP); }
+"("			    { return(OPENPAREN_OP); }
+")"			    { return(CLOSEPAREN_OP); }
+("["|"<:")		{ return(OPENBRACE_OP); }
+("]"|":>")		{ return(CLOSEBRACE_OP); }
+"."			    { return(PERIOD_OP); }
+"~"			    { return(TILDE_OP); }
+
+"="			    { return(EQUAL_OP); }
 ">>="			{ return(RIGHT_ASSIGN); }
 "<<="			{ return(LEFT_ASSIGN); }
 "+="			{ return(ADD_ASSIGN); }
@@ -162,36 +176,26 @@ L?\"(\\.|[^\\"\n])*\"	   {
 "++"			{ return(INC_OP); }
 "--"			{ return(DEC_OP); }
 "->"			{ return(PTR_OP); }
+
 "&&"			{ return(AND_OP); }
 "||"			{ return(OR_OP); }
+"<"			    { return(LESS_OP); }
+">"			    { return(GREATER_OP); }
 "<="			{ return(LE_OP); }
 ">="			{ return(GE_OP); }
 "=="			{ return(EQ_OP); }
 "!="			{ return(NE_OP); }
-";"			    { return(SEMI_OP); }
-("{"|"<%")		{ return(OCURLY_OP); }
-("}"|"%>")		{ return(CCURLY_OP); }
-","			    { return(COMMA_OP); }
-":"			    { return(':'); }
-"="			    { return('='); }
-"("			    { return('('); }
-")"			    { return(')'); }
-("["|"<:")		{ return('['); }
-("]"|":>")		{ return(']'); }
-"."			    { return('.'); }
+"!"			    { return(NOT_OP); }
+"^"			    { return(XOR_OP); }
 "&"			    { return(BIT_AND); }
-"!"			    { return('!'); }
-"~"			    { return('~'); }
-"-"			    { return(MINUS); }
-"+"			    { return(PLUS); }
-"*"			    { return(MUL); }
-"/"			    { return(DIV); }
-"%"			    { return(MOD); }
-"<"			    { return('<'); }
-">"			    { return('>'); }
-"^"			    { return('^'); }
 "|"			    { return(BIT_OR); }
-"?"			    { return('?'); }
+
+"-"			    { return(MINUS_OP); }
+"+"			    { return(PLUS_OP); }
+"*"			    { return(TIMES_OP); }
+"/"			    { return(DIV_OP); }
+"%"			    { return(MOD_OP); }
+
 
 [ \t\v\n\f]		{ }
 .			    { /* Add code to complain about unmatched characters */ }

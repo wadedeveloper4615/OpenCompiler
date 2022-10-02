@@ -63,11 +63,13 @@ int tipus_var_tmp;
 %token<infoBison> CONSTANT 
 %token STRING_LITERAL SIZEOF
 %token PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
-%token SEMI_OP OCURLY_OP CCURLY_OP COMMA_OP
+%token SEMI_OP OCURLY_OP CCURLY_OP COMMA_OP COLON_OP EQUAL_OP
+%token OPENPAREN_OP CLOSEPAREN_OP OPENBRACE_OP CLOSEBRACE_OP
+%token PERIOD_OP NOT_OP LESS_OP GREATER_OP TILDE_OP XOR_OP QUESTION_OP
 %token AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
 %token SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
 %token XOR_ASSIGN OR_ASSIGN TYPE_NAME
-%token PLUS MINUS MUL DIV MOD BIT_OR BIT_AND
+%token PLUS_OP MINUS_OP TIMES_OP DIV_OP MOD_OP BIT_OR BIT_AND
 %token TYPEDEF EXTERN STATIC AUTO REGISTER INLINE RESTRICT
 %token CHAR SHORT INT LONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
 %token BOOL COMPLEX IMAGINARY
@@ -82,25 +84,25 @@ primary_expression
 	: IDENTIFIER
 	| CONSTANT
 	| STRING_LITERAL
-	| '(' expression ')'
+	| OPENPAREN_OP expression CLOSEPAREN_OP
 	;
 
 postfix_expression
 	: primary_expression
-	| postfix_expression '[' expression ']'
-	| postfix_expression '(' ')'
-	| postfix_expression '(' argument_expression_list ')'
-	| postfix_expression '.' IDENTIFIER
+	| postfix_expression OPENBRACE_OP expression CLOSEBRACE_OP
+	| postfix_expression OPENPAREN_OP CLOSEPAREN_OP
+	| postfix_expression OPENPAREN_OP argument_expression_list CLOSEPAREN_OP
+	| postfix_expression PERIOD_OP IDENTIFIER
 	| postfix_expression PTR_OP IDENTIFIER
 	| postfix_expression INC_OP
 	| postfix_expression DEC_OP
-	| '(' type_name ')' OCURLY_OP initializer_list CCURLY_OP
-	| '(' type_name ')' OCURLY_OP initializer_list COMMA_OP CCURLY_OP
+	| OPENPAREN_OP type_name CLOSEPAREN_OP OCURLY_OP initializer_list CCURLY_OP
+	| OPENPAREN_OP type_name CLOSEPAREN_OP OCURLY_OP initializer_list COMMA_OP CCURLY_OP
 	;
 
 argument_expression_list
 	: assignment_expression
-	| argument_expression_list ',' assignment_expression
+	| argument_expression_list COMMA_OP assignment_expression
 	;
 
 unary_expression
@@ -109,34 +111,34 @@ unary_expression
 	| DEC_OP unary_expression
 	| unary_operator cast_expression
 	| SIZEOF unary_expression
-	| SIZEOF '(' type_name ')'
+	| SIZEOF OPENPAREN_OP type_name CLOSEPAREN_OP
 	;
 
 unary_operator
 	: BIT_AND
-	| MUL
-	| PLUS
-	| MINUS
-	| '~'
-	| '!'
+	| TIMES_OP
+	| PLUS_OP
+	| MINUS_OP
+	| TILDE_OP
+	| NOT_OP
 	;
 
 cast_expression
 	: unary_expression
-	| '(' type_name ')' cast_expression
+	| OPENPAREN_OP type_name CLOSEPAREN_OP cast_expression
 	;
 
 multiplicative_expression
 	: cast_expression
-	| multiplicative_expression MUL cast_expression
-	| multiplicative_expression DIV cast_expression
-	| multiplicative_expression MOD cast_expression
+	| multiplicative_expression TIMES_OP cast_expression
+	| multiplicative_expression DIV_OP cast_expression
+	| multiplicative_expression MOD_OP cast_expression
 	;
 
 additive_expression
 	: multiplicative_expression
-	| additive_expression PLUS multiplicative_expression
-	| additive_expression MINUS multiplicative_expression
+	| additive_expression PLUS_OP multiplicative_expression
+	| additive_expression MINUS_OP multiplicative_expression
 	;
 
 shift_expression
@@ -147,8 +149,8 @@ shift_expression
 
 relational_expression
 	: shift_expression
-	| relational_expression '<' shift_expression
-	| relational_expression '>' shift_expression
+	| relational_expression LESS_OP shift_expression
+	| relational_expression GREATER_OP shift_expression
 	| relational_expression LE_OP shift_expression
 	| relational_expression GE_OP shift_expression
 	;
@@ -166,7 +168,7 @@ and_expression
 
 exclusive_or_expression
 	: and_expression
-	| exclusive_or_expression '^' and_expression
+	| exclusive_or_expression XOR_OP and_expression
 	;
 
 inclusive_or_expression
@@ -186,7 +188,7 @@ logical_or_expression
 
 conditional_expression
 	: logical_or_expression
-	| logical_or_expression '?' expression ':' conditional_expression
+	| logical_or_expression QUESTION_OP expression COLON_OP conditional_expression
 	;
 
 assignment_expression
@@ -195,7 +197,7 @@ assignment_expression
 	;
 
 assignment_operator
-	: '='
+	: EQUAL_OP
 	| MUL_ASSIGN
 	| DIV_ASSIGN
 	| MOD_ASSIGN
@@ -240,7 +242,7 @@ init_declarator_list
 
 init_declarator
 	: declarator
-	| declarator '=' initializer
+	| declarator EQUAL_OP initializer
 	;
 
 storage_class_specifier
@@ -303,8 +305,8 @@ struct_declarator_list
 
 struct_declarator
 	: declarator
-	| ':' constant_expression
-	| declarator ':' constant_expression
+	| COLON_OP constant_expression
+	| declarator COLON_OP constant_expression
 	;
 
 enum_specifier
@@ -322,7 +324,7 @@ enumerator_list
 
 enumerator
 	: IDENTIFIER
-	| IDENTIFIER '=' constant_expression
+	| IDENTIFIER EQUAL_OP constant_expression
 	;
 
 type_qualifier
@@ -343,25 +345,25 @@ declarator
 
 direct_declarator
 	: IDENTIFIER
-	| '(' declarator ')'
-	| direct_declarator '[' type_qualifier_list assignment_expression ']'
-	| direct_declarator '[' type_qualifier_list ']'
-	| direct_declarator '[' assignment_expression ']'
-	| direct_declarator '[' STATIC type_qualifier_list assignment_expression ']'
-	| direct_declarator '[' type_qualifier_list STATIC assignment_expression ']'
-	| direct_declarator '[' type_qualifier_list '*' ']'
-	| direct_declarator '[' '*' ']'
-	| direct_declarator '[' ']'
-	| direct_declarator '(' parameter_type_list ')'
-	| direct_declarator '(' identifier_list ')'
-	| direct_declarator '(' ')'
+	| OPENPAREN_OP declarator CLOSEPAREN_OP
+	| direct_declarator OPENBRACE_OP type_qualifier_list assignment_expression CLOSEBRACE_OP
+	| direct_declarator OPENBRACE_OP type_qualifier_list CLOSEBRACE_OP
+	| direct_declarator OPENBRACE_OP assignment_expression CLOSEBRACE_OP
+	| direct_declarator OPENBRACE_OP STATIC type_qualifier_list assignment_expression CLOSEBRACE_OP
+	| direct_declarator OPENBRACE_OP type_qualifier_list STATIC assignment_expression CLOSEBRACE_OP
+	| direct_declarator OPENBRACE_OP type_qualifier_list TIMES_OP CLOSEBRACE_OP
+	| direct_declarator OPENBRACE_OP TIMES_OP CLOSEBRACE_OP
+	| direct_declarator OPENBRACE_OP CLOSEBRACE_OP
+	| direct_declarator OPENPAREN_OP parameter_type_list CLOSEPAREN_OP
+	| direct_declarator OPENPAREN_OP identifier_list CLOSEPAREN_OP
+	| direct_declarator OPENPAREN_OP CLOSEPAREN_OP
 	;
 
 pointer
-	: '*'
-	| '*' type_qualifier_list
-	| '*' pointer
-	| '*' type_qualifier_list pointer
+	: TIMES_OP
+	| TIMES_OP type_qualifier_list
+	| TIMES_OP pointer
+	| TIMES_OP type_qualifier_list pointer
 	;
 
 type_qualifier_list
@@ -403,17 +405,17 @@ abstract_declarator
 	;
 
 direct_abstract_declarator
-	: '(' abstract_declarator ')'
-	| '[' ']'
-	| '[' assignment_expression ']'
-	| direct_abstract_declarator '[' ']'
-	| direct_abstract_declarator '[' assignment_expression ']'
-	| '[' '*' ']'
-	| direct_abstract_declarator '[' '*' ']'
-	| '(' ')'
-	| '(' parameter_type_list ')'
-	| direct_abstract_declarator '(' ')'
-	| direct_abstract_declarator '(' parameter_type_list ')'
+	: OPENPAREN_OP abstract_declarator CLOSEPAREN_OP
+	| OPENBRACE_OP CLOSEBRACE_OP
+	| OPENBRACE_OP assignment_expression CLOSEBRACE_OP
+	| direct_abstract_declarator OPENBRACE_OP CLOSEBRACE_OP
+	| direct_abstract_declarator OPENBRACE_OP assignment_expression CLOSEBRACE_OP
+	| OPENBRACE_OP TIMES_OP CLOSEBRACE_OP
+	| direct_abstract_declarator OPENBRACE_OP TIMES_OP CLOSEBRACE_OP
+	| OPENPAREN_OP CLOSEPAREN_OP
+	| OPENPAREN_OP parameter_type_list CLOSEPAREN_OP
+	| direct_abstract_declarator OPENPAREN_OP CLOSEPAREN_OP
+	| direct_abstract_declarator OPENPAREN_OP parameter_type_list CLOSEPAREN_OP
 	;
 
 initializer
@@ -430,7 +432,7 @@ initializer_list
 	;
 
 designation
-	: designator_list '='
+	: designator_list EQUAL_OP
 	;
 
 designator_list
@@ -439,8 +441,8 @@ designator_list
 	;
 
 designator
-	: '[' constant_expression ']'
-	| '.' IDENTIFIER
+	: OPENBRACE_OP constant_expression CLOSEBRACE_OP
+	| PERIOD_OP IDENTIFIER
 	;
 
 statement
@@ -453,9 +455,9 @@ statement
 	;
 
 labeled_statement
-	: IDENTIFIER ':' statement
-	| CASE constant_expression ':' statement
-	| DEFAULT ':' statement
+	: IDENTIFIER COLON_OP statement
+	| CASE constant_expression COLON_OP statement
+	| DEFAULT COLON_OP statement
 	;
 
 compound_statement
@@ -474,23 +476,23 @@ block_item
 	;
 
 expression_statement
-	: ';'
-	| expression ';'
+	: SEMI_OP
+	| expression SEMI_OP
 	;
 
 selection_statement
-	: IF '(' expression ')' statement
-	| IF '(' expression ')' statement ELSE statement
-	| SWITCH '(' expression ')' statement
+	: IF OPENPAREN_OP expression CLOSEPAREN_OP statement
+	| IF OPENPAREN_OP expression CLOSEPAREN_OP statement ELSE statement
+	| SWITCH OPENPAREN_OP expression CLOSEPAREN_OP statement
 	;
 
 iteration_statement
-	: WHILE '(' expression ')' statement
-	| DO statement WHILE '(' expression ')' SEMI_OP
-	| FOR '(' expression_statement expression_statement ')' statement
-	| FOR '(' expression_statement expression_statement expression ')' statement
-	| FOR '(' declaration expression_statement ')' statement
-	| FOR '(' declaration expression_statement expression ')' statement
+	: WHILE OPENPAREN_OP expression CLOSEPAREN_OP statement
+	| DO statement WHILE OPENPAREN_OP expression CLOSEPAREN_OP SEMI_OP
+	| FOR OPENPAREN_OP expression_statement expression_statement CLOSEPAREN_OP statement
+	| FOR OPENPAREN_OP expression_statement expression_statement expression CLOSEPAREN_OP statement
+	| FOR OPENPAREN_OP declaration expression_statement CLOSEPAREN_OP statement
+	| FOR OPENPAREN_OP declaration expression_statement expression CLOSEPAREN_OP statement
 	;
 
 jump_statement
