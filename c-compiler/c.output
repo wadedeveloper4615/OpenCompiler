@@ -319,75 +319,75 @@ IDENTIFIER (258) 1 9 10 111 113 129 131 132 135 136 143 169 170 198
     205 225
 CONSTANT (259) 2
 STRING_LITERAL (260) 3
-SIZEOF (261) 21 22
-PTR_OP (262) 10
-INC_OP (263) 11 18
-DEC_OP (264) 12 19
-LEFT_OP (265) 39
-RIGHT_OP (266) 40
-LE_OP (267) 44
-GE_OP (268) 45
-EQ_OP (269) 47
-NE_OP (270) 48
-SEMI_OP (271) 77 78 118 214 215 220 225 226 227 228 229
-OCURLY_OP (272) 13 14 111 112 128 129 130 131 188 189 208 209
-CCURLY_OP (273) 13 14 111 112 128 129 130 131 188 189 208 209
-COMMA_OP (274) 14 16 75 88 124 130 131 134 163 165 170 189 192 193
-COLON_OP (275) 60 126 127 205 206 207
-EQUAL_OP (276) 63 90 136 194
-OPENPAREN_OP (277) 4 7 8 13 14 22 30 144 153 154 155 176 183 184 185
+PTR_OP (261) 10
+INC_OP (262) 11 18
+DEC_OP (263) 12 19
+LEFT_OP (264) 39
+RIGHT_OP (265) 40
+LE_OP (266) 44
+GE_OP (267) 45
+EQ_OP (268) 47
+NE_OP (269) 48
+SEMI_OP (270) 77 78 118 214 215 220 225 226 227 228 229
+OCURLY_OP (271) 13 14 111 112 128 129 130 131 188 189 208 209
+CCURLY_OP (272) 13 14 111 112 128 129 130 131 188 189 208 209
+COMMA_OP (273) 14 16 75 88 124 130 131 134 163 165 170 189 192 193
+COLON_OP (274) 60 126 127 205 206 207
+EQUAL_OP (275) 63 90 136 194
+OPENPAREN_OP (276) 4 7 8 13 14 22 30 144 153 154 155 176 183 184 185
     186 216 217 218 219 220 221 222 223 224
-CLOSEPAREN_OP (278) 4 7 8 13 14 22 30 144 153 154 155 176 183 184 185
+CLOSEPAREN_OP (277) 4 7 8 13 14 22 30 144 153 154 155 176 183 184 185
     186 216 217 218 219 220 221 222 223 224
-OPENBRACE_OP (279) 6 145 146 147 148 149 150 151 152 177 178 179 180
+OPENBRACE_OP (278) 6 145 146 147 148 149 150 151 152 177 178 179 180
     181 182 197
-CLOSEBRACE_OP (280) 6 145 146 147 148 149 150 151 152 177 178 179 180
+CLOSEBRACE_OP (279) 6 145 146 147 148 149 150 151 152 177 178 179 180
     181 182 197
-PERIOD_OP (281) 9 198
-NOT_OP (282) 28
-LESS_OP (283) 42
-GREATER_OP (284) 43
-TILDE_OP (285) 27
-XOR_OP (286) 52
-QUESTION_OP (287) 60
-AND_OP (288) 56
-OR_OP (289) 58
-MUL_ASSIGN (290) 64
-DIV_ASSIGN (291) 65
-MOD_ASSIGN (292) 66
-ADD_ASSIGN (293) 67
-SUB_ASSIGN (294) 68
-LEFT_ASSIGN (295) 69
-RIGHT_ASSIGN (296) 70
-AND_ASSIGN (297) 71
-XOR_ASSIGN (298) 72
-OR_ASSIGN (299) 73
-TYPE_NAME (300) 110
-PLUS_OP (301) 25 36
-MINUS_OP (302) 26 37
-TIMES_OP (303) 24 32 150 151 156 157 158 159 181 182
-DIV_OP (304) 33
-MOD_OP (305) 34
-BIT_OR (306) 54
-BIT_AND (307) 23 50
-TYPEDEF (308) 91
-EXTERN (309) 92
-STATIC (310) 93 148 149
-AUTO (311) 94
-REGISTER (312) 95
-INLINE (313) 140
-RESTRICT (314) 138
-CHAR (315) 97
-SHORT (316) 98
-INT (317) 99
-LONG (318) 100
-SIGNED (319) 103
-UNSIGNED (320) 104
-FLOAT (321) 101
-DOUBLE (322) 102
-CONST (323) 137
-VOLATILE (324) 139
-VOID (325) 96
+PERIOD_OP (280) 9 198
+NOT_OP (281) 28
+LESS_OP (282) 42
+GREATER_OP (283) 43
+TILDE_OP (284) 27
+XOR_OP (285) 52
+QUESTION_OP (286) 60
+AND_OP (287) 56
+OR_OP (288) 58
+MUL_ASSIGN (289) 64
+DIV_ASSIGN (290) 65
+MOD_ASSIGN (291) 66
+ADD_ASSIGN (292) 67
+SUB_ASSIGN (293) 68
+LEFT_ASSIGN (294) 69
+RIGHT_ASSIGN (295) 70
+AND_ASSIGN (296) 71
+XOR_ASSIGN (297) 72
+OR_ASSIGN (298) 73
+TYPE_NAME (299) 110
+PLUS_OP (300) 25 36
+MINUS_OP (301) 26 37
+TIMES_OP (302) 24 32 150 151 156 157 158 159 181 182
+DIV_OP (303) 33
+MOD_OP (304) 34
+BIT_OR (305) 54
+BIT_AND (306) 23 50
+TYPEDEF (307) 91
+EXTERN (308) 92
+STATIC (309) 93 148 149
+AUTO (310) 94
+REGISTER (311) 95
+INLINE (312) 140
+RESTRICT (313) 138
+CHAR (314) 97
+SHORT (315) 98
+INT (316) 99
+LONG (317) 100
+SIGNED (318) 103
+UNSIGNED (319) 104
+FLOAT (320) 101
+DOUBLE (321) 102
+CONST (322) 137
+VOLATILE (323) 139
+VOID (324) 96
+SIZEOF (325) 21 22
 BOOL (326) 105
 COMPLEX (327) 106
 IMAGINARY (328) 107
@@ -1419,20 +1419,19 @@ State 67
     IDENTIFIER      shift, and go to state 91
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    SEMI_OP         shift, and go to state 97
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    SEMI_OP         shift, and go to state 96
     OCURLY_OP       shift, and go to state 67
-    CCURLY_OP       shift, and go to state 98
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
+    CCURLY_OP       shift, and go to state 97
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
     TYPE_NAME       shift, and go to state 1
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
     TYPEDEF         shift, and go to state 2
     EXTERN          shift, and go to state 3
     STATIC          shift, and go to state 4
@@ -1451,6 +1450,7 @@ State 67
     CONST           shift, and go to state 17
     VOLATILE        shift, and go to state 18
     VOID            shift, and go to state 19
+    SIZEOF          shift, and go to state 105
     BOOL            shift, and go to state 20
     COMPLEX         shift, and go to state 21
     IMAGINARY       shift, and go to state 22
@@ -1514,17 +1514,17 @@ State 68
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
     OCURLY_OP       shift, and go to state 146
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -1683,21 +1683,21 @@ State 74
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
     CLOSEBRACE_OP   shift, and go to state 158
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
     TIMES_OP        shift, and go to state 159
-    BIT_AND         shift, and go to state 105
+    BIT_AND         shift, and go to state 104
     STATIC          shift, and go to state 160
     RESTRICT        shift, and go to state 8
     CONST           shift, and go to state 17
     VOLATILE        shift, and go to state 18
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -1920,16 +1920,16 @@ State 83
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -2032,22 +2032,21 @@ State 93
 
 State 94
 
-   21 unary_expression: SIZEOF . unary_expression
-   22                 | SIZEOF . OPENPAREN_OP type_name CLOSEPAREN_OP
+   18 unary_expression: INC_OP . unary_expression
 
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
     OPENPAREN_OP    shift, and go to state 180
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression  go to state 117
     postfix_expression  go to state 118
@@ -2057,67 +2056,43 @@ State 94
 
 State 95
 
-   18 unary_expression: INC_OP . unary_expression
-
-    IDENTIFIER      shift, and go to state 145
-    CONSTANT        shift, and go to state 92
-    STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 182
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
-
-    primary_expression  go to state 117
-    postfix_expression  go to state 118
-    unary_expression    go to state 183
-    unary_operator      go to state 120
-
-
-State 96
-
    19 unary_expression: DEC_OP . unary_expression
 
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 182
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 180
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression  go to state 117
     postfix_expression  go to state 118
-    unary_expression    go to state 184
+    unary_expression    go to state 182
     unary_operator      go to state 120
 
 
-State 97
+State 96
 
   214 expression_statement: SEMI_OP .
 
     $default  reduce using rule 214 (expression_statement)
 
 
-State 98
+State 97
 
   208 compound_statement: OCURLY_OP CCURLY_OP .
 
     $default  reduce using rule 208 (compound_statement)
 
 
-State 99
+State 98
 
     4 primary_expression: OPENPAREN_OP . expression CLOSEPAREN_OP
    13 postfix_expression: OPENPAREN_OP . type_name CLOSEPAREN_OP OCURLY_OP initializer_list CCURLY_OP
@@ -2127,17 +2102,16 @@ State 99
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
     TYPE_NAME       shift, and go to state 1
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
     RESTRICT        shift, and go to state 8
     CHAR            shift, and go to state 9
     SHORT           shift, and go to state 10
@@ -2150,6 +2124,7 @@ State 99
     CONST           shift, and go to state 17
     VOLATILE        shift, and go to state 18
     VOID            shift, and go to state 19
+    SIZEOF          shift, and go to state 105
     BOOL            shift, and go to state 20
     COMPLEX         shift, and go to state 21
     IMAGINARY       shift, and go to state 22
@@ -2174,56 +2149,81 @@ State 99
     logical_or_expression      go to state 131
     conditional_expression     go to state 132
     assignment_expression      go to state 133
-    expression                 go to state 185
+    expression                 go to state 183
     type_specifier             go to state 77
     struct_or_union_specifier  go to state 30
     struct_or_union            go to state 31
-    specifier_qualifier_list   go to state 186
+    specifier_qualifier_list   go to state 184
     enum_specifier             go to state 32
     type_qualifier             go to state 81
-    type_name                  go to state 187
+    type_name                  go to state 185
 
 
-State 100
+State 99
 
    28 unary_operator: NOT_OP .
 
     $default  reduce using rule 28 (unary_operator)
 
 
-State 101
+State 100
 
    27 unary_operator: TILDE_OP .
 
     $default  reduce using rule 27 (unary_operator)
 
 
-State 102
+State 101
 
    25 unary_operator: PLUS_OP .
 
     $default  reduce using rule 25 (unary_operator)
 
 
-State 103
+State 102
 
    26 unary_operator: MINUS_OP .
 
     $default  reduce using rule 26 (unary_operator)
 
 
-State 104
+State 103
 
    24 unary_operator: TIMES_OP .
 
     $default  reduce using rule 24 (unary_operator)
 
 
-State 105
+State 104
 
    23 unary_operator: BIT_AND .
 
     $default  reduce using rule 23 (unary_operator)
+
+
+State 105
+
+   21 unary_expression: SIZEOF . unary_expression
+   22                 | SIZEOF . OPENPAREN_OP type_name CLOSEPAREN_OP
+
+    IDENTIFIER      shift, and go to state 145
+    CONSTANT        shift, and go to state 92
+    STRING_LITERAL  shift, and go to state 93
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 186
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
+
+    primary_expression  go to state 117
+    postfix_expression  go to state 118
+    unary_expression    go to state 187
+    unary_operator      go to state 120
 
 
 State 106
@@ -2233,16 +2233,16 @@ State 106
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -2299,18 +2299,18 @@ State 111
     IDENTIFIER      shift, and go to state 91
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    SEMI_OP         shift, and go to state 97
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    SEMI_OP         shift, and go to state 96
     OCURLY_OP       shift, and go to state 67
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
     CASE            shift, and go to state 106
     DEFAULT         shift, and go to state 107
     IF              shift, and go to state 108
@@ -2389,17 +2389,17 @@ State 116
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
     SEMI_OP         shift, and go to state 198
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -2478,16 +2478,16 @@ State 120
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression  go to state 117
     postfix_expression  go to state 118
@@ -2680,20 +2680,19 @@ State 139
     IDENTIFIER      shift, and go to state 91
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    SEMI_OP         shift, and go to state 97
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    SEMI_OP         shift, and go to state 96
     OCURLY_OP       shift, and go to state 67
     CCURLY_OP       shift, and go to state 240
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
     TYPE_NAME       shift, and go to state 1
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
     TYPEDEF         shift, and go to state 2
     EXTERN          shift, and go to state 3
     STATIC          shift, and go to state 4
@@ -2712,6 +2711,7 @@ State 139
     CONST           shift, and go to state 17
     VOLATILE        shift, and go to state 18
     VOID            shift, and go to state 19
+    SIZEOF          shift, and go to state 105
     BOOL            shift, and go to state 20
     COMPLEX         shift, and go to state 21
     IMAGINARY       shift, and go to state 22
@@ -2817,19 +2817,19 @@ State 146
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
     OCURLY_OP       shift, and go to state 146
-    OPENPAREN_OP    shift, and go to state 99
+    OPENPAREN_OP    shift, and go to state 98
     OPENBRACE_OP    shift, and go to state 242
     PERIOD_OP       shift, and go to state 243
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -2998,21 +2998,21 @@ State 162
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
     CLOSEBRACE_OP   shift, and go to state 262
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
     TIMES_OP        shift, and go to state 263
-    BIT_AND         shift, and go to state 105
+    BIT_AND         shift, and go to state 104
     STATIC          shift, and go to state 264
     RESTRICT        shift, and go to state 8
     CONST           shift, and go to state 17
     VOLATILE        shift, and go to state 18
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -3097,16 +3097,16 @@ State 167
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -3220,18 +3220,18 @@ State 179
     IDENTIFIER      shift, and go to state 91
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    SEMI_OP         shift, and go to state 97
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    SEMI_OP         shift, and go to state 96
     OCURLY_OP       shift, and go to state 67
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
     CASE            shift, and go to state 106
     DEFAULT         shift, and go to state 107
     IF              shift, and go to state 108
@@ -3276,22 +3276,20 @@ State 180
     4 primary_expression: OPENPAREN_OP . expression CLOSEPAREN_OP
    13 postfix_expression: OPENPAREN_OP . type_name CLOSEPAREN_OP OCURLY_OP initializer_list CCURLY_OP
    14                   | OPENPAREN_OP . type_name CLOSEPAREN_OP OCURLY_OP initializer_list COMMA_OP CCURLY_OP
-   22 unary_expression: SIZEOF OPENPAREN_OP . type_name CLOSEPAREN_OP
 
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
     TYPE_NAME       shift, and go to state 1
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
     RESTRICT        shift, and go to state 8
     CHAR            shift, and go to state 9
     SHORT           shift, and go to state 10
@@ -3304,6 +3302,7 @@ State 180
     CONST           shift, and go to state 17
     VOLATILE        shift, and go to state 18
     VOID            shift, and go to state 19
+    SIZEOF          shift, and go to state 105
     BOOL            shift, and go to state 20
     COMPLEX         shift, and go to state 21
     IMAGINARY       shift, and go to state 22
@@ -3328,11 +3327,11 @@ State 180
     logical_or_expression      go to state 131
     conditional_expression     go to state 132
     assignment_expression      go to state 133
-    expression                 go to state 185
+    expression                 go to state 183
     type_specifier             go to state 77
     struct_or_union_specifier  go to state 30
     struct_or_union            go to state 31
-    specifier_qualifier_list   go to state 186
+    specifier_qualifier_list   go to state 184
     enum_specifier             go to state 32
     type_qualifier             go to state 81
     type_name                  go to state 273
@@ -3340,31 +3339,72 @@ State 180
 
 State 181
 
-   21 unary_expression: SIZEOF unary_expression .
+   18 unary_expression: INC_OP unary_expression .
 
-    $default  reduce using rule 21 (unary_expression)
+    $default  reduce using rule 18 (unary_expression)
 
 
 State 182
 
+   19 unary_expression: DEC_OP unary_expression .
+
+    $default  reduce using rule 19 (unary_expression)
+
+
+State 183
+
+    4 primary_expression: OPENPAREN_OP expression . CLOSEPAREN_OP
+   75 expression: expression . COMMA_OP assignment_expression
+
+    COMMA_OP       shift, and go to state 239
+    CLOSEPAREN_OP  shift, and go to state 274
+
+
+State 184
+
+  171 type_name: specifier_qualifier_list .
+  172          | specifier_qualifier_list . abstract_declarator
+
+    OPENPAREN_OP  shift, and go to state 275
+    OPENBRACE_OP  shift, and go to state 250
+    TIMES_OP      shift, and go to state 43
+
+    $default  reduce using rule 171 (type_name)
+
+    pointer                     go to state 276
+    abstract_declarator         go to state 277
+    direct_abstract_declarator  go to state 254
+
+
+State 185
+
+   13 postfix_expression: OPENPAREN_OP type_name . CLOSEPAREN_OP OCURLY_OP initializer_list CCURLY_OP
+   14                   | OPENPAREN_OP type_name . CLOSEPAREN_OP OCURLY_OP initializer_list COMMA_OP CCURLY_OP
+   30 cast_expression: OPENPAREN_OP type_name . CLOSEPAREN_OP cast_expression
+
+    CLOSEPAREN_OP  shift, and go to state 278
+
+
+State 186
+
     4 primary_expression: OPENPAREN_OP . expression CLOSEPAREN_OP
    13 postfix_expression: OPENPAREN_OP . type_name CLOSEPAREN_OP OCURLY_OP initializer_list CCURLY_OP
    14                   | OPENPAREN_OP . type_name CLOSEPAREN_OP OCURLY_OP initializer_list COMMA_OP CCURLY_OP
+   22 unary_expression: SIZEOF OPENPAREN_OP . type_name CLOSEPAREN_OP
 
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
     TYPE_NAME       shift, and go to state 1
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
     RESTRICT        shift, and go to state 8
     CHAR            shift, and go to state 9
     SHORT           shift, and go to state 10
@@ -3377,6 +3417,7 @@ State 182
     CONST           shift, and go to state 17
     VOLATILE        shift, and go to state 18
     VOID            shift, and go to state 19
+    SIZEOF          shift, and go to state 105
     BOOL            shift, and go to state 20
     COMPLEX         shift, and go to state 21
     IMAGINARY       shift, and go to state 22
@@ -3401,62 +3442,21 @@ State 182
     logical_or_expression      go to state 131
     conditional_expression     go to state 132
     assignment_expression      go to state 133
-    expression                 go to state 185
+    expression                 go to state 183
     type_specifier             go to state 77
     struct_or_union_specifier  go to state 30
     struct_or_union            go to state 31
-    specifier_qualifier_list   go to state 186
+    specifier_qualifier_list   go to state 184
     enum_specifier             go to state 32
     type_qualifier             go to state 81
-    type_name                  go to state 274
-
-
-State 183
-
-   18 unary_expression: INC_OP unary_expression .
-
-    $default  reduce using rule 18 (unary_expression)
-
-
-State 184
-
-   19 unary_expression: DEC_OP unary_expression .
-
-    $default  reduce using rule 19 (unary_expression)
-
-
-State 185
-
-    4 primary_expression: OPENPAREN_OP expression . CLOSEPAREN_OP
-   75 expression: expression . COMMA_OP assignment_expression
-
-    COMMA_OP       shift, and go to state 239
-    CLOSEPAREN_OP  shift, and go to state 275
-
-
-State 186
-
-  171 type_name: specifier_qualifier_list .
-  172          | specifier_qualifier_list . abstract_declarator
-
-    OPENPAREN_OP  shift, and go to state 276
-    OPENBRACE_OP  shift, and go to state 250
-    TIMES_OP      shift, and go to state 43
-
-    $default  reduce using rule 171 (type_name)
-
-    pointer                     go to state 277
-    abstract_declarator         go to state 278
-    direct_abstract_declarator  go to state 254
+    type_name                  go to state 279
 
 
 State 187
 
-   13 postfix_expression: OPENPAREN_OP type_name . CLOSEPAREN_OP OCURLY_OP initializer_list CCURLY_OP
-   14                   | OPENPAREN_OP type_name . CLOSEPAREN_OP OCURLY_OP initializer_list COMMA_OP CCURLY_OP
-   30 cast_expression: OPENPAREN_OP type_name . CLOSEPAREN_OP cast_expression
+   21 unary_expression: SIZEOF unary_expression .
 
-    CLOSEPAREN_OP  shift, and go to state 279
+    $default  reduce using rule 21 (unary_expression)
 
 
 State 188
@@ -3473,18 +3473,18 @@ State 189
     IDENTIFIER      shift, and go to state 91
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    SEMI_OP         shift, and go to state 97
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    SEMI_OP         shift, and go to state 96
     OCURLY_OP       shift, and go to state 67
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
     CASE            shift, and go to state 106
     DEFAULT         shift, and go to state 107
     IF              shift, and go to state 108
@@ -3532,16 +3532,16 @@ State 190
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -3570,16 +3570,16 @@ State 191
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -3608,16 +3608,16 @@ State 192
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -3656,18 +3656,17 @@ State 194
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    SEMI_OP         shift, and go to state 97
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    SEMI_OP         shift, and go to state 96
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
     TYPE_NAME       shift, and go to state 1
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
     TYPEDEF         shift, and go to state 2
     EXTERN          shift, and go to state 3
     STATIC          shift, and go to state 4
@@ -3686,6 +3685,7 @@ State 194
     CONST           shift, and go to state 17
     VOLATILE        shift, and go to state 18
     VOID            shift, and go to state 19
+    SIZEOF          shift, and go to state 105
     BOOL            shift, and go to state 20
     COMPLEX         shift, and go to state 21
     IMAGINARY       shift, and go to state 22
@@ -3789,17 +3789,17 @@ State 203
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
     CLOSEPAREN_OP   shift, and go to state 291
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -3828,16 +3828,16 @@ State 204
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -3950,16 +3950,16 @@ State 217
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -3994,16 +3994,16 @@ State 219
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression  go to state 117
     postfix_expression  go to state 118
@@ -4019,16 +4019,16 @@ State 220
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression  go to state 117
     postfix_expression  go to state 118
@@ -4044,16 +4044,16 @@ State 221
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression  go to state 117
     postfix_expression  go to state 118
@@ -4069,16 +4069,16 @@ State 222
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4095,16 +4095,16 @@ State 223
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4121,16 +4121,16 @@ State 224
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4148,16 +4148,16 @@ State 225
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4175,16 +4175,16 @@ State 226
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4203,16 +4203,16 @@ State 227
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4231,16 +4231,16 @@ State 228
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4259,16 +4259,16 @@ State 229
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4287,16 +4287,16 @@ State 230
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4316,16 +4316,16 @@ State 231
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4345,16 +4345,16 @@ State 232
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4375,16 +4375,16 @@ State 233
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4406,16 +4406,16 @@ State 234
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4438,16 +4438,16 @@ State 235
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4471,16 +4471,16 @@ State 236
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4509,16 +4509,16 @@ State 237
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4550,16 +4550,16 @@ State 239
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4601,16 +4601,16 @@ State 242
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4663,17 +4663,17 @@ State 246
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
     OCURLY_OP       shift, and go to state 146
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4779,17 +4779,17 @@ State 250
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
     CLOSEBRACE_OP   shift, and go to state 327
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
     TIMES_OP        shift, and go to state 328
-    BIT_AND         shift, and go to state 105
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4934,19 +4934,19 @@ State 260
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
     RESTRICT        shift, and go to state 8
     CONST           shift, and go to state 17
     VOLATILE        shift, and go to state 18
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -4999,16 +4999,16 @@ State 264
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -5079,16 +5079,16 @@ State 270
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -5127,33 +5127,24 @@ State 273
 
    13 postfix_expression: OPENPAREN_OP type_name . CLOSEPAREN_OP OCURLY_OP initializer_list CCURLY_OP
    14                   | OPENPAREN_OP type_name . CLOSEPAREN_OP OCURLY_OP initializer_list COMMA_OP CCURLY_OP
-   22 unary_expression: SIZEOF OPENPAREN_OP type_name . CLOSEPAREN_OP
 
     CLOSEPAREN_OP  shift, and go to state 342
 
 
 State 274
 
-   13 postfix_expression: OPENPAREN_OP type_name . CLOSEPAREN_OP OCURLY_OP initializer_list CCURLY_OP
-   14                   | OPENPAREN_OP type_name . CLOSEPAREN_OP OCURLY_OP initializer_list COMMA_OP CCURLY_OP
-
-    CLOSEPAREN_OP  shift, and go to state 343
-
-
-State 275
-
     4 primary_expression: OPENPAREN_OP expression CLOSEPAREN_OP .
 
     $default  reduce using rule 4 (primary_expression)
 
 
-State 276
+State 275
 
   176 direct_abstract_declarator: OPENPAREN_OP . abstract_declarator CLOSEPAREN_OP
   183                           | OPENPAREN_OP . CLOSEPAREN_OP
   184                           | OPENPAREN_OP . parameter_type_list CLOSEPAREN_OP
 
-    OPENPAREN_OP   shift, and go to state 276
+    OPENPAREN_OP   shift, and go to state 275
     CLOSEPAREN_OP  shift, and go to state 324
     OPENBRACE_OP   shift, and go to state 250
     TYPE_NAME      shift, and go to state 1
@@ -5191,7 +5182,7 @@ State 276
     enum_specifier              go to state 32
     type_qualifier              go to state 33
     function_specifier          go to state 34
-    pointer                     go to state 277
+    pointer                     go to state 276
     parameter_type_list         go to state 325
     parameter_list              go to state 155
     parameter_declaration       go to state 156
@@ -5199,12 +5190,12 @@ State 276
     direct_abstract_declarator  go to state 254
 
 
-State 277
+State 276
 
   173 abstract_declarator: pointer .
   175                    | pointer . direct_abstract_declarator
 
-    OPENPAREN_OP  shift, and go to state 276
+    OPENPAREN_OP  shift, and go to state 275
     OPENBRACE_OP  shift, and go to state 250
 
     $default  reduce using rule 173 (abstract_declarator)
@@ -5212,14 +5203,14 @@ State 277
     direct_abstract_declarator  go to state 330
 
 
-State 278
+State 277
 
   172 type_name: specifier_qualifier_list abstract_declarator .
 
     $default  reduce using rule 172 (type_name)
 
 
-State 279
+State 278
 
    13 postfix_expression: OPENPAREN_OP type_name CLOSEPAREN_OP . OCURLY_OP initializer_list CCURLY_OP
    14                   | OPENPAREN_OP type_name CLOSEPAREN_OP . OCURLY_OP initializer_list COMMA_OP CCURLY_OP
@@ -5228,23 +5219,32 @@ State 279
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OCURLY_OP       shift, and go to state 344
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OCURLY_OP       shift, and go to state 343
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression  go to state 117
     postfix_expression  go to state 118
     unary_expression    go to state 174
     unary_operator      go to state 120
-    cast_expression     go to state 345
+    cast_expression     go to state 344
+
+
+State 279
+
+   13 postfix_expression: OPENPAREN_OP type_name . CLOSEPAREN_OP OCURLY_OP initializer_list CCURLY_OP
+   14                   | OPENPAREN_OP type_name . CLOSEPAREN_OP OCURLY_OP initializer_list COMMA_OP CCURLY_OP
+   22 unary_expression: SIZEOF OPENPAREN_OP type_name . CLOSEPAREN_OP
+
+    CLOSEPAREN_OP  shift, and go to state 345
 
 
 State 280
@@ -5254,18 +5254,18 @@ State 280
     IDENTIFIER      shift, and go to state 91
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    SEMI_OP         shift, and go to state 97
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    SEMI_OP         shift, and go to state 96
     OCURLY_OP       shift, and go to state 67
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
     CASE            shift, and go to state 106
     DEFAULT         shift, and go to state 107
     IF              shift, and go to state 108
@@ -5355,17 +5355,17 @@ State 286
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    SEMI_OP         shift, and go to state 97
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    SEMI_OP         shift, and go to state 96
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -5396,17 +5396,17 @@ State 287
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    SEMI_OP         shift, and go to state 97
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    SEMI_OP         shift, and go to state 96
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -5747,20 +5747,20 @@ State 320
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
     OCURLY_OP       shift, and go to state 146
     CCURLY_OP       shift, and go to state 358
-    OPENPAREN_OP    shift, and go to state 99
+    OPENPAREN_OP    shift, and go to state 98
     OPENBRACE_OP    shift, and go to state 242
     PERIOD_OP       shift, and go to state 243
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -5920,17 +5920,17 @@ State 332
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
     CLOSEBRACE_OP   shift, and go to state 367
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
     TIMES_OP        shift, and go to state 368
-    BIT_AND         shift, and go to state 105
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -6018,22 +6018,11 @@ State 342
 
    13 postfix_expression: OPENPAREN_OP type_name CLOSEPAREN_OP . OCURLY_OP initializer_list CCURLY_OP
    14                   | OPENPAREN_OP type_name CLOSEPAREN_OP . OCURLY_OP initializer_list COMMA_OP CCURLY_OP
-   22 unary_expression: SIZEOF OPENPAREN_OP type_name CLOSEPAREN_OP .
 
-    OCURLY_OP  shift, and go to state 344
-
-    $default  reduce using rule 22 (unary_expression)
+    OCURLY_OP  shift, and go to state 343
 
 
 State 343
-
-   13 postfix_expression: OPENPAREN_OP type_name CLOSEPAREN_OP . OCURLY_OP initializer_list CCURLY_OP
-   14                   | OPENPAREN_OP type_name CLOSEPAREN_OP . OCURLY_OP initializer_list COMMA_OP CCURLY_OP
-
-    OCURLY_OP  shift, and go to state 344
-
-
-State 344
 
    13 postfix_expression: OPENPAREN_OP type_name CLOSEPAREN_OP OCURLY_OP . initializer_list CCURLY_OP
    14                   | OPENPAREN_OP type_name CLOSEPAREN_OP OCURLY_OP . initializer_list COMMA_OP CCURLY_OP
@@ -6041,19 +6030,19 @@ State 344
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
     OCURLY_OP       shift, and go to state 146
-    OPENPAREN_OP    shift, and go to state 99
+    OPENPAREN_OP    shift, and go to state 98
     OPENBRACE_OP    shift, and go to state 242
     PERIOD_OP       shift, and go to state 243
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -6079,11 +6068,22 @@ State 344
     designator                 go to state 248
 
 
-State 345
+State 344
 
    30 cast_expression: OPENPAREN_OP type_name CLOSEPAREN_OP cast_expression .
 
     $default  reduce using rule 30 (cast_expression)
+
+
+State 345
+
+   13 postfix_expression: OPENPAREN_OP type_name CLOSEPAREN_OP . OCURLY_OP initializer_list CCURLY_OP
+   14                   | OPENPAREN_OP type_name CLOSEPAREN_OP . OCURLY_OP initializer_list COMMA_OP CCURLY_OP
+   22 unary_expression: SIZEOF OPENPAREN_OP type_name CLOSEPAREN_OP .
+
+    OCURLY_OP  shift, and go to state 343
+
+    $default  reduce using rule 22 (unary_expression)
 
 
 State 346
@@ -6101,18 +6101,18 @@ State 347
     IDENTIFIER      shift, and go to state 91
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    SEMI_OP         shift, and go to state 97
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    SEMI_OP         shift, and go to state 96
     OCURLY_OP       shift, and go to state 67
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
     CASE            shift, and go to state 106
     DEFAULT         shift, and go to state 107
     IF              shift, and go to state 108
@@ -6159,18 +6159,18 @@ State 348
     IDENTIFIER      shift, and go to state 91
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    SEMI_OP         shift, and go to state 97
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    SEMI_OP         shift, and go to state 96
     OCURLY_OP       shift, and go to state 67
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
     CASE            shift, and go to state 106
     DEFAULT         shift, and go to state 107
     IF              shift, and go to state 108
@@ -6217,18 +6217,18 @@ State 349
     IDENTIFIER      shift, and go to state 91
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    SEMI_OP         shift, and go to state 97
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    SEMI_OP         shift, and go to state 96
     OCURLY_OP       shift, and go to state 67
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
     CASE            shift, and go to state 106
     DEFAULT         shift, and go to state 107
     IF              shift, and go to state 108
@@ -6275,16 +6275,16 @@ State 350
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -6314,17 +6314,17 @@ State 351
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
     CLOSEPAREN_OP   shift, and go to state 377
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -6354,17 +6354,17 @@ State 352
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
     CLOSEPAREN_OP   shift, and go to state 379
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -6393,16 +6393,16 @@ State 353
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -6444,16 +6444,16 @@ State 356
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -6501,17 +6501,17 @@ State 360
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
     OCURLY_OP       shift, and go to state 146
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -6665,18 +6665,18 @@ State 377
     IDENTIFIER      shift, and go to state 91
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    SEMI_OP         shift, and go to state 97
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    SEMI_OP         shift, and go to state 96
     OCURLY_OP       shift, and go to state 67
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
     CASE            shift, and go to state 106
     DEFAULT         shift, and go to state 107
     IF              shift, and go to state 108
@@ -6732,18 +6732,18 @@ State 379
     IDENTIFIER      shift, and go to state 91
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    SEMI_OP         shift, and go to state 97
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    SEMI_OP         shift, and go to state 96
     OCURLY_OP       shift, and go to state 67
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
     CASE            shift, and go to state 106
     DEFAULT         shift, and go to state 107
     IF              shift, and go to state 108
@@ -6850,20 +6850,20 @@ State 388
     IDENTIFIER      shift, and go to state 145
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
     OCURLY_OP       shift, and go to state 146
     CCURLY_OP       shift, and go to state 395
-    OPENPAREN_OP    shift, and go to state 99
+    OPENPAREN_OP    shift, and go to state 98
     OPENBRACE_OP    shift, and go to state 242
     PERIOD_OP       shift, and go to state 243
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
 
     primary_expression         go to state 117
     postfix_expression         go to state 118
@@ -6895,18 +6895,18 @@ State 389
     IDENTIFIER      shift, and go to state 91
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    SEMI_OP         shift, and go to state 97
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    SEMI_OP         shift, and go to state 96
     OCURLY_OP       shift, and go to state 67
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
     CASE            shift, and go to state 106
     DEFAULT         shift, and go to state 107
     IF              shift, and go to state 108
@@ -6967,18 +6967,18 @@ State 392
     IDENTIFIER      shift, and go to state 91
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    SEMI_OP         shift, and go to state 97
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    SEMI_OP         shift, and go to state 96
     OCURLY_OP       shift, and go to state 67
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
     CASE            shift, and go to state 106
     DEFAULT         shift, and go to state 107
     IF              shift, and go to state 108
@@ -7032,18 +7032,18 @@ State 394
     IDENTIFIER      shift, and go to state 91
     CONSTANT        shift, and go to state 92
     STRING_LITERAL  shift, and go to state 93
-    SIZEOF          shift, and go to state 94
-    INC_OP          shift, and go to state 95
-    DEC_OP          shift, and go to state 96
-    SEMI_OP         shift, and go to state 97
+    INC_OP          shift, and go to state 94
+    DEC_OP          shift, and go to state 95
+    SEMI_OP         shift, and go to state 96
     OCURLY_OP       shift, and go to state 67
-    OPENPAREN_OP    shift, and go to state 99
-    NOT_OP          shift, and go to state 100
-    TILDE_OP        shift, and go to state 101
-    PLUS_OP         shift, and go to state 102
-    MINUS_OP        shift, and go to state 103
-    TIMES_OP        shift, and go to state 104
-    BIT_AND         shift, and go to state 105
+    OPENPAREN_OP    shift, and go to state 98
+    NOT_OP          shift, and go to state 99
+    TILDE_OP        shift, and go to state 100
+    PLUS_OP         shift, and go to state 101
+    MINUS_OP        shift, and go to state 102
+    TIMES_OP        shift, and go to state 103
+    BIT_AND         shift, and go to state 104
+    SIZEOF          shift, and go to state 105
     CASE            shift, and go to state 106
     DEFAULT         shift, and go to state 107
     IF              shift, and go to state 108

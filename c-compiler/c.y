@@ -60,22 +60,39 @@ int tipus_var_tmp;
 }
 
 %token<infoBison> IDENTIFIER 
-%token<infoBison> CONSTANT 
-%token STRING_LITERAL SIZEOF
-%token PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
-%token SEMI_OP OCURLY_OP CCURLY_OP COMMA_OP COLON_OP EQUAL_OP
-%token OPENPAREN_OP CLOSEPAREN_OP OPENBRACE_OP CLOSEBRACE_OP
-%token PERIOD_OP NOT_OP LESS_OP GREATER_OP TILDE_OP XOR_OP QUESTION_OP
-%token AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
-%token SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
-%token XOR_ASSIGN OR_ASSIGN TYPE_NAME
-%token PLUS_OP MINUS_OP TIMES_OP DIV_OP MOD_OP BIT_OR BIT_AND
-%token TYPEDEF EXTERN STATIC AUTO REGISTER INLINE RESTRICT
-%token CHAR SHORT INT LONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
-%token BOOL COMPLEX IMAGINARY
-%token STRUCT UNION ENUM ELLIPSIS
+%token<infoBison> CONSTANT STRING_LITERAL
+%token<no_definit> PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
+%token<no_definit> SEMI_OP OCURLY_OP CCURLY_OP COMMA_OP COLON_OP EQUAL_OP
+%token<no_definit> OPENPAREN_OP CLOSEPAREN_OP OPENBRACE_OP CLOSEBRACE_OP
+%token<no_definit> PERIOD_OP NOT_OP LESS_OP GREATER_OP TILDE_OP XOR_OP QUESTION_OP
+%token<no_definit> AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
+%token<no_definit> SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
+%token<no_definit> XOR_ASSIGN OR_ASSIGN TYPE_NAME
+%token<no_definit> PLUS_OP MINUS_OP TIMES_OP DIV_OP MOD_OP BIT_OR BIT_AND
 
-%token CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
+%token<no_definit> TYPEDEF EXTERN STATIC AUTO REGISTER INLINE RESTRICT
+%token<no_definit> CHAR SHORT INT LONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
+%token<no_definit> SIZEOF BOOL COMPLEX IMAGINARY
+%token<no_definit> STRUCT UNION ENUM ELLIPSIS
+%token<no_definit> CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
+
+%type <no_definit> type_name struct_or_union specifier_qualifier_list jump_statement declaration_list
+%type <no_definit> expression_statement iteration_statement labeled_statement    
+%type <no_definit> unary_operator external_declaration translation_unit
+
+%type<infoBison> primary_expression postfix_expression argument_expression_list unary_expression
+%type<infoBison> cast_expression multiplicative_expression additive_expression shift_expression relational_expression
+%type<infoBison> equality_expression and_expression exclusive_or_expression inclusive_or_expression logical_and_expression
+%type<infoBison> logical_or_expression conditional_expression assignment_expression assignment_operator expression
+%type<infoBison> constant_expression declaration declaration_specifiers init_declarator_list init_declarator
+%type<infoBison> storage_class_specifier type_specifier struct_or_union_specifier struct_declaration_list
+%type<infoBison> struct_declaration struct_declarator_list struct_declarator enum_specifier
+%type<infoBison> enumerator_list enumerator type_qualifier function_specifier declarator direct_declarator pointer
+%type<infoBison> type_qualifier_list parameter_type_list parameter_list parameter_declaration identifier_list
+%type<infoBison> abstract_declarator direct_abstract_declarator initializer initializer_list designation designator_list
+%type<infoBison> designator statement compound_statement block_item_list block_item 
+%type<infoBison> selection_statement
+%type<infoBison> function_definition
 
 %start translation_unit
 %%
@@ -310,11 +327,11 @@ struct_declarator
 	;
 
 enum_specifier
-	: ENUM OCURLY_OP enumerator_list CCURLY_OP
-	| ENUM IDENTIFIER OCURLY_OP enumerator_list CCURLY_OP
-	| ENUM OCURLY_OP enumerator_list COMMA_OP CCURLY_OP
-	| ENUM IDENTIFIER OCURLY_OP enumerator_list COMMA_OP CCURLY_OP
-	| ENUM IDENTIFIER
+	: ENUM OCURLY_OP enumerator_list CCURLY_OP {fprintf(yyout,"ENUM OCURLY_OP enumerator_list CCURLY_OP REDUCE to enum_specifier\n");}
+	| ENUM IDENTIFIER OCURLY_OP enumerator_list CCURLY_OP {fprintf(yyout,"ENUM IDENTIFIER OCURLY_OP enumerator_list CCURLY_OP REDUCE to enum_specifier\n");}
+	| ENUM OCURLY_OP enumerator_list COMMA_OP CCURLY_OP {fprintf(yyout," ENUM OCURLY_OP enumerator_list COMMA_OP CCURLY_OP REDUCE to enum_specifier\n");}
+	| ENUM IDENTIFIER OCURLY_OP enumerator_list COMMA_OP CCURLY_OP {fprintf(yyout,"ENUM IDENTIFIER OCURLY_OP enumerator_list COMMA_OP CCURLY_OP REDUCE to enum_specifier\n");}
+	| ENUM IDENTIFIER {fprintf(yyout,"ENUM IDENTIFIER REDUCE to enum_specifier\n");}
 	;
 
 enumerator_list
@@ -328,13 +345,13 @@ enumerator
 	;
 
 type_qualifier
-	: CONST
-	| RESTRICT
-	| VOLATILE
+	: CONST {fprintf(yyout,"TIMES_OP REDUCE to type_qualifier\n");}
+	| RESTRICT {fprintf(yyout,"TIMES_OP REDUCE to type_qualifier\n");}
+	| VOLATILE {fprintf(yyout,"TIMES_OP REDUCE to type_qualifier\n");}
 	;
 
 function_specifier
-	: INLINE
+	: INLINE  {fprintf(yyout,"INLINE REDUCE to function_specifier\n");}
 	;
 
 declarator
@@ -344,26 +361,26 @@ declarator
 
 
 direct_declarator
-	: IDENTIFIER
-	| OPENPAREN_OP declarator CLOSEPAREN_OP
-	| direct_declarator OPENBRACE_OP type_qualifier_list assignment_expression CLOSEBRACE_OP
-	| direct_declarator OPENBRACE_OP type_qualifier_list CLOSEBRACE_OP
-	| direct_declarator OPENBRACE_OP assignment_expression CLOSEBRACE_OP
-	| direct_declarator OPENBRACE_OP STATIC type_qualifier_list assignment_expression CLOSEBRACE_OP
-	| direct_declarator OPENBRACE_OP type_qualifier_list STATIC assignment_expression CLOSEBRACE_OP
-	| direct_declarator OPENBRACE_OP type_qualifier_list TIMES_OP CLOSEBRACE_OP
-	| direct_declarator OPENBRACE_OP TIMES_OP CLOSEBRACE_OP
-	| direct_declarator OPENBRACE_OP CLOSEBRACE_OP
-	| direct_declarator OPENPAREN_OP parameter_type_list CLOSEPAREN_OP
-	| direct_declarator OPENPAREN_OP identifier_list CLOSEPAREN_OP
-	| direct_declarator OPENPAREN_OP CLOSEPAREN_OP
+	: IDENTIFIER   {fprintf(yyout,"IDENTIFIER REDUCE to direct_declarator\n");}
+	| OPENPAREN_OP declarator CLOSEPAREN_OP   {fprintf(yyout,"OPENPAREN_OP declarator CLOSEPAREN_OP REDUCE to direct_declarator\n");}
+	| direct_declarator OPENBRACE_OP type_qualifier_list assignment_expression CLOSEBRACE_OP   {fprintf(yyout,"direct_declarator OPENBRACE_OP type_qualifier_list assignment_expression CLOSEBRACE_OP REDUCE to direct_declarator\n");}
+	| direct_declarator OPENBRACE_OP type_qualifier_list CLOSEBRACE_OP   {fprintf(yyout,"direct_declarator OPENBRACE_OP type_qualifier_list CLOSEBRACE_OP REDUCE to direct_declarator\n");}
+	| direct_declarator OPENBRACE_OP assignment_expression CLOSEBRACE_OP   {fprintf(yyout,"direct_declarator OPENBRACE_OP assignment_expression CLOSEBRACE_OP REDUCE to direct_declarator\n");}
+	| direct_declarator OPENBRACE_OP STATIC type_qualifier_list assignment_expression CLOSEBRACE_OP   {fprintf(yyout,"direct_declarator OPENBRACE_OP STATIC type_qualifier_list assignment_expression CLOSEBRACE_OP REDUCE to direct_declarator\n");}
+	| direct_declarator OPENBRACE_OP type_qualifier_list STATIC assignment_expression CLOSEBRACE_OP   {fprintf(yyout,"direct_declarator OPENBRACE_OP type_qualifier_list STATIC assignment_expression CLOSEBRACE_OP REDUCE to direct_declarator\n");}
+	| direct_declarator OPENBRACE_OP type_qualifier_list TIMES_OP CLOSEBRACE_OP   {fprintf(yyout,"direct_declarator OPENBRACE_OP type_qualifier_list TIMES_OP CLOSEBRACE_OP REDUCE to direct_declarator\n");}
+	| direct_declarator OPENBRACE_OP TIMES_OP CLOSEBRACE_OP   {fprintf(yyout,"direct_declarator OPENBRACE_OP TIMES_OP CLOSEBRACE_OP REDUCE to direct_declarator\n");}
+	| direct_declarator OPENBRACE_OP CLOSEBRACE_OP   {fprintf(yyout,"direct_declarator OPENBRACE_OP CLOSEBRACE_OP REDUCE to direct_declarator\n");}
+	| direct_declarator OPENPAREN_OP parameter_type_list CLOSEPAREN_OP   {fprintf(yyout,"direct_declarator OPENPAREN_OP parameter_type_list CLOSEPAREN_OP REDUCE to direct_declarator\n");}
+	| direct_declarator OPENPAREN_OP identifier_list CLOSEPAREN_OP   {fprintf(yyout,"direct_declarator OPENPAREN_OP identifier_list CLOSEPAREN_OP REDUCE to direct_declarator\n");}
+	| direct_declarator OPENPAREN_OP CLOSEPAREN_OP   {fprintf(yyout,"direct_declarator OPENPAREN_OP CLOSEPAREN_OP REDUCE to direct_declarator\n");}
 	;
 
 pointer
-	: TIMES_OP
-	| TIMES_OP type_qualifier_list
-	| TIMES_OP pointer
-	| TIMES_OP type_qualifier_list pointer
+	: TIMES_OP  {fprintf(yyout,"TIMES_OP REDUCE to pointer\n");}
+	| TIMES_OP type_qualifier_list  {fprintf(yyout,"TIMES_OP REDUCE to pointer\n");}
+	| TIMES_OP pointer  {fprintf(yyout,"TIMES_OP REDUCE to pointer\n");}
+	| TIMES_OP type_qualifier_list pointer   {fprintf(yyout,"TIMES_OP REDUCE to pointer\n");}
 	;
 
 type_qualifier_list
@@ -405,23 +422,23 @@ abstract_declarator
 	;
 
 direct_abstract_declarator
-	: OPENPAREN_OP abstract_declarator CLOSEPAREN_OP
-	| OPENBRACE_OP CLOSEBRACE_OP
-	| OPENBRACE_OP assignment_expression CLOSEBRACE_OP
-	| direct_abstract_declarator OPENBRACE_OP CLOSEBRACE_OP
-	| direct_abstract_declarator OPENBRACE_OP assignment_expression CLOSEBRACE_OP
-	| OPENBRACE_OP TIMES_OP CLOSEBRACE_OP
-	| direct_abstract_declarator OPENBRACE_OP TIMES_OP CLOSEBRACE_OP
-	| OPENPAREN_OP CLOSEPAREN_OP
-	| OPENPAREN_OP parameter_type_list CLOSEPAREN_OP
-	| direct_abstract_declarator OPENPAREN_OP CLOSEPAREN_OP
-	| direct_abstract_declarator OPENPAREN_OP parameter_type_list CLOSEPAREN_OP
+	: OPENPAREN_OP abstract_declarator CLOSEPAREN_OP    {fprintf(yyout," OPENPAREN_OP abstract_declarator CLOSEPAREN_OP REDUCE to direct_abstract_declarator\n");}
+	| OPENBRACE_OP CLOSEBRACE_OP    {fprintf(yyout,"OPENBRACE_OP CLOSEBRACE_OP REDUCE to direct_abstract_declarator\n");}
+	| OPENBRACE_OP assignment_expression CLOSEBRACE_OP    {fprintf(yyout,"OPENBRACE_OP assignment_expression CLOSEBRACE_OP REDUCE to direct_abstract_declarator\n");}
+	| direct_abstract_declarator OPENBRACE_OP CLOSEBRACE_OP    {fprintf(yyout,"direct_abstract_declarator OPENBRACE_OP CLOSEBRACE_OP REDUCE to direct_abstract_declarator\n");}
+	| direct_abstract_declarator OPENBRACE_OP assignment_expression CLOSEBRACE_OP    {fprintf(yyout,"direct_abstract_declarator OPENBRACE_OP assignment_expression CLOSEBRACE_OP REDUCE to direct_abstract_declarator\n");}
+	| OPENBRACE_OP TIMES_OP CLOSEBRACE_OP    {fprintf(yyout,"OPENBRACE_OP TIMES_OP CLOSEBRACE_OP REDUCE to direct_abstract_declarator\n");}
+	| direct_abstract_declarator OPENBRACE_OP TIMES_OP CLOSEBRACE_OP    {fprintf(yyout,"direct_abstract_declarator OPENBRACE_OP TIMES_OP CLOSEBRACE_OP REDUCE to direct_abstract_declarator\n");}
+	| OPENPAREN_OP CLOSEPAREN_OP    {fprintf(yyout,"OPENPAREN_OP CLOSEPAREN_OP REDUCE to direct_abstract_declarator\n");}
+	| OPENPAREN_OP parameter_type_list CLOSEPAREN_OP    {fprintf(yyout,"OPENPAREN_OP parameter_type_list CLOSEPAREN_OP REDUCE to direct_abstract_declarator\n");}
+	| direct_abstract_declarator OPENPAREN_OP CLOSEPAREN_OP    {fprintf(yyout,"direct_abstract_declarator OPENPAREN_OP CLOSEPAREN_OP REDUCE to direct_abstract_declarator\n");}
+	| direct_abstract_declarator OPENPAREN_OP parameter_type_list CLOSEPAREN_OP    {fprintf(yyout,"direct_abstract_declarator OPENPAREN_OP parameter_type_list CLOSEPAREN_OP REDUCE to direct_abstract_declarator\n");}
 	;
 
 initializer
-	: assignment_expression
-	| OCURLY_OP initializer_list CCURLY_OP
-	| OCURLY_OP initializer_list COMMA_OP CCURLY_OP
+	: assignment_expression    {fprintf(yyout,"assignment_expression REDUCE to initializer\n");}
+	| OCURLY_OP initializer_list CCURLY_OP    {fprintf(yyout,"OCURLY_OP initializer_list CCURLY_OP REDUCE to initializer\n");}
+	| OCURLY_OP initializer_list COMMA_OP CCURLY_OP    {fprintf(yyout,"OCURLY_OP initializer_list COMMA_OP CCURLY_OP REDUCE to initializer\n");}
 	;
 
 initializer_list
@@ -441,28 +458,28 @@ designator_list
 	;
 
 designator
-	: OPENBRACE_OP constant_expression CLOSEBRACE_OP
-	| PERIOD_OP IDENTIFIER
+	: OPENBRACE_OP constant_expression CLOSEBRACE_OP    {fprintf(yyout,"labeled_statement REDUCE to statement\n");}
+	| PERIOD_OP IDENTIFIER    {fprintf(yyout,"labeled_statement REDUCE to statement\n");}
 	;
 
 statement
-	: labeled_statement
-	| compound_statement
-	| expression_statement
-	| selection_statement
-	| iteration_statement
-	| jump_statement
+	: labeled_statement    {fprintf(yyout,"labeled_statement REDUCE to statement\n");}
+	| compound_statement    {fprintf(yyout,"compound_statement REDUCE to statement\n");}
+	| expression_statement    {fprintf(yyout,"expression_statement REDUCE to statement\n");}
+	| selection_statement    {fprintf(yyout,"selection_statement REDUCE to statement\n");}
+	| iteration_statement    {fprintf(yyout,"iteration_statement REDUCE to statement\n");}
+	| jump_statement    {fprintf(yyout,"jump_statement REDUCE to statement\n");}
 	;
 
 labeled_statement
-	: IDENTIFIER COLON_OP statement
-	| CASE constant_expression COLON_OP statement
-	| DEFAULT COLON_OP statement
+	: IDENTIFIER COLON_OP statement    {fprintf(yyout,"IDENTIFIER COLON_OP statement REDUCE to labeled_statement\n");}
+	| CASE constant_expression COLON_OP statement    {fprintf(yyout,"CASE constant_expression COLON_OP statement REDUCE to labeled_statement\n");}
+	| DEFAULT COLON_OP statement    {fprintf(yyout,"DEFAULT COLON_OP statement REDUCE to labeled_statement\n");}
 	;
 
 compound_statement
-	: OCURLY_OP CCURLY_OP
-	| OCURLY_OP block_item_list CCURLY_OP
+	: OCURLY_OP CCURLY_OP    {fprintf(yyout,"OCURLY_OP CCURLY_OP REDUCE to compound_statement\n");}
+	| OCURLY_OP block_item_list CCURLY_OP    {fprintf(yyout,"OCURLY_OP block_item_list CCURLY_OP REDUCE to compound_statement\n");}
 	;
 
 block_item_list
@@ -471,19 +488,19 @@ block_item_list
 	;
 
 block_item
-	: declaration
+	: declaration 
 	| statement
 	;
 
 expression_statement
-	: SEMI_OP
-	| expression SEMI_OP
+	: SEMI_OP   {fprintf(yyout,"SEMI_OP REDUCE to expression_statement\n");}
+	| expression SEMI_OP   {fprintf(yyout,"expression SEMI_OP REDUCE to expression_statement\n");}
 	;
 
 selection_statement
-	: IF OPENPAREN_OP expression CLOSEPAREN_OP statement
-	| IF OPENPAREN_OP expression CLOSEPAREN_OP statement ELSE statement
-	| SWITCH OPENPAREN_OP expression CLOSEPAREN_OP statement
+	: IF OPENPAREN_OP expression CLOSEPAREN_OP statement   {fprintf(yyout,"IF OPENPAREN_OP expression CLOSEPAREN_OP statement REDUCE to selection_statement\n");}
+	| IF OPENPAREN_OP expression CLOSEPAREN_OP statement ELSE statement  {fprintf(yyout,"IF OPENPAREN_OP expression CLOSEPAREN_OP statement ELSE statement REDUCE to selection_statement\n");}
+	| SWITCH OPENPAREN_OP expression CLOSEPAREN_OP statement  {fprintf(yyout,"SWITCH OPENPAREN_OP expression CLOSEPAREN_OP statement REDUCE to selection_statement\n");}
 	;
 
 iteration_statement
@@ -504,23 +521,23 @@ jump_statement
 	;
 
 translation_unit
-	: external_declaration
-	| translation_unit external_declaration
+	: external_declaration  {fprintf(yyout,"external_declaration REDUCE to translation_unit\n");}
+	| translation_unit external_declaration  {fprintf(yyout,"translation_unit external_declaration REDUCE to translation_unit\n");}
 	;
 
 external_declaration
-	: function_definition
-	| declaration
+	: function_definition  {fprintf(yyout,"function_definition REDUCE to external_declaration\n");}
+	| declaration  {fprintf(yyout,"declaration REDUCE to external_declaration\n");}
 	;
 
 function_definition
-	: declaration_specifiers declarator declaration_list compound_statement
-	| declaration_specifiers declarator compound_statement
+	: declaration_specifiers declarator declaration_list compound_statement   {fprintf(yyout,"declaration_specifiers declarator declaration_list compound_statement REDUCE to function_definition\n");}
+	| declaration_specifiers declarator compound_statement   {fprintf(yyout,"declaration_specifiers declarator compound_statement REDUCE to function_definition\n");}
 	;
 
 declaration_list
-	: declaration
-	| declaration_list declaration
+	: declaration  {fprintf(yyout,"declaration REDUCE to declaration_list\n");}
+	| declaration_list declaration  {fprintf(yyout,"declaration_list declaration REDUCE to declaration_list\n");}
 	;
 
 

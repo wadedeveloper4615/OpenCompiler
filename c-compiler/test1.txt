@@ -1,0 +1,11 @@
+IDENTIFIER REDUCE to direct_declarator
+assignment_expression REDUCE to initializer
+declaration REDUCE to external_declaration
+external_declaration REDUCE to translation_unit
+IDENTIFIER REDUCE to direct_declarator
+direct_declarator OPENPAREN_OP CLOSEPAREN_OP REDUCE to direct_declarator
+jump_statement REDUCE to statement
+OCURLY_OP block_item_list CCURLY_OP REDUCE to compound_statement
+declaration_specifiers declarator compound_statement REDUCE to function_definition
+function_definition REDUCE to external_declaration
+translation_unit external_declaration REDUCE to translation_unit
