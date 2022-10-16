@@ -4,7 +4,7 @@ extern int yyparse();
 extern FILE* yyin;
 extern FILE * yyout;
 FILE * fRegActivacio, * fCodi3A;
-extern int numFila;
+extern int lineNumber;
 extern int yyleng;
 extern void yyerror(char * explanation);
 
@@ -66,12 +66,11 @@ typedef struct t_simbol {
 
 void printC3AFuncions(t_registreC3A * pC3A, char * nom_funcio);
 void printC3AGlobal(t_registreC3A * pC3A);
-char * tipusDadesID(int idTipus, int espais);
-int init_analisi_sintactic_O(char * fileOutput, char * nomFitxerRA, char * nomFitxerC3A);
-void printRegistreActivacioGlobal(t_registreActivacio * pRegistreActivacio);
-int end_analisi_sintactic_O();
-int iniC3A(t_registreC3A * pC3A);
-int iniRegistreActivacio(t_registreActivacio * pRegistreActivacio, char * nom_registre);
-int analisi_semantic();
-void gestioParaulesReservades();
+char *getTypeString(int typeId, int includeSpaces);
+int initializeSyntacticAnalysis(char * fileOutput, char * nomFitxerRA, char * nomFitxerC3A);
+void printGlobalActivationRegister(t_registreActivacio * pRegistreActivacio);
+int endSyntacticAnalysis();
+int initializeC3A(t_registreC3A * pC3A);
+int initializeActivationRegister(t_registreActivacio *activationRegisterPtr, char *registerName);
+int symanticAnalysis();
 void yyerror(char * explanation);

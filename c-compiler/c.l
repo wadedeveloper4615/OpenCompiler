@@ -19,7 +19,7 @@ IS          ((u|U)|(u|U)?(l|L|ll|LL)|(l|L|ll|LL)(u|U))
 
 FILE * fileLexLog;
 
-int numFila = 1, numColumna = 1;
+int lineNumber = 1, numColumna = 1;
 int estat_tipus = 0;
 %}
 
@@ -202,107 +202,95 @@ L?\"(\\.|[^\\"\n])*\"	   {
 
 %%
 
-int yywrap(void)
-{
-	return 1;
+int yywrap(){
+ return 1;
 }
 
-void comment(void)
-{
-	char c, prev = 0;
-  
-	while ((c = input()) != 0)      /* (EOF maps to 0) */
-	{
-		if (c == '/' && prev == '*')
-			return;
-		prev = c;
-	}
-	yyerror("unterminated comment");
+void comment(){
+ char c, prev = 0;
+ while ((c = input()) != 0){
+  if (c == '/' && prev == '*') return;
+   prev = c;
+ }
+ yyerror("unterminated comment");
 }
 
-int handleIndentifier(void)
-{
-   struct t_simbol simbol;
+int handleIndentifier() {
+ struct t_simbol symbol;
    
-   if ((yytext[0] >= 48) && (yytext[0] <= 57)) {
-      printErrorLex("Identifier", yytext, numFila, numColumna);
-   }
-   else {
-      if (sym_lookup(yytext, &simbol) == SYMTAB_OK) {
-         writeLexLog(simbol.nomLexic, simbol.idLexic);
-      
-         yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-         strcpy(yylval.infoBison.valor, yytext);
-         yylval.infoBison.tipus_var = simbol.tipus_var;  
-         
-         numColumna += yyleng;
-         return simbol.idLexic;   
-      } 
-      else {
-         writeLexLog("IDENTIFIER", IDENTIFIER);
-      
-         yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-         strcpy(yylval.infoBison.valor, yytext);
-         yylval.infoBison.tipus_var = TIPUS_NULL;
-      
-         numColumna += yyleng;
-      
-         printf("got here to handleIndentifier ==> %s\n",yylval.infoBison.valor);
-		 
-         return IDENTIFIER;
-      }	
-   }	   
+ if ((yytext[0] >= 48) && (yytext[0] <= 57)) {
+  printErrorLex("Identifier", yytext, lineNumber, numColumna);
+ }
+ else {
+  if (sym_lookup(yytext, &symbol) == SYMTAB_OK) {
+   writeLexLog(symbol.nomLexic, symbol.idLexic);
+   yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+   strcpy(yylval.infoBison.valor, yytext);
+   yylval.infoBison.tipus_var = symbol.tipus_var;  
+   numColumna += yyleng;
+   return symbol.idLexic;   
+  } else {
+   writeLexLog("IDENTIFIER", IDENTIFIER);
+   yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
+   strcpy(yylval.infoBison.valor, yytext);
+   yylval.infoBison.tipus_var = TIPUS_NULL;
+   numColumna += yyleng;
+   printf("got here to handleIndentifier ==> %s\n",yylval.infoBison.valor);
+   return IDENTIFIER;
+  }	
+ }	   
 }
 
-int init_analisi_lexic_I(char * fileInput) {
-   int error; 
-   yyin = fopen(fileInput, "r");
+int initializeLexicalAnalysis(char * fileInput) {
+ int error; 
+ yyin = fopen(fileInput, "r");
 
-   if(yyin == NULL) error = EXIT_FAILURE;
-   else { 
-      fileLexLog = fopen(FILE_LEX_LOG, "w");
-      
-      if (fileLexLog == NULL) error = EXIT_FAILURE;
-      else error = EXIT_SUCCESS;
-   }
-
-   return error;
+ if(yyin == NULL)
+  error = EXIT_FAILURE;
+ else { 
+  fileLexLog = fopen(FILE_LEX_LOG, "w");
+  if (fileLexLog == NULL)
+   error = EXIT_FAILURE;
+  else
+   error = EXIT_SUCCESS;
+ }
+ return error;
 }
 
-int end_analisi_lexic_I() {
-   int error; 
+int endLexicalAnalysis() {
+ int error; 
    
-   error = fclose(yyin);
-   if (error == 0) { 
-      error = fclose(fileLexLog);
-      if (error == 0) error = EXIT_SUCCESS;
-      else error = EXIT_FAILURE;
-   }
-   else error = EXIT_FAILURE;
-   
-   return error; 
+ error = fclose(yyin);
+ if (error == 0) { 
+  error = fclose(fileLexLog);
+  if (error == 0)
+   error = EXIT_SUCCESS;
+  else
+   error = EXIT_FAILURE;
+ }
+ else
+  error = EXIT_FAILURE;
+ return error; 
 }
 
-void printErrorLex(char * str, char * lexema, int numFila, int numColumna) {
-   if (stdout != yyout) {
-      fprintf(stdout, "\n[ LEXIC -> Error ] >>> linia %i columna %i: %s %s no reconegut\n", numFila, numColumna, str, lexema);
-      fprintf(yyout, "[ LEXIC -> Error ] >>> linia %i columna %i: %s %s no reconegut\n", numFila, numColumna, str, lexema);
-   }
-   else fprintf(stderr, "\n[ LEXIC -> Error ] >>> linia %i columna %i: %s %s no reconegut\n", numFila, numColumna, str, lexema);    
+void printErrorLex(char * str, char * lexema, int lineNumber, int numColumna) {
+  if (stdout != yyout) {
+   fprintf(stdout, "\n[ LEXIC -> Error ] >>> linia %i columna %i: %s %s no reconegut\n", lineNumber, numColumna, str, lexema);
+   fprintf(yyout, "[ LEXIC -> Error ] >>> linia %i columna %i: %s %s no reconegut\n", lineNumber, numColumna, str, lexema);
+  }
+  else
+   fprintf(stderr, "\n[ LEXIC -> Error ] >>> linia %i columna %i: %s %s no reconegut\n", lineNumber, numColumna, str, lexema);    
 }
 
-void printErrorLexFull(char * str, char * lexema, char * str2, int numFila, int numColumna) {
-   
-   if (stdout != yyout) {
-      fprintf(stdout, "\n[ LEXIC -> Error ] >>> linia %i columna %i: %s %s %s no reconegut\n", numFila, numColumna, str, lexema, str2);   
-      fprintf(yyout, "[ LEXIC -> Error ] >>> linia %i columna %i: %s %s %s no reconegut\n", numFila, numColumna, str, lexema, str2);   
-   }
-   else fprintf(stderr, "[ LEXIC -> Error ] >>> linia %i columna %i: %s %s %s no reconegut\n", numFila, numColumna, str, lexema, str2);   
+void printErrorLexFull(char * str, char * lexema, char * str2, int lineNumber, int numColumna) {
+ if (stdout != yyout) {
+  fprintf(stdout, "\n[ LEXIC -> Error ] >>> linia %i columna %i: %s %s %s no reconegut\n", lineNumber, numColumna, str, lexema, str2);   
+  fprintf(yyout, "[ LEXIC -> Error ] >>> linia %i columna %i: %s %s %s no reconegut\n", lineNumber, numColumna, str, lexema, str2);   
+ }
+ else
+  fprintf(stderr, "[ LEXIC -> Error ] >>> linia %i columna %i: %s %s %s no reconegut\n", lineNumber, numColumna, str, lexema, str2);   
 }
 
 void writeLexLog(char * token, int id_token) {
-   fprintf(fileLexLog, "% 35s % 35s %d %d %d\n", token, yytext, id_token, numFila, numColumna);   
-}
-
-void gestioParaulesReservades() {
+   fprintf(fileLexLog, "% 35s % 35s %d %d %d\n", token, yytext, id_token, lineNumber, numColumna);   
 }

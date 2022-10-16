@@ -8,8 +8,8 @@
 #include "c.y.h"
 #include "c.l.h"
 
-char * idSimbol;
-char * nom_fitxerRA, * nom_fitxerC3A;
+char *idSymbol;
+char *nom_fitxerRA, * nom_fitxerC3A;
 struct t_simbol simbol, simbol_tmp;
 int currentScope;
 long long tmpValor;
@@ -98,23 +98,23 @@ int tipus_var_tmp;
 %%
 
 primary_expression
-	: IDENTIFIER
-	| CONSTANT
-	| STRING_LITERAL
-	| OPENPAREN_OP expression CLOSEPAREN_OP
+	: IDENTIFIER {fprintf(yyout,"unary_expression REDUCE to primary_expression\n");}
+	| CONSTANT {fprintf(yyout,"unary_expression REDUCE to primary_expression\n");}
+	| STRING_LITERAL {fprintf(yyout,"unary_expression REDUCE to primary_expression\n");}
+	| OPENPAREN_OP expression CLOSEPAREN_OP {fprintf(yyout,"unary_expression REDUCE to primary_expression\n");}
 	;
 
 postfix_expression
-	: primary_expression
-	| postfix_expression OPENBRACE_OP expression CLOSEBRACE_OP
-	| postfix_expression OPENPAREN_OP CLOSEPAREN_OP
-	| postfix_expression OPENPAREN_OP argument_expression_list CLOSEPAREN_OP
-	| postfix_expression PERIOD_OP IDENTIFIER
-	| postfix_expression PTR_OP IDENTIFIER
-	| postfix_expression INC_OP
-	| postfix_expression DEC_OP
-	| OPENPAREN_OP type_name CLOSEPAREN_OP OCURLY_OP initializer_list CCURLY_OP
-	| OPENPAREN_OP type_name CLOSEPAREN_OP OCURLY_OP initializer_list COMMA_OP CCURLY_OP
+	: primary_expression {fprintf(yyout,"primary_expression REDUCE to postfix_expression\n");}
+	| postfix_expression OPENBRACE_OP expression CLOSEBRACE_OP {fprintf(yyout,"postfix_expression OPENBRACE_OP expression CLOSEBRACE_OP REDUCE to postfix_expression\n");}
+	| postfix_expression OPENPAREN_OP CLOSEPAREN_OP {fprintf(yyout,"postfix_expression OPENPAREN_OP CLOSEPAREN_OP REDUCE to postfix_expression\n");}
+	| postfix_expression OPENPAREN_OP argument_expression_list CLOSEPAREN_OP {fprintf(yyout,"postfix_expression OPENPAREN_OP argument_expression_list CLOSEPAREN_OP REDUCE to postfix_expression\n");}
+	| postfix_expression PERIOD_OP IDENTIFIER {fprintf(yyout,"postfix_expression PERIOD_OP IDENTIFIER REDUCE to postfix_expression\n");}
+	| postfix_expression PTR_OP IDENTIFIER {fprintf(yyout,"postfix_expression PTR_OP IDENTIFIER REDUCE to postfix_expression\n");}
+	| postfix_expression INC_OP {fprintf(yyout,"postfix_expression INC_OP REDUCE to postfix_expression\n");}
+	| postfix_expression DEC_OP {fprintf(yyout,"postfix_expression DEC_OP REDUCE to postfix_expression\n");}
+	| OPENPAREN_OP type_name CLOSEPAREN_OP OCURLY_OP initializer_list CCURLY_OP {fprintf(yyout,"OPENPAREN_OP type_name CLOSEPAREN_OP OCURLY_OP initializer_list CCURLY_OP REDUCE to postfix_expression\n");}
+	| OPENPAREN_OP type_name CLOSEPAREN_OP OCURLY_OP initializer_list COMMA_OP CCURLY_OP {fprintf(yyout,"OPENPAREN_OP type_name CLOSEPAREN_OP OCURLY_OP initializer_list COMMA_OP CCURLY_OP REDUCE to postfix_expression\n");}
 	;
 
 argument_expression_list
@@ -123,12 +123,12 @@ argument_expression_list
 	;
 
 unary_expression
-	: postfix_expression
-	| INC_OP unary_expression
-	| DEC_OP unary_expression
-	| unary_operator cast_expression
-	| SIZEOF unary_expression
-	| SIZEOF OPENPAREN_OP type_name CLOSEPAREN_OP
+	: postfix_expression  {fprintf(yyout,"postfix_expression REDUCE to unary_expression\n");}
+	| INC_OP unary_expression  {fprintf(yyout,"INC_OP unary_expression REDUCE to unary_expression\n");}
+	| DEC_OP unary_expression  {fprintf(yyout,"DEC_OP unary_expression REDUCE to unary_expression\n");}
+	| unary_operator cast_expression  {fprintf(yyout,"unary_operator cast_expression REDUCE to unary_expression\n");}
+	| SIZEOF unary_expression  {fprintf(yyout,"SIZEOF unary_expression REDUCE to unary_expression\n");}
+	| SIZEOF OPENPAREN_OP type_name CLOSEPAREN_OP    {fprintf(yyout,"SIZEOF OPENPAREN_OP type_name CLOSEPAREN_OP REDUCE to unary_expression\n");}
 	;
 
 unary_operator
@@ -141,8 +141,8 @@ unary_operator
 	;
 
 cast_expression
-	: unary_expression
-	| OPENPAREN_OP type_name CLOSEPAREN_OP cast_expression
+	: unary_expression  {fprintf(yyout,"unary_expression REDUCE to cast_expression\n");}
+	| OPENPAREN_OP type_name CLOSEPAREN_OP cast_expression  {fprintf(yyout,"OPENPAREN_OP type_name CLOSEPAREN_OP cast_expression REDUCE to cast_expression\n");}
 	;
 
 multiplicative_expression
@@ -214,17 +214,17 @@ assignment_expression
 	;
 
 assignment_operator
-	: EQUAL_OP
-	| MUL_ASSIGN
-	| DIV_ASSIGN
-	| MOD_ASSIGN
-	| ADD_ASSIGN
-	| SUB_ASSIGN
-	| LEFT_ASSIGN
-	| RIGHT_ASSIGN
-	| AND_ASSIGN
-	| XOR_ASSIGN
-	| OR_ASSIGN
+	: EQUAL_OP {fprintf(yyout,"EQUAL_OP REDUCE to assignment_operator\n");}
+	| MUL_ASSIGN {fprintf(yyout,"MUL_ASSIGN REDUCE to assignment_operator\n");}
+	| DIV_ASSIGN {fprintf(yyout,"DIV_ASSIGN REDUCE to assignment_operator\n");}
+	| MOD_ASSIGN {fprintf(yyout,"MOD_ASSIGN REDUCE to assignment_operator\n");}
+	| ADD_ASSIGN {fprintf(yyout,"ADD_ASSIGN REDUCE to assignment_operator\n");}
+	| SUB_ASSIGN {fprintf(yyout,"SUB_ASSIGN REDUCE to assignment_operator\n");}
+	| LEFT_ASSIGN {fprintf(yyout,"LEFT_ASSIGN REDUCE to assignment_operator\n");}
+	| RIGHT_ASSIGN {fprintf(yyout,"RIGHT_ASSIGN REDUCE to assignment_operator\n");}
+	| AND_ASSIGN {fprintf(yyout,"AND_ASSIGN REDUCE to assignment_operator\n");}
+	| XOR_ASSIGN {fprintf(yyout,"XOR_ASSIGN REDUCE to assignment_operator\n");}
+	| OR_ASSIGN {fprintf(yyout,"OR_ASSIGN REDUCE to assignment_operator\n");}
 	;
 
 expression
@@ -263,35 +263,35 @@ init_declarator
 	;
 
 storage_class_specifier
-	: TYPEDEF
-	| EXTERN
-	| STATIC
-	| AUTO
-	| REGISTER
+	: TYPEDEF  {fprintf(yyout,"TYPEDEF REDUCE to storage_class_specifier\n");}
+	| EXTERN  {fprintf(yyout,"EXTERN REDUCE to storage_class_specifier\n");}
+	| STATIC  {fprintf(yyout,"STATIC REDUCE to storage_class_specifier\n");}
+	| AUTO  {fprintf(yyout,"AUTO REDUCE to storage_class_specifier\n");}
+	| REGISTER  {fprintf(yyout,"REGISTER REDUCE to storage_class_specifier\n");}
 	;
 
 type_specifier
-	: VOID
-	| CHAR
-	| SHORT
-	| INT
-	| LONG
-	| FLOAT
-	| DOUBLE
-	| SIGNED
-	| UNSIGNED
-	| BOOL
-	| COMPLEX
-	| IMAGINARY
-	| struct_or_union_specifier
-	| enum_specifier
-	| TYPE_NAME
+	: VOID  {fprintf(yyout,"VOID REDUCE to type_specifier\n");}
+	| CHAR {fprintf(yyout,"CHAR REDUCE to type_specifier\n");}
+	| SHORT {fprintf(yyout,"SHORT REDUCE to type_specifier\n");}
+	| INT {fprintf(yyout,"INT REDUCE to type_specifier\n");}
+	| LONG {fprintf(yyout,"LONG REDUCE to type_specifier\n");}
+	| FLOAT {fprintf(yyout,"FLOAT REDUCE to type_specifier\n");}
+	| DOUBLE {fprintf(yyout,"DOUBLE REDUCE to type_specifier\n");}
+	| SIGNED {fprintf(yyout,"SIGNED REDUCE to type_specifier\n");}
+	| UNSIGNED {fprintf(yyout,"UNSIGNED REDUCE to type_specifier\n");}
+	| BOOL {fprintf(yyout,"BOOL REDUCE to type_specifier\n");}
+	| COMPLEX {fprintf(yyout,"COMPLEX REDUCE to type_specifier\n");}
+	| IMAGINARY {fprintf(yyout,"IMAGINARY REDUCE to type_specifier\n");}
+	| struct_or_union_specifier {fprintf(yyout,"struct_or_union_specifier REDUCE to type_specifier\n");}
+	| enum_specifier {fprintf(yyout,"enum_specifier REDUCE to type_specifier\n");}
+	| TYPE_NAME {fprintf(yyout,"type_specifier TYPE_NAME REDUCE to type_specifier\n");}
 	;
 
 struct_or_union_specifier
-	: struct_or_union IDENTIFIER OCURLY_OP struct_declaration_list CCURLY_OP
-	| struct_or_union OCURLY_OP struct_declaration_list CCURLY_OP
-	| struct_or_union IDENTIFIER
+	: struct_or_union IDENTIFIER OCURLY_OP struct_declaration_list CCURLY_OP  {fprintf(yyout,"struct_or_union IDENTIFIER OCURLY_OP struct_declaration_list CCURLY_OP REDUCE to struct_or_union_specifier\n");}
+	| struct_or_union OCURLY_OP struct_declaration_list CCURLY_OP  {fprintf(yyout,"struct_or_union OCURLY_OP struct_declaration_list CCURLY_OP REDUCE to struct_or_union_specifier\n");}
+	| struct_or_union IDENTIFIER  {fprintf(yyout,"struct_or_union IDENTIFIER REDUCE to struct_or_union_specifier\n");}
 	;
 
 struct_or_union
@@ -305,14 +305,14 @@ struct_declaration_list
 	;
 
 struct_declaration
-	: specifier_qualifier_list struct_declarator_list SEMI_OP
+	: specifier_qualifier_list struct_declarator_list SEMI_OP  {fprintf(yyout,"specifier_qualifier_list struct_declarator_list SEMI_OP REDUCE to struct_declaration\n");}
 	;
 
 specifier_qualifier_list
-	: type_specifier specifier_qualifier_list
-	| type_specifier
-	| type_qualifier specifier_qualifier_list
-	| type_qualifier
+	: type_specifier specifier_qualifier_list {fprintf(yyout,"type_specifier specifier_qualifier_list REDUCE to specifier_qualifier_list\n");}
+	| type_specifier {fprintf(yyout,"type_specifier REDUCE to specifier_qualifier_list\n");}
+	| type_qualifier specifier_qualifier_list {fprintf(yyout,"type_qualifier specifier_qualifier_list REDUCE to specifier_qualifier_list\n");}
+	| type_qualifier  {fprintf(yyout,"type_qualifier REDUCE to specifier_qualifier_list\n");}
 	;
 
 struct_declarator_list
@@ -321,9 +321,9 @@ struct_declarator_list
 	;
 
 struct_declarator
-	: declarator
-	| COLON_OP constant_expression
-	| declarator COLON_OP constant_expression
+	: declarator    {fprintf(yyout,"declarator REDUCE to struct_declarator\n");}
+	| COLON_OP constant_expression    {fprintf(yyout,"COLON_OP constant_expression REDUCE to struct_declarator\n");}
+	| declarator COLON_OP constant_expression    {fprintf(yyout,"declarator COLON_OP constant_expression REDUCE to struct_declarator\n");}
 	;
 
 enum_specifier
@@ -532,11 +532,11 @@ external_declaration
 
 function_definition
 	: declaration_specifiers declarator declaration_list compound_statement   {fprintf(yyout,"declaration_specifiers declarator declaration_list compound_statement REDUCE to function_definition\n");}
-	| declaration_specifiers declarator compound_statement   {fprintf(yyout,"declaration_specifiers declarator compound_statement REDUCE to function_definition\n");}
+	| declaration_specifiers declarator compound_statement                    {fprintf(yyout,"declaration_specifiers declarator compound_statement REDUCE to function_definition\n");}
 	;
 
 declaration_list
-	: declaration  {fprintf(yyout,"declaration REDUCE to declaration_list\n");}
+	: declaration                   {fprintf(yyout,"declaration REDUCE to declaration_list\n");}
 	| declaration_list declaration  {fprintf(yyout,"declaration_list declaration REDUCE to declaration_list\n");}
 	;
 
@@ -580,215 +580,198 @@ void printC3AGlobal(t_registreC3A * pC3A) {
       desencuar(llista_quadruples);
    }
 }
- 
-char * tipusDadesID(int idTipus, int espais) {
-   char * tdades = (char *) malloc(10);
+
+void printGlobalActivationRegister(t_registreActivacio * pRegistreActivacio) {
+ t_cadenaRegistreActivacio * pvalors;
+ fprintf(fRegActivacio, "GLOBAL\n");
+
+ pvalors = pRegistreActivacio -> primer_llista_locals;
+ fprintf(fRegActivacio, "\n[ + ] Variables Globals (nom_param tipus_param tipus_param_tamany offset)\n\n");
+  
+ for (;pvalors;) {
+  if (pvalors -> es_array == FALSE) { 
+   fprintf(fRegActivacio, "\t\t[ - ] %s %s %d %d\n", pvalors -> nom, getTypeString(pvalors -> tipus, 0), pvalors -> tam_tipus, pvalors -> offset);
+  } else {
+   fprintf(fRegActivacio, "\t\t[ - ] %s %s[%lu] %d %d\n", pvalors -> nom, getTypeString(pvalors -> tipus, 0), pvalors -> tam_array, pvalors -> tam_tipus, pvalors -> offset);
+  }
+  pvalors = pvalors -> seguent;
+ }
    
-   strcpy(tdades, "");
+ pvalors = pRegistreActivacio -> primer_llista_temporals;
+ fprintf(fRegActivacio, "\n[ + ] Variables Temporals (nom_param tipus_param tipus_param_tamany offset)\n\n");
    
-   if (espais) {
-      switch (idTipus) {
-         case -1: strcpy(tdades, "NULL     "); break;
-         case 0: strcpy(tdades, "VOID     "); break;
-         case 1: strcpy(tdades, "CHAR     "); break;
-         case 2: strcpy(tdades, "SHORT    "); break;
-         case 3: strcpy(tdades, "INT      "); break;
-         case 4: strcpy(tdades, "LONG     "); break;
-         case 5: strcpy(tdades, "FLOAT    "); break;
-         case 6: strcpy(tdades, "DOUBLE   "); break;
-         case 7: strcpy(tdades, "STRING   "); break;
-         case 8: strcpy(tdades, "STRUCT   "); break;
-      }
-   }
-   else {
-      switch (idTipus) {
-         case -1: strcpy(tdades, "NULL"); break;
-         case 0: strcpy(tdades, "VOID"); break;
-         case 1: strcpy(tdades, "CHAR"); break;
-         case 2: strcpy(tdades, "SHORT"); break;
-         case 3: strcpy(tdades, "INT"); break;
-         case 4: strcpy(tdades, "LONG"); break;
-         case 5: strcpy(tdades, "FLOAT"); break;
-         case 6: strcpy(tdades, "DOUBLE"); break;
-         case 7: strcpy(tdades, "STRING"); break;
-         case 8: strcpy(tdades, "STRUCT"); break;
-      }   
-   }
-   return tdades;
+ for (;pvalors;) {
+  fprintf(fRegActivacio, "\t\t[ - ] %s %s %d %d\n", pvalors -> nom, getTypeString(pvalors -> tipus, 0), pvalors -> tam_tipus, pvalors -> offset);
+  pvalors = pvalors -> seguent;
+ }     
+ fprintf(fRegActivacio, "\n\n"); 
 }
 
-int init_analisi_sintactic_O(char * fileOutput, char * nomFitxerRA, char * nomFitxerC3A) {
-   int error; 
+char *getTypeString(int typeId, int includeSpaces) {
+ char *typeString = (char *) malloc(10);
    
-   nom_fitxerRA = nomFitxerRA;
-   nom_fitxerC3A = nomFitxerC3A;
-   yyout = fopen(fileOutput, "w");
-
-   fRegActivacio = fopen(nomFitxerRA, "w");
-   fCodi3A = fopen(nomFitxerC3A, "w");
-   
-   num_errors = 0; valor_retorn = NULL;
-   if ((yyout == NULL) || (fRegActivacio == NULL) || (fCodi3A == NULL)) 
-    { error = EXIT_FAILURE; }
-   else 
-   { error = EXIT_SUCCESS; }
-
-   return error;
-
+ strcpy(typeString, "");
+ if (includeSpaces) {
+  switch (typeId) {
+   case -1: strcpy(typeString, "NULL     "); break;
+   case  0: strcpy(typeString, "VOID     "); break;
+   case  1: strcpy(typeString, "CHAR     "); break;
+   case  2: strcpy(typeString, "SHORT    "); break;
+   case  3: strcpy(typeString, "INT      "); break;
+   case  4: strcpy(typeString, "LONG     "); break;
+   case  5: strcpy(typeString, "FLOAT    "); break;
+   case  6: strcpy(typeString, "DOUBLE   "); break;
+   case  7: strcpy(typeString, "STRING   "); break;
+   case  8: strcpy(typeString, "STRUCT   "); break;
+  }
+ } else {
+  switch (typeId) {
+   case -1: strcpy(typeString, "NULL"); break;
+   case  0: strcpy(typeString, "VOID"); break;
+   case  1: strcpy(typeString, "CHAR"); break;
+   case  2: strcpy(typeString, "SHORT"); break;
+   case  3: strcpy(typeString, "INT"); break;
+   case  4: strcpy(typeString, "LONG"); break;
+   case  5: strcpy(typeString, "FLOAT"); break;
+   case  6: strcpy(typeString, "DOUBLE"); break;
+   case  7: strcpy(typeString, "STRING"); break;
+   case  8: strcpy(typeString, "STRUCT"); break;
+  }   
+ }
+ return typeString;
 }
 
-void printRegistreActivacioGlobal(t_registreActivacio * pRegistreActivacio) {
-   t_cadenaRegistreActivacio * pvalors;
+int initializeSyntacticAnalysis(char * fileOutput, char * nomFitxerRA, char * nomFitxerC3A) {
+ int error; 
    
-   fprintf(fRegActivacio, "GLOBAL\n");
-      
-   pvalors = pRegistreActivacio -> primer_llista_locals;
-   fprintf(fRegActivacio, "\n[ + ] Variables Globals (nom_param tipus_param tipus_param_tamany offset)\n\n");
+ nom_fitxerRA = nomFitxerRA;
+ nom_fitxerC3A = nomFitxerC3A;
+ yyout = fopen(fileOutput, "w");
+
+ fRegActivacio = fopen(nomFitxerRA, "w");
+ fCodi3A = fopen(nomFitxerC3A, "w");
    
-   for (;pvalors;) {
-      if (pvalors -> es_array == FALSE) { 
-         fprintf(fRegActivacio, "\t\t[ - ] %s %s %d %d\n", pvalors -> nom, tipusDadesID(pvalors -> tipus, 0), pvalors -> tam_tipus, pvalors -> offset);
-      }
-      else {
-         fprintf(fRegActivacio, "\t\t[ - ] %s %s[%lu] %d %d\n", pvalors -> nom, tipusDadesID(pvalors -> tipus, 0), pvalors -> tam_array, pvalors -> tam_tipus, pvalors -> offset);
-      }
-      
-      pvalors = pvalors -> seguent;
-   }
-   
-   pvalors = pRegistreActivacio -> primer_llista_temporals;
-   fprintf(fRegActivacio, "\n[ + ] Variables Temporals (nom_param tipus_param tipus_param_tamany offset)\n\n");
-   
-   for (;pvalors;) {
-      fprintf(fRegActivacio, "\t\t[ - ] %s %s %d %d\n", pvalors -> nom, tipusDadesID(pvalors -> tipus, 0), pvalors -> tam_tipus, pvalors -> offset);
-      
-      pvalors = pvalors -> seguent;
-   }     
-   fprintf(fRegActivacio, "\n\n"); 
+ num_errors = 0; 
+ valor_retorn = NULL;
+ if ((yyout == NULL) || (fRegActivacio == NULL) || (fCodi3A == NULL)) { 
+  error = EXIT_FAILURE; 
+ } else { 
+   error = EXIT_SUCCESS; 
+ }
+ return error;
 }
 
-int end_analisi_sintactic_O() {
-   int error;
+int endSyntacticAnalysis() {
+ int error;
    
-   printRegistreActivacioGlobal(registreActivacioGlobal);
-   printC3AGlobal(C3AGlobal);
-   error = fclose(yyout);
-   error |= fclose(fRegActivacio);
-   error |= fclose(fCodi3A);
+ printGlobalActivationRegister(registreActivacioGlobal);
+ printC3AGlobal(C3AGlobal);
+ error = fclose(yyout);
+ error |= fclose(fRegActivacio);
+ error |= fclose(fCodi3A);
    
-   if (num_errors > 0) {
-      remove(nom_fitxerRA);
-      remove(nom_fitxerC3A);         
-      fprintf(stdout, "\n\n\t-----------------------------------------------------");
-      fprintf(stdout, "\n\t\t[ ERR ] Compiled with %d error/s\n", num_errors);
-      fprintf(stdout, "\t-----------------------------------------------------\n\n");
-   }
-   else {
-      fprintf(stdout, "\n\n\t-----------------------------------------------------");
-      fprintf(stdout, "\n\t\t[ OK ] Compilation generated successfully\n"); 
-      fprintf(stdout, "\t-----------------------------------------------------\n\n");
-   }
-   
-   if (error == 0) 
-    { error = EXIT_SUCCESS; }
-   else
-    { error = EXIT_FAILURE; }
-   
-   return error; 
+ if (num_errors > 0) {
+  remove(nom_fitxerRA);
+  remove(nom_fitxerC3A);         
+  fprintf(stdout, "\n\n\t-----------------------------------------------------");
+  fprintf(stdout, "\n\t\t[ ERR ] Compiled with %d error/s\n", num_errors);
+  fprintf(stdout, "\t-----------------------------------------------------\n\n");
+ }
+ else {
+  fprintf(stdout, "\n\n\t-----------------------------------------------------");
+  fprintf(stdout, "\n\t\t[ OK ] Compilation generated successfully\n"); 
+  fprintf(stdout, "\t-----------------------------------------------------\n\n");
+ }
+ if (error == 0){
+  error = EXIT_SUCCESS; 
+ } else { 
+  error = EXIT_FAILURE;
+ }
+ return error; 
 }
 
-int iniC3A(t_registreC3A * pC3A) {
-     
-   if (pC3A != NULL) {
-
-      pC3A -> num_quadruples = 0;
-	  pC3A -> quadrupleC3A = crear_cua();
-
-      return 0;         
-   }
-   return -1;
+int initializeC3A(t_registreC3A * pC3A) {
+ if (pC3A != NULL) {
+  pC3A -> num_quadruples = 0;
+  pC3A -> quadrupleC3A = crear_cua();
+  return 0;         
+ }
+ return -1;
 }
 
-int iniRegistreActivacio(t_registreActivacio * pRegistreActivacio, char * nom_registre) {
-     
-   if (pRegistreActivacio != NULL) {
-      pRegistreActivacio -> nom_registre = malloc(strlen(nom_registre) + 1); strcpy(pRegistreActivacio -> nom_registre, nom_registre);                    
-      pRegistreActivacio -> num_llista_parametres = 0;
-      pRegistreActivacio -> num_llista_locals = 0;
-      pRegistreActivacio -> num_llista_temporals = 0;
-      pRegistreActivacio -> currentOffset = 0; 
-      
-      pRegistreActivacio -> primer_llista_parametres = NULL;
-      pRegistreActivacio -> primer_llista_locals = NULL;
-      pRegistreActivacio -> primer_llista_temporals = NULL;
-      pRegistreActivacio -> ultim_llista_parametres = NULL;
-      pRegistreActivacio -> ultim_llista_locals = NULL;
-      pRegistreActivacio -> ultim_llista_temporals = NULL;
-      
-      return 0;         
-   }
-   return -1;
+int initializeActivationRegister(t_registreActivacio *activationRegisterPtr, char *registerName) {
+ if (activationRegisterPtr != NULL) {
+  activationRegisterPtr -> nom_registre = malloc(strlen(registerName) + 1);
+  strcpy(activationRegisterPtr -> nom_registre, registerName);                    
+  activationRegisterPtr -> num_llista_parametres = 0;
+  activationRegisterPtr -> num_llista_locals = 0;
+  activationRegisterPtr -> num_llista_temporals = 0;
+  activationRegisterPtr -> currentOffset = 0; 
+  activationRegisterPtr -> primer_llista_parametres = NULL;
+  activationRegisterPtr -> primer_llista_locals = NULL;
+  activationRegisterPtr -> primer_llista_temporals = NULL;
+  activationRegisterPtr -> ultim_llista_parametres = NULL;
+  activationRegisterPtr -> ultim_llista_locals = NULL;
+  activationRegisterPtr -> ultim_llista_temporals = NULL;
+  return 0;         
+ }
+ return -1;
 }
 
-int analisi_semantic() {
-   int error;
+int symanticAnalysis() {
+ int error;
    
-   registreActivacioGlobal = (t_registreActivacio *) malloc(sizeof(t_registreActivacio));
-   iniRegistreActivacio(registreActivacioGlobal, "GLOBAL");
+ registreActivacioGlobal = (t_registreActivacio *) malloc(sizeof(t_registreActivacio));
+ initializeActivationRegister(registreActivacioGlobal, "GLOBAL");
    
-   C3AGlobal = (t_registreC3A *) malloc(sizeof(t_registreC3A));
-   iniC3A(C3AGlobal);
+ C3AGlobal = (t_registreC3A *) malloc(sizeof(t_registreC3A));
+ initializeC3A(C3AGlobal);
    
-   if (yyparse() == 0)
-    { error =  EXIT_SUCCESS; }
-   else
-    { error =  EXIT_FAILURE; }
-   
-   return error;
+ if (yyparse() == 0){
+  error =  EXIT_SUCCESS;
+ } else {
+  error =  EXIT_FAILURE;
+ }
+ return error;
 }
 
 int main(int argc, char *argv[]) {
-    if (argc == 3) {
-      char * fRA, * fC3A;
-      if (init_analisi_lexic_I(argv[1]) == EXIT_SUCCESS) {
-         fRA = (char *) malloc(strlen(argv[2]) + 4);
-         fC3A = (char *) malloc(strlen(argv[2]) + 5); 
-         sprintf(fRA, "%s.ra", argv[2]);
-         sprintf(fC3A, "%s.c3a", argv[2]);                               
-         if (init_analisi_sintactic_O(argv[2], fRA, fC3A) == EXIT_SUCCESS) {
-            gestioParaulesReservades();       
-            analisi_semantic();
-         
-            end_analisi_lexic_I(); 
-            end_analisi_sintactic_O();
-         }
-         else {
-            printf("\n\n###########################################################\n");
-            printf("###\t\t\t\t\t\t\t###\n");
-            printf("###\t[ ERR ] El fitxers de sortida %s %s %s no s'han creat\t###\n", argv[2], fRA, fC3A);
-            printf("###\t\t\t\t\t\t\t###\n");      
-            printf("###########################################################\n\n");       
-         }
-      }
-      else {
-         printf("\n\n###########################################################\n");
-         printf("###\t\t\t\t\t\t\t###\n");
-         printf("###\t[ ERR ] El fitxer d'entrada %s no existeix\t###\n", argv[1]);
-         printf("###\t\t\t\t\t\t\t###\n");      
-         printf("###########################################################\n\n");       
-      }
-   }         
-   else {
-      printf("\n\n###########################################################################\n");
-      printf("###\t\t\t\t\t\t\t\t\t###\n");
-      printf("###\t[ USE ] %s [ F_IN ] [ F_OUT ]      \t\t\t###\n", argv[0]);
-      printf("###\t[ EX  ] %s input.txt output.txt\t\t\t###\n", argv[0]);
-      printf("###\t\t\t\t\t\t\t\t\t###\n");      
-      printf("###########################################################################\n\n");
+ if (argc == 3) {
+  char *raFile, *c3aFile;
+  if (initializeLexicalAnalysis(argv[1]) == EXIT_SUCCESS) {
+   raFile = (char *) malloc(strlen(argv[2]) + 4);
+   c3aFile = (char *) malloc(strlen(argv[2]) + 5); 
+   sprintf(raFile, "%s.ra", argv[2]);
+   sprintf(c3aFile, "%s.c3a", argv[2]);                               
+   if (initializeSyntacticAnalysis(argv[2], raFile, c3aFile) == EXIT_SUCCESS) {
+    symanticAnalysis();
+    endLexicalAnalysis(); 
+    endSyntacticAnalysis();
+   } else {
+    printf("\n\n###########################################################\n");
+    printf("###\t\t\t\t\t\t\t###\n");
+    printf("###\t[ ERR ] El fitxers de sortida %s %s %s no s'han creat\t###\n", argv[2], raFile, c3aFile);
+    printf("###\t\t\t\t\t\t\t###\n");      
+    printf("###########################################################\n\n");       
    }
+  } else {
+   printf("\n\n###########################################################\n");
+   printf("###\t\t\t\t\t\t\t###\n");
+   printf("###\t[ ERR ] El fitxer d'entrada %s no existeix\t###\n", argv[1]);
+   printf("###\t\t\t\t\t\t\t###\n");      
+   printf("###########################################################\n\n");       
+  }
+ } else {
+  printf("\n\n###########################################################################\n");
+  printf("###\t\t\t\t\t\t\t\t\t###\n");
+  printf("###\t[ USE ] %s [ F_IN ] [ F_OUT ]      \t\t\t###\n", argv[0]);
+  printf("###\t[ EX  ] %s input.txt output.txt\t\t\t###\n", argv[0]);
+  printf("###\t\t\t\t\t\t\t\t\t###\n");      
+  printf("###########################################################################\n\n");
+ }
 }
 
 void yyerror(char * explanation){
-	fprintf(stderr, "Parse error: %s\n", explanation);
-	exit(1);
+ fprintf(stderr, "Parse error: %s\n", explanation);
+ exit(1);
 }

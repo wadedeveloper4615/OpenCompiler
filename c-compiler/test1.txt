@@ -1,9 +1,19 @@
+INT REDUCE to type_specifier
 IDENTIFIER REDUCE to direct_declarator
+unary_expression REDUCE to primary_expression
+primary_expression REDUCE to postfix_expression
+postfix_expression REDUCE to unary_expression
+unary_expression REDUCE to cast_expression
 assignment_expression REDUCE to initializer
 declaration REDUCE to external_declaration
 external_declaration REDUCE to translation_unit
+INT REDUCE to type_specifier
 IDENTIFIER REDUCE to direct_declarator
 direct_declarator OPENPAREN_OP CLOSEPAREN_OP REDUCE to direct_declarator
+unary_expression REDUCE to primary_expression
+primary_expression REDUCE to postfix_expression
+postfix_expression REDUCE to unary_expression
+unary_expression REDUCE to cast_expression
 jump_statement REDUCE to statement
 OCURLY_OP block_item_list CCURLY_OP REDUCE to compound_statement
 declaration_specifiers declarator compound_statement REDUCE to function_definition
