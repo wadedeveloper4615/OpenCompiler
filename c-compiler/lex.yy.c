@@ -685,8 +685,8 @@ char *yytext;
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "c.tab.h"
 #include "global.h"
+#include "c.tab.h"
 #include "c.l.h"
 #include "symtab.h"
 
@@ -1177,370 +1177,381 @@ case 41:
 YY_RULE_SETUP
 #line 71 "c.l"
 { 
-                             writeLexLog("HEX CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 78 "c.l"
+#line 79 "c.l"
 { 
-                             writeLexLog("OCTAL CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 85 "c.l"
+#line 87 "c.l"
 { 
-                             writeLexLog("DIGIT CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 92 "c.l"
+#line 95 "c.l"
 { 
-                             writeLexLog("OCTAL CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 99 "c.l"
+#line 103 "c.l"
 { 
-                             writeLexLog("OCTAL CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 106 "c.l"
+#line 111 "c.l"
 { 
-                             writeLexLog("OCTAL CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_FLOAT;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 113 "c.l"
+#line 119 "c.l"
 { 
-                             writeLexLog("OCTAL CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
                              numColumna += yyleng;
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_FLOAT;
                              return(CONSTANT); 
                            }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 120 "c.l"
+#line 127 "c.l"
 { 
-                             writeLexLog("HEX CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 127 "c.l"
+#line 135 "c.l"
 { 
-                             writeLexLog("HEX CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_FLOAT;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 134 "c.l"
+#line 143 "c.l"
 { 
-                             writeLexLog("HEX CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_FLOAT;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 141 "c.l"
+#line 151 "c.l"
 { 
-                             writeLexLog("STRING CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_STRING;
                              numColumna += yyleng;
                              return(STRING_LITERAL); 
                            }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 149 "c.l"
+#line 160 "c.l"
 { return(ELLIPSIS); }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 150 "c.l"
+#line 161 "c.l"
 { return(QUESTION_OP); }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 151 "c.l"
+#line 162 "c.l"
 { return(SEMI_OP); }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 152 "c.l"
+#line 163 "c.l"
 { return(OCURLY_OP); }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 153 "c.l"
+#line 164 "c.l"
 { return(CCURLY_OP); }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 154 "c.l"
+#line 165 "c.l"
 { return(COMMA_OP); }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 155 "c.l"
+#line 166 "c.l"
 { return(COLON_OP); }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 156 "c.l"
+#line 167 "c.l"
 { return(OPENPAREN_OP); }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 157 "c.l"
+#line 168 "c.l"
 { return(CLOSEPAREN_OP); }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 158 "c.l"
+#line 169 "c.l"
 { return(OPENBRACE_OP); }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 159 "c.l"
+#line 170 "c.l"
 { return(CLOSEBRACE_OP); }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 160 "c.l"
+#line 171 "c.l"
 { return(PERIOD_OP); }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 161 "c.l"
+#line 172 "c.l"
 { return(TILDE_OP); }
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 163 "c.l"
+#line 174 "c.l"
 { return(EQUAL_OP); }
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 164 "c.l"
+#line 175 "c.l"
 { return(RIGHT_ASSIGN); }
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 165 "c.l"
+#line 176 "c.l"
 { return(LEFT_ASSIGN); }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 166 "c.l"
+#line 177 "c.l"
 { return(ADD_ASSIGN); }
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 167 "c.l"
+#line 178 "c.l"
 { return(SUB_ASSIGN); }
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 168 "c.l"
+#line 179 "c.l"
 { return(MUL_ASSIGN); }
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 169 "c.l"
+#line 180 "c.l"
 { return(DIV_ASSIGN); }
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 170 "c.l"
+#line 181 "c.l"
 { return(MOD_ASSIGN); }
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 171 "c.l"
+#line 182 "c.l"
 { return(AND_ASSIGN); }
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 172 "c.l"
+#line 183 "c.l"
 { return(XOR_ASSIGN); }
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 173 "c.l"
+#line 184 "c.l"
 { return(OR_ASSIGN); }
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 174 "c.l"
+#line 185 "c.l"
 { return(RIGHT_OP); }
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 175 "c.l"
+#line 186 "c.l"
 { return(LEFT_OP); }
 	YY_BREAK
 case 78:
 YY_RULE_SETUP
-#line 176 "c.l"
+#line 187 "c.l"
 { return(INC_OP); }
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
-#line 177 "c.l"
+#line 188 "c.l"
 { return(DEC_OP); }
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
-#line 178 "c.l"
+#line 189 "c.l"
 { return(PTR_OP); }
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 180 "c.l"
+#line 191 "c.l"
 { return(AND_OP); }
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 181 "c.l"
+#line 192 "c.l"
 { return(OR_OP); }
 	YY_BREAK
 case 83:
 YY_RULE_SETUP
-#line 182 "c.l"
+#line 193 "c.l"
 { return(LESS_OP); }
 	YY_BREAK
 case 84:
 YY_RULE_SETUP
-#line 183 "c.l"
+#line 194 "c.l"
 { return(GREATER_OP); }
 	YY_BREAK
 case 85:
 YY_RULE_SETUP
-#line 184 "c.l"
+#line 195 "c.l"
 { return(LE_OP); }
 	YY_BREAK
 case 86:
 YY_RULE_SETUP
-#line 185 "c.l"
+#line 196 "c.l"
 { return(GE_OP); }
 	YY_BREAK
 case 87:
 YY_RULE_SETUP
-#line 186 "c.l"
+#line 197 "c.l"
 { return(EQ_OP); }
 	YY_BREAK
 case 88:
 YY_RULE_SETUP
-#line 187 "c.l"
+#line 198 "c.l"
 { return(NE_OP); }
 	YY_BREAK
 case 89:
 YY_RULE_SETUP
-#line 188 "c.l"
+#line 199 "c.l"
 { return(NOT_OP); }
 	YY_BREAK
 case 90:
 YY_RULE_SETUP
-#line 189 "c.l"
+#line 200 "c.l"
 { return(XOR_OP); }
 	YY_BREAK
 case 91:
 YY_RULE_SETUP
-#line 190 "c.l"
+#line 201 "c.l"
 { return(BIT_AND); }
 	YY_BREAK
 case 92:
 YY_RULE_SETUP
-#line 191 "c.l"
+#line 202 "c.l"
 { return(BIT_OR); }
 	YY_BREAK
 case 93:
 YY_RULE_SETUP
-#line 193 "c.l"
+#line 204 "c.l"
 { return(MINUS_OP); }
 	YY_BREAK
 case 94:
 YY_RULE_SETUP
-#line 194 "c.l"
+#line 205 "c.l"
 { return(PLUS_OP); }
 	YY_BREAK
 case 95:
 YY_RULE_SETUP
-#line 195 "c.l"
+#line 206 "c.l"
 { return(TIMES_OP); }
 	YY_BREAK
 case 96:
 YY_RULE_SETUP
-#line 196 "c.l"
+#line 207 "c.l"
 { return(DIV_OP); }
 	YY_BREAK
 case 97:
 YY_RULE_SETUP
-#line 197 "c.l"
+#line 208 "c.l"
 { return(MOD_OP); }
 	YY_BREAK
 case 98:
 /* rule 98 can match eol */
 YY_RULE_SETUP
-#line 200 "c.l"
+#line 211 "c.l"
 { }
 	YY_BREAK
 case 99:
 YY_RULE_SETUP
-#line 201 "c.l"
+#line 212 "c.l"
 { /* Add code to complain about unmatched characters */ }
 	YY_BREAK
 case 100:
 YY_RULE_SETUP
-#line 203 "c.l"
+#line 214 "c.l"
 ECHO;
 	YY_BREAK
-#line 1543 "lex.yy.c"
+#line 1554 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2545,7 +2556,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 203 "c.l"
+#line 214 "c.l"
 
 
 int yywrap(){
@@ -2562,29 +2573,12 @@ void comment(){
 }
 
 int handleIndentifier() {
- struct t_simbol symbol;
-   
- if ((yytext[0] >= 48) && (yytext[0] <= 57)) {
-  printErrorLex("Identifier", yytext, lineNumber, numColumna);
- }
- else {
-  if (sym_lookup(yytext, &symbol) == SYMTAB_OK) {
-   writeLexLog(symbol.nomLexic, symbol.idLexic);
-   yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-   strcpy(yylval.infoBison.valor, yytext);
-   yylval.infoBison.tipus_var = symbol.tipus_var;  
-   numColumna += yyleng;
-   return symbol.idLexic;   
-  } else {
-   writeLexLog("IDENTIFIER", IDENTIFIER);
-   yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-   strcpy(yylval.infoBison.valor, yytext);
-   yylval.infoBison.tipus_var = TIPUS_NULL;
-   numColumna += yyleng;
-   printf("got here to handleIndentifier ==> %s\n",yylval.infoBison.valor);
-   return IDENTIFIER;
-  }	
- }	   
+ yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+ strcpy(yylval.CompilerInfo.identifier, yytext);
+ yylval.CompilerInfo.variableType = TYPE_NULL;
+ numColumna += yyleng;
+ printf("got here to handleIndentifier ==> %s\n",yylval.CompilerInfo.identifier);
+ return IDENTIFIER;
 }
 
 int initializeLexicalAnalysis(char * fileInput) {
@@ -2594,11 +2588,7 @@ int initializeLexicalAnalysis(char * fileInput) {
  if(yyin == NULL)
   error = EXIT_FAILURE;
  else { 
-  fileLexLog = fopen(FILE_LEX_LOG, "w");
-  if (fileLexLog == NULL)
-   error = EXIT_FAILURE;
-  else
-   error = EXIT_SUCCESS;
+  error = EXIT_SUCCESS;
  }
  return error;
 }
@@ -2617,27 +2607,5 @@ int endLexicalAnalysis() {
  else
   error = EXIT_FAILURE;
  return error; 
-}
-
-void printErrorLex(char * str, char * lexema, int lineNumber, int numColumna) {
-  if (stdout != yyout) {
-   fprintf(stdout, "\n[ LEXIC -> Error ] >>> linia %i columna %i: %s %s no reconegut\n", lineNumber, numColumna, str, lexema);
-   fprintf(yyout, "[ LEXIC -> Error ] >>> linia %i columna %i: %s %s no reconegut\n", lineNumber, numColumna, str, lexema);
-  }
-  else
-   fprintf(stderr, "\n[ LEXIC -> Error ] >>> linia %i columna %i: %s %s no reconegut\n", lineNumber, numColumna, str, lexema);    
-}
-
-void printErrorLexFull(char * str, char * lexema, char * str2, int lineNumber, int numColumna) {
- if (stdout != yyout) {
-  fprintf(stdout, "\n[ LEXIC -> Error ] >>> linia %i columna %i: %s %s %s no reconegut\n", lineNumber, numColumna, str, lexema, str2);   
-  fprintf(yyout, "[ LEXIC -> Error ] >>> linia %i columna %i: %s %s %s no reconegut\n", lineNumber, numColumna, str, lexema, str2);   
- }
- else
-  fprintf(stderr, "[ LEXIC -> Error ] >>> linia %i columna %i: %s %s %s no reconegut\n", lineNumber, numColumna, str, lexema, str2);   
-}
-
-void writeLexLog(char * token, int id_token) {
-   fprintf(fileLexLog, "% 35s % 35s %d %d %d\n", token, yytext, id_token, lineNumber, numColumna);   
 }
 

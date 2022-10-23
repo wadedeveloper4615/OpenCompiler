@@ -4,95 +4,54 @@
 #include <string.h>
 #include <stdarg.h>
 #include "global.h"
-#include "cua.h"
 #include "c.y.h"
 #include "c.l.h"
 
-char *idSymbol;
-char *nom_fitxerRA, * nom_fitxerC3A;
-struct t_simbol simbol, simbol_tmp;
-int currentScope;
-long long tmpValor;
-Boolean arrayDeclaracio = FALSE;
-struct t_infoBison * pparam;
-struct t_infoBison * pcamp;
-struct t_infoBison * recordsetParam;
-struct t_infoBison * recordsetCamp;
-struct t_infoBison * tmpCondicio;
 int num_errors;
-int tipus_var_funcio_retorn;
-char * valor_retorn;
-struct Cua * llista_seguents_funcio_retorn;
-int count;
-int funcioDeclaradaCorrecte = FALSE;
-Boolean errFuncDeclaration = FALSE;
-t_registreActivacio * registreActivacioGlobal, * registreActivacioFuncions;
-t_registreC3A * C3AGlobal, * C3AFuncions;
-char strCastingC3A[4], strOperacioC3A[5];
-t_quadrupleC3A * quadrupleC3A;
-int conditional_if_while_for;
-int tipus_var_tmp;
 %}
 
 %union { 	   
-    struct t_infoBison {   
-       char * valor;
-       char * valorC3A;
-       int constant;      
-       int tipus_var;
-       int array;
-       long tam_array;
-       int array_indexat;
-       char * array_indexat_offset;
-       int camp_struct_indexat;
-       int offset_camp_struct_indexat;
-       int funcio;
-       int num_funcio_parametres;
-       int num_struct_camps;
-       struct t_infoBison * seguent_param_funcio;
-       struct t_infoBison * seguent_camp_struct;
-	   struct Cua * llista_certs;       
-  	   struct Cua * llista_falsos;
-	   struct Cua * llista_seguents;
-	   int punter_quadruple;
-       void * no_definit;	
-    } infoBison;
+    struct CompilerInfo {   
+       char *identifier;     
+       VariableType variableType;
+	   Boolean constant;
+       void *noDefinition;	
+    } CompilerInfo;
 }
 
-%token<infoBison> IDENTIFIER 
-%token<infoBison> CONSTANT STRING_LITERAL
-%token<no_definit> PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
-%token<no_definit> SEMI_OP OCURLY_OP CCURLY_OP COMMA_OP COLON_OP EQUAL_OP
-%token<no_definit> OPENPAREN_OP CLOSEPAREN_OP OPENBRACE_OP CLOSEBRACE_OP
-%token<no_definit> PERIOD_OP NOT_OP LESS_OP GREATER_OP TILDE_OP XOR_OP QUESTION_OP
-%token<no_definit> AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
-%token<no_definit> SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
-%token<no_definit> XOR_ASSIGN OR_ASSIGN TYPE_NAME
-%token<no_definit> PLUS_OP MINUS_OP TIMES_OP DIV_OP MOD_OP BIT_OR BIT_AND
+%token<CompilerInfo> IDENTIFIER CONSTANT STRING_LITERAL
+%token<noDefinition> PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
+%token<noDefinition> SEMI_OP OCURLY_OP CCURLY_OP COMMA_OP COLON_OP EQUAL_OP
+%token<noDefinition> OPENPAREN_OP CLOSEPAREN_OP OPENBRACE_OP CLOSEBRACE_OP
+%token<noDefinition> PERIOD_OP NOT_OP LESS_OP GREATER_OP TILDE_OP XOR_OP QUESTION_OP
+%token<noDefinition> AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
+%token<noDefinition> SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
+%token<noDefinition> XOR_ASSIGN OR_ASSIGN TYPE_NAME
+%token<noDefinition> PLUS_OP MINUS_OP TIMES_OP DIV_OP MOD_OP BIT_OR BIT_AND
 
-%token<no_definit> TYPEDEF EXTERN STATIC AUTO REGISTER INLINE RESTRICT
-%token<no_definit> CHAR SHORT INT LONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
-%token<no_definit> SIZEOF BOOL COMPLEX IMAGINARY
-%token<no_definit> STRUCT UNION ENUM ELLIPSIS
-%token<no_definit> CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
+%token<noDefinition> TYPEDEF EXTERN STATIC AUTO REGISTER INLINE RESTRICT
+%token<noDefinition> CHAR SHORT INT LONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
+%token<noDefinition> SIZEOF BOOL COMPLEX IMAGINARY
+%token<noDefinition> STRUCT UNION ENUM ELLIPSIS
+%token<noDefinition> CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
 
-%type <no_definit> type_name struct_or_union specifier_qualifier_list jump_statement declaration_list
-%type <no_definit> expression_statement iteration_statement labeled_statement    
-%type <no_definit> unary_operator external_declaration translation_unit
+%type <noDefinition> type_name struct_or_union specifier_qualifier_list jump_statement declaration_list
+%type <noDefinition> expression_statement iteration_statement labeled_statement    
+%type <noDefinition> unary_operator external_declaration translation_unit
 
-%type<infoBison> primary_expression postfix_expression argument_expression_list unary_expression
-%type<infoBison> cast_expression multiplicative_expression additive_expression shift_expression relational_expression
-%type<infoBison> equality_expression and_expression exclusive_or_expression inclusive_or_expression logical_and_expression
-%type<infoBison> logical_or_expression conditional_expression assignment_expression assignment_operator expression
-%type<infoBison> constant_expression declaration declaration_specifiers init_declarator_list init_declarator
-%type<infoBison> storage_class_specifier type_specifier struct_or_union_specifier struct_declaration_list
-%type<infoBison> struct_declaration struct_declarator_list struct_declarator enum_specifier
-%type<infoBison> enumerator_list enumerator type_qualifier function_specifier declarator direct_declarator pointer
-%type<infoBison> type_qualifier_list parameter_type_list parameter_list parameter_declaration identifier_list
-%type<infoBison> abstract_declarator direct_abstract_declarator initializer initializer_list designation designator_list
-%type<infoBison> designator statement compound_statement block_item_list block_item 
-%type<infoBison> selection_statement
-%type<infoBison> function_definition
+%type<CompilerInfo> primary_expression postfix_expression argument_expression_list unary_expression
+%type<CompilerInfo> cast_expression multiplicative_expression additive_expression shift_expression relational_expression
+%type<CompilerInfo> equality_expression and_expression exclusive_or_expression inclusive_or_expression logical_and_expression
+%type<CompilerInfo> logical_or_expression conditional_expression assignment_expression assignment_operator expression
+%type<CompilerInfo> constant_expression declaration declaration_specifiers init_declarator_list init_declarator
+%type<CompilerInfo> storage_class_specifier type_specifier struct_or_union_specifier struct_declaration_list
+%type<CompilerInfo> struct_declaration struct_declarator_list struct_declarator enum_specifier
+%type<CompilerInfo> enumerator_list enumerator type_qualifier function_specifier declarator direct_declarator pointer
+%type<CompilerInfo> type_qualifier_list parameter_type_list parameter_list parameter_declaration identifier_list
+%type<CompilerInfo> abstract_declarator direct_abstract_declarator initializer initializer_list designation designator_list
+%type<CompilerInfo> designator statement compound_statement block_item_list block_item 
+%type<CompilerInfo> selection_statement
+%type<CompilerInfo> function_definition
 
 %start translation_unit
 %%
@@ -546,133 +505,38 @@ declaration_list
 extern char yytext[];
 extern int column;
 
-void printC3AFuncions(t_registreC3A * pC3A, char * nom_funcio) {
-   t_quadrupleC3A * pQuadruple;
-   Cua * llista_quadruples;
-
-   fprintf(fCodi3A, "SUBRUTINA %s:\n\n", nom_funcio);
-   
-   llista_quadruples = pC3A -> quadrupleC3A;
-    
-   for (;primer(llista_quadruples);) {
-      pQuadruple = (struct t_quadrupleC3A *) primer(llista_quadruples);
-      fprintf(fCodi3A, "\tLINIA %d: %s\n", pQuadruple -> num_sentencia, pQuadruple -> sentenciaC3A);
-      
-      desencuar(llista_quadruples);
-   }
-   fprintf(fCodi3A, "\n");
-   
-   fprintf(fCodi3A, "HALT\n\n");
-}
-
-void printC3AGlobal(t_registreC3A * pC3A) {
-   t_quadrupleC3A * pQuadruple;
-   Cua * llista_quadruples;
-
-   fprintf(fCodi3A, "GLOBAL:\n\n");
-   
-   llista_quadruples = pC3A -> quadrupleC3A;
-    
-   for (;primer(llista_quadruples);) {
-      pQuadruple = (struct t_quadrupleC3A *) primer(llista_quadruples);
-      fprintf(fCodi3A, "\tLINIA %d: %s\n", pQuadruple -> num_sentencia, pQuadruple -> sentenciaC3A);
-      
-      desencuar(llista_quadruples);
-   }
-}
-
-void printGlobalActivationRegister(t_registreActivacio * pRegistreActivacio) {
- t_cadenaRegistreActivacio * pvalors;
- fprintf(fRegActivacio, "GLOBAL\n");
-
- pvalors = pRegistreActivacio -> primer_llista_locals;
- fprintf(fRegActivacio, "\n[ + ] Variables Globals (nom_param tipus_param tipus_param_tamany offset)\n\n");
-  
- for (;pvalors;) {
-  if (pvalors -> es_array == FALSE) { 
-   fprintf(fRegActivacio, "\t\t[ - ] %s %s %d %d\n", pvalors -> nom, getTypeString(pvalors -> tipus, 0), pvalors -> tam_tipus, pvalors -> offset);
-  } else {
-   fprintf(fRegActivacio, "\t\t[ - ] %s %s[%lu] %d %d\n", pvalors -> nom, getTypeString(pvalors -> tipus, 0), pvalors -> tam_array, pvalors -> tam_tipus, pvalors -> offset);
-  }
-  pvalors = pvalors -> seguent;
- }
-   
- pvalors = pRegistreActivacio -> primer_llista_temporals;
- fprintf(fRegActivacio, "\n[ + ] Variables Temporals (nom_param tipus_param tipus_param_tamany offset)\n\n");
-   
- for (;pvalors;) {
-  fprintf(fRegActivacio, "\t\t[ - ] %s %s %d %d\n", pvalors -> nom, getTypeString(pvalors -> tipus, 0), pvalors -> tam_tipus, pvalors -> offset);
-  pvalors = pvalors -> seguent;
- }     
- fprintf(fRegActivacio, "\n\n"); 
-}
-
-char *getTypeString(int typeId, int includeSpaces) {
- char *typeString = (char *) malloc(10);
-   
- strcpy(typeString, "");
- if (includeSpaces) {
-  switch (typeId) {
-   case -1: strcpy(typeString, "NULL     "); break;
-   case  0: strcpy(typeString, "VOID     "); break;
-   case  1: strcpy(typeString, "CHAR     "); break;
-   case  2: strcpy(typeString, "SHORT    "); break;
-   case  3: strcpy(typeString, "INT      "); break;
-   case  4: strcpy(typeString, "LONG     "); break;
-   case  5: strcpy(typeString, "FLOAT    "); break;
-   case  6: strcpy(typeString, "DOUBLE   "); break;
-   case  7: strcpy(typeString, "STRING   "); break;
-   case  8: strcpy(typeString, "STRUCT   "); break;
-  }
- } else {
-  switch (typeId) {
-   case -1: strcpy(typeString, "NULL"); break;
-   case  0: strcpy(typeString, "VOID"); break;
-   case  1: strcpy(typeString, "CHAR"); break;
-   case  2: strcpy(typeString, "SHORT"); break;
-   case  3: strcpy(typeString, "INT"); break;
-   case  4: strcpy(typeString, "LONG"); break;
-   case  5: strcpy(typeString, "FLOAT"); break;
-   case  6: strcpy(typeString, "DOUBLE"); break;
-   case  7: strcpy(typeString, "STRING"); break;
-   case  8: strcpy(typeString, "STRUCT"); break;
-  }   
- }
- return typeString;
-}
-
-int initializeSyntacticAnalysis(char * fileOutput, char * nomFitxerRA, char * nomFitxerC3A) {
+int initializeSyntacticAnalysis(char * fileOutput) {
  int error; 
    
- nom_fitxerRA = nomFitxerRA;
- nom_fitxerC3A = nomFitxerC3A;
  yyout = fopen(fileOutput, "w");
 
- fRegActivacio = fopen(nomFitxerRA, "w");
- fCodi3A = fopen(nomFitxerC3A, "w");
-   
  num_errors = 0; 
- valor_retorn = NULL;
- if ((yyout == NULL) || (fRegActivacio == NULL) || (fCodi3A == NULL)) { 
+ if (yyout == NULL) { 
   error = EXIT_FAILURE; 
  } else { 
-   error = EXIT_SUCCESS; 
+  error = EXIT_SUCCESS; 
  }
  return error;
 }
 
+int symanticAnalysis() {
+ int error;
+   
+ if (yyparse() == 0){
+  error =  EXIT_SUCCESS;
+ } else {
+  error =  EXIT_FAILURE;
+ }
+ return error;
+}
+
+
 int endSyntacticAnalysis() {
  int error;
    
- printGlobalActivationRegister(registreActivacioGlobal);
- printC3AGlobal(C3AGlobal);
  error = fclose(yyout);
- error |= fclose(fRegActivacio);
- error |= fclose(fCodi3A);
    
  if (num_errors > 0) {
-  remove(nom_fitxerRA);
-  remove(nom_fitxerC3A);         
   fprintf(stdout, "\n\n\t-----------------------------------------------------");
   fprintf(stdout, "\n\t\t[ ERR ] Compiled with %d error/s\n", num_errors);
   fprintf(stdout, "\t-----------------------------------------------------\n\n");
@@ -690,67 +554,17 @@ int endSyntacticAnalysis() {
  return error; 
 }
 
-int initializeC3A(t_registreC3A * pC3A) {
- if (pC3A != NULL) {
-  pC3A -> num_quadruples = 0;
-  pC3A -> quadrupleC3A = crear_cua();
-  return 0;         
- }
- return -1;
-}
-
-int initializeActivationRegister(t_registreActivacio *activationRegisterPtr, char *registerName) {
- if (activationRegisterPtr != NULL) {
-  activationRegisterPtr -> nom_registre = malloc(strlen(registerName) + 1);
-  strcpy(activationRegisterPtr -> nom_registre, registerName);                    
-  activationRegisterPtr -> num_llista_parametres = 0;
-  activationRegisterPtr -> num_llista_locals = 0;
-  activationRegisterPtr -> num_llista_temporals = 0;
-  activationRegisterPtr -> currentOffset = 0; 
-  activationRegisterPtr -> primer_llista_parametres = NULL;
-  activationRegisterPtr -> primer_llista_locals = NULL;
-  activationRegisterPtr -> primer_llista_temporals = NULL;
-  activationRegisterPtr -> ultim_llista_parametres = NULL;
-  activationRegisterPtr -> ultim_llista_locals = NULL;
-  activationRegisterPtr -> ultim_llista_temporals = NULL;
-  return 0;         
- }
- return -1;
-}
-
-int symanticAnalysis() {
- int error;
-   
- registreActivacioGlobal = (t_registreActivacio *) malloc(sizeof(t_registreActivacio));
- initializeActivationRegister(registreActivacioGlobal, "GLOBAL");
-   
- C3AGlobal = (t_registreC3A *) malloc(sizeof(t_registreC3A));
- initializeC3A(C3AGlobal);
-   
- if (yyparse() == 0){
-  error =  EXIT_SUCCESS;
- } else {
-  error =  EXIT_FAILURE;
- }
- return error;
-}
-
 int main(int argc, char *argv[]) {
  if (argc == 3) {
-  char *raFile, *c3aFile;
   if (initializeLexicalAnalysis(argv[1]) == EXIT_SUCCESS) {
-   raFile = (char *) malloc(strlen(argv[2]) + 4);
-   c3aFile = (char *) malloc(strlen(argv[2]) + 5); 
-   sprintf(raFile, "%s.ra", argv[2]);
-   sprintf(c3aFile, "%s.c3a", argv[2]);                               
-   if (initializeSyntacticAnalysis(argv[2], raFile, c3aFile) == EXIT_SUCCESS) {
+   if (initializeSyntacticAnalysis(argv[2]) == EXIT_SUCCESS) {
     symanticAnalysis();
     endLexicalAnalysis(); 
     endSyntacticAnalysis();
    } else {
     printf("\n\n###########################################################\n");
     printf("###\t\t\t\t\t\t\t###\n");
-    printf("###\t[ ERR ] El fitxers de sortida %s %s %s no s'han creat\t###\n", argv[2], raFile, c3aFile);
+    printf("###\t[ ERR ] El fitxers de sortida %s no s'han creat\t###\n", argv[2]);
     printf("###\t\t\t\t\t\t\t###\n");      
     printf("###########################################################\n\n");       
    }

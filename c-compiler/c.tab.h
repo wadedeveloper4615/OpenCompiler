@@ -141,34 +141,18 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 2058 of yacc.c  */
-#line 37 "c.y"
+#line 13 "c.y"
  	   
-    struct t_infoBison {   
-       char * valor;
-       char * valorC3A;
-       int constant;      
-       int tipus_var;
-       int array;
-       long tam_array;
-       int array_indexat;
-       char * array_indexat_offset;
-       int camp_struct_indexat;
-       int offset_camp_struct_indexat;
-       int funcio;
-       int num_funcio_parametres;
-       int num_struct_camps;
-       struct t_infoBison * seguent_param_funcio;
-       struct t_infoBison * seguent_camp_struct;
-	   struct Cua * llista_certs;       
-  	   struct Cua * llista_falsos;
-	   struct Cua * llista_seguents;
-	   int punter_quadruple;
-       void * no_definit;	
-    } infoBison;
+    struct CompilerInfo {   
+       char *identifier;     
+       VariableType variableType;
+	   Boolean constant;
+       void *noDefinition;	
+    } CompilerInfo;
 
 
 /* Line 2058 of yacc.c  */
-#line 172 "c.tab.h"
+#line 156 "c.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

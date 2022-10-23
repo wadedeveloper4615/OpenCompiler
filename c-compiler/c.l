@@ -10,8 +10,8 @@ IS          ((u|U)|(u|U)?(l|L|ll|LL)|(l|L|ll|LL)(u|U))
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "c.tab.h"
 #include "global.h"
+#include "c.tab.h"
 #include "c.l.h"
 #include "symtab.h"
 
@@ -69,79 +69,90 @@ int estat_tipus = 0;
 {L}({L}|{D})*		       { return(handleIndentifier()); }
 
 0[xX]{H}+{IS}?		       { 
-                             writeLexLog("HEX CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 0[0-7]*{IS}?		       { 
-                             writeLexLog("OCTAL CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 [1-9]{D}*{IS}?		       { 
-                             writeLexLog("DIGIT CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 L?'(\\.|[^\\'\n])+'	       { 
-                             writeLexLog("OCTAL CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 {D}+{E}{FS}?		       { 
-                             writeLexLog("OCTAL CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 {D}*"."{D}+{E}?{FS}?	   { 
-                             writeLexLog("OCTAL CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_FLOAT;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 {D}+"."{D}*{E}?{FS}?	   { 
-                             writeLexLog("OCTAL CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
                              numColumna += yyleng;
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_FLOAT;
                              return(CONSTANT); 
                            }
 0[xX]{H}+{P}{FS}?	       { 
-                             writeLexLog("HEX CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 0[xX]{H}*"."{H}+{P}?{FS}?  { 
-                             writeLexLog("HEX CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_FLOAT;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 0[xX]{H}+"."{H}*{P}?{FS}?  { 
-                             writeLexLog("HEX CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_FLOAT;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 L?\"(\\.|[^\\"\n])*\"	   { 
-                             writeLexLog("STRING CONSTANT", CONSTANT);
-                             yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-                             strncpy(yylval.infoBison.valor, yytext, yyleng);
+                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
+							 yylval.CompilerInfo.constant = TRUE;
+							 yylval.CompilerInfo.variableType = TYPE_STRING;
                              numColumna += yyleng;
                              return(STRING_LITERAL); 
                            }
@@ -216,29 +227,12 @@ void comment(){
 }
 
 int handleIndentifier() {
- struct t_simbol symbol;
-   
- if ((yytext[0] >= 48) && (yytext[0] <= 57)) {
-  printErrorLex("Identifier", yytext, lineNumber, numColumna);
- }
- else {
-  if (sym_lookup(yytext, &symbol) == SYMTAB_OK) {
-   writeLexLog(symbol.nomLexic, symbol.idLexic);
-   yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-   strcpy(yylval.infoBison.valor, yytext);
-   yylval.infoBison.tipus_var = symbol.tipus_var;  
-   numColumna += yyleng;
-   return symbol.idLexic;   
-  } else {
-   writeLexLog("IDENTIFIER", IDENTIFIER);
-   yylval.infoBison.valor = (char *) malloc((sizeof(char) * (yyleng + 1)));
-   strcpy(yylval.infoBison.valor, yytext);
-   yylval.infoBison.tipus_var = TIPUS_NULL;
-   numColumna += yyleng;
-   printf("got here to handleIndentifier ==> %s\n",yylval.infoBison.valor);
-   return IDENTIFIER;
-  }	
- }	   
+ yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+ strcpy(yylval.CompilerInfo.identifier, yytext);
+ yylval.CompilerInfo.variableType = TYPE_NULL;
+ numColumna += yyleng;
+ printf("got here to handleIndentifier ==> %s\n",yylval.CompilerInfo.identifier);
+ return IDENTIFIER;
 }
 
 int initializeLexicalAnalysis(char * fileInput) {
@@ -248,11 +242,7 @@ int initializeLexicalAnalysis(char * fileInput) {
  if(yyin == NULL)
   error = EXIT_FAILURE;
  else { 
-  fileLexLog = fopen(FILE_LEX_LOG, "w");
-  if (fileLexLog == NULL)
-   error = EXIT_FAILURE;
-  else
-   error = EXIT_SUCCESS;
+  error = EXIT_SUCCESS;
  }
  return error;
 }
@@ -271,26 +261,4 @@ int endLexicalAnalysis() {
  else
   error = EXIT_FAILURE;
  return error; 
-}
-
-void printErrorLex(char * str, char * lexema, int lineNumber, int numColumna) {
-  if (stdout != yyout) {
-   fprintf(stdout, "\n[ LEXIC -> Error ] >>> linia %i columna %i: %s %s no reconegut\n", lineNumber, numColumna, str, lexema);
-   fprintf(yyout, "[ LEXIC -> Error ] >>> linia %i columna %i: %s %s no reconegut\n", lineNumber, numColumna, str, lexema);
-  }
-  else
-   fprintf(stderr, "\n[ LEXIC -> Error ] >>> linia %i columna %i: %s %s no reconegut\n", lineNumber, numColumna, str, lexema);    
-}
-
-void printErrorLexFull(char * str, char * lexema, char * str2, int lineNumber, int numColumna) {
- if (stdout != yyout) {
-  fprintf(stdout, "\n[ LEXIC -> Error ] >>> linia %i columna %i: %s %s %s no reconegut\n", lineNumber, numColumna, str, lexema, str2);   
-  fprintf(yyout, "[ LEXIC -> Error ] >>> linia %i columna %i: %s %s %s no reconegut\n", lineNumber, numColumna, str, lexema, str2);   
- }
- else
-  fprintf(stderr, "[ LEXIC -> Error ] >>> linia %i columna %i: %s %s %s no reconegut\n", lineNumber, numColumna, str, lexema, str2);   
-}
-
-void writeLexLog(char * token, int id_token) {
-   fprintf(fileLexLog, "% 35s % 35s %d %d %d\n", token, yytext, id_token, lineNumber, numColumna);   
 }
