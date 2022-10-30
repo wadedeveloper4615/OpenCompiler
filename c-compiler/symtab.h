@@ -15,6 +15,7 @@ typedef const char *SymbolTableName;
 typedef struct _SymbolTableEntry {
    SymbolTableName name;
    VariableType variableType;
+   struct _SymbolTableEntry *next;
 } SymbolTableEntry, *SymbolTableEntryPtr, **SymbolTableEntryPtrPtr;
 	
 int symbolTableLookup(SymbolTableName name, SymbolTableEntryPtrPtr value);

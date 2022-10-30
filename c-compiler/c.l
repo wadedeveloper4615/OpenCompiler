@@ -70,89 +70,100 @@ int estat_tipus = 0;
 
 0[xX]{H}+{IS}?		       { 
                              yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
                              strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
 							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
+							 yylval.CompilerInfo.type = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 0[0-7]*{IS}?		       { 
                              yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
                              strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
 							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
+							 yylval.CompilerInfo.type = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 [1-9]{D}*{IS}?		       { 
                              yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
                              strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
 							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
+							 yylval.CompilerInfo.type = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 L?'(\\.|[^\\'\n])+'	       { 
                              yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
                              strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
 							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
+							 yylval.CompilerInfo.type = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 {D}+{E}{FS}?		       { 
                              yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
                              strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
 							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
+							 yylval.CompilerInfo.type = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 {D}*"."{D}+{E}?{FS}?	   { 
                              yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
                              strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
 							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.variableType = TYPE_FLOAT;
+							 yylval.CompilerInfo.type = TYPE_FLOAT;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 {D}+"."{D}*{E}?{FS}?	   { 
                              yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
                              strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
                              numColumna += yyleng;
 							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.variableType = TYPE_FLOAT;
+							 yylval.CompilerInfo.type = TYPE_FLOAT;
                              return(CONSTANT); 
                            }
 0[xX]{H}+{P}{FS}?	       { 
                              yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
                              strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
 							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.variableType = TYPE_INTEGER;
+							 yylval.CompilerInfo.type = TYPE_INTEGER;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 0[xX]{H}*"."{H}+{P}?{FS}?  { 
                              yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
                              strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
 							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.variableType = TYPE_FLOAT;
+							 yylval.CompilerInfo.type = TYPE_FLOAT;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 0[xX]{H}+"."{H}*{P}?{FS}?  { 
                              yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
                              strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
 							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.variableType = TYPE_FLOAT;
+							 yylval.CompilerInfo.type = TYPE_FLOAT;
                              numColumna += yyleng;
                              return(CONSTANT); 
                            }
 L?\"(\\.|[^\\"\n])*\"	   { 
                              yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
+							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
                              strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
 							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.variableType = TYPE_STRING;
+							 yylval.CompilerInfo.type = TYPE_STRING;
                              numColumna += yyleng;
                              return(STRING_LITERAL); 
                            }
@@ -229,7 +240,8 @@ void comment(){
 int handleIndentifier() {
  yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
  strcpy(yylval.CompilerInfo.identifier, yytext);
- yylval.CompilerInfo.variableType = TYPE_NULL;
+ yylval.CompilerInfo.constant = FALSE;
+ yylval.CompilerInfo.type = TYPE_NULL;
  numColumna += yyleng;
  printf("got here to handleIndentifier ==> %s\n",yylval.CompilerInfo.identifier);
  return IDENTIFIER;

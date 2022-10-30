@@ -1,6 +1,5 @@
-int var1 = 0x12;
-double var2;
+unsigned int var1[5];
 
-int main(int agrc, char *argv[]){
+int main(){
  return 0;
 }

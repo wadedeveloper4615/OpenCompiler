@@ -145,14 +145,18 @@ typedef union YYSTYPE
  	   
     struct CompilerInfo {   
        char *identifier;     
-       VariableType variableType;
+       VariableType type;
+	   VariableSignType sign;
+	   StorageType storage;
+	   DeclarationType declarationType;
+	   ExpressionPtr expression;
 	   Boolean constant;
        void *noDefinition;	
     } CompilerInfo;
 
 
 /* Line 2058 of yacc.c  */
-#line 156 "c.tab.h"
+#line 160 "c.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
