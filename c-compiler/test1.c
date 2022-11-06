@@ -1,4 +1,6 @@
-unsigned int var1[5];
+unsigned int var1;
+
+unsigned long long var2;
 
 int main(){
  return 0;

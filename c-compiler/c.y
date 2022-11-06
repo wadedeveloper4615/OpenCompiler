@@ -34,7 +34,7 @@ int num_errors;
 %token<noDefinition> PLUS_OP MINUS_OP TIMES_OP DIV_OP MOD_OP BIT_OR BIT_AND
 
 %token<noDefinition> TYPEDEF EXTERN STATIC AUTO REGISTER INLINE RESTRICT
-%token<noDefinition> CHAR SHORT INT LONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
+%token<noDefinition> CHAR SHORT INT LONG LONGLONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
 %token<noDefinition> SIZEOF BOOL COMPLEX IMAGINARY
 %token<noDefinition> STRUCT UNION ENUM ELLIPSIS
 %token<noDefinition> CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
@@ -57,6 +57,9 @@ int num_errors;
 %type<CompilerInfo> designator statement compound_statement block_item_list block_item 
 %type<CompilerInfo> selection_statement
 %type<CompilerInfo> function_definition
+
+%error-verbose
+%locations
 
 %start translation_unit
 %%
@@ -345,6 +348,7 @@ type_specifier
 	| SHORT                     {fprintf(yyout,"SHORT REDUCE to type_specifier\n"); $<CompilerInfo>$.type = TYPE_SHORT;}
 	| INT                       {fprintf(yyout,"INT REDUCE to type_specifier\n"); $<CompilerInfo>$.type = TYPE_INTEGER;}
 	| LONG                      {fprintf(yyout,"LONG REDUCE to type_specifier\n"); $<CompilerInfo>$.type = TYPE_LONG;}
+	| LONGLONG                  {fprintf(yyout,"LONGLONG REDUCE to type_specifier\n"); $<CompilerInfo>$.type = TYPE_LONG64;}
 	| FLOAT                     {fprintf(yyout,"FLOAT REDUCE to type_specifier\n"); $<CompilerInfo>$.type = TYPE_FLOAT;}
 	| DOUBLE                    {fprintf(yyout,"DOUBLE REDUCE to type_specifier\n"); $<CompilerInfo>$.type = TYPE_DOUBLE;}
 	| SIGNED                    {fprintf(yyout,"SIGNED REDUCE to type_specifier\n"); $<CompilerInfo>$.sign = TYPE_SIGNED;}
@@ -727,7 +731,7 @@ int main(int argc, char *argv[]) {
  }
 }
 
-void yyerror(char * explanation){
- fprintf(stderr, "Parse error: %s\n", explanation);
+void yyerror(const char * explanation){
+ fprintf(stderr,"** Line %d: %s\n", yylloc.first_line, explanation);
  exit(1);
 }

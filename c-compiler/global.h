@@ -19,13 +19,14 @@ typedef enum _VariableType{
     TYPE_SHORT = 2,
 	TYPE_INTEGER = 3,
 	TYPE_LONG = 4,
-	TYPE_FLOAT = 5,
-	TYPE_DOUBLE = 6,
-	TYPE_STRING = 7,
-	TYPE_STRUCT = 8,
-	TYPE_BOOLEAN = 9,
-	TYPE_COMPLEX = 10,
-	TYPE_IMAGINARY = 11
+	TYPE_LONG64 = 5,
+	TYPE_FLOAT = 6,
+	TYPE_DOUBLE = 7,
+	TYPE_STRING = 8,
+	TYPE_STRUCT = 9,
+	TYPE_BOOLEAN = 10,
+	TYPE_COMPLEX = 11,
+	TYPE_IMAGINARY = 12
 } VariableType;
 
 typedef enum _StorageType {
@@ -61,5 +62,10 @@ typedef struct _Expression {
    struct _Expression *left;
    struct _Expression *right;
 } Expression,*ExpressionPtr; 
+
+typedef struct _ExpressionList {
+   Expression expression;
+   struct _ExpressionList *next;
+} ExpressionList,*ExpressionListPtr; 
 
 #endif

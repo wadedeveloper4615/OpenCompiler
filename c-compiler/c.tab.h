@@ -106,33 +106,34 @@ extern int yydebug;
      SHORT = 315,
      INT = 316,
      LONG = 317,
-     SIGNED = 318,
-     UNSIGNED = 319,
-     FLOAT = 320,
-     DOUBLE = 321,
-     CONST = 322,
-     VOLATILE = 323,
-     VOID = 324,
-     SIZEOF = 325,
-     BOOL = 326,
-     COMPLEX = 327,
-     IMAGINARY = 328,
-     STRUCT = 329,
-     UNION = 330,
-     ENUM = 331,
-     ELLIPSIS = 332,
-     CASE = 333,
-     DEFAULT = 334,
-     IF = 335,
-     ELSE = 336,
-     SWITCH = 337,
-     WHILE = 338,
-     DO = 339,
-     FOR = 340,
-     GOTO = 341,
-     CONTINUE = 342,
-     BREAK = 343,
-     RETURN = 344
+     LONGLONG = 318,
+     SIGNED = 319,
+     UNSIGNED = 320,
+     FLOAT = 321,
+     DOUBLE = 322,
+     CONST = 323,
+     VOLATILE = 324,
+     VOID = 325,
+     SIZEOF = 326,
+     BOOL = 327,
+     COMPLEX = 328,
+     IMAGINARY = 329,
+     STRUCT = 330,
+     UNION = 331,
+     ENUM = 332,
+     ELLIPSIS = 333,
+     CASE = 334,
+     DEFAULT = 335,
+     IF = 336,
+     ELSE = 337,
+     SWITCH = 338,
+     WHILE = 339,
+     DO = 340,
+     FOR = 341,
+     GOTO = 342,
+     CONTINUE = 343,
+     BREAK = 344,
+     RETURN = 345
    };
 #endif
 
@@ -156,15 +157,28 @@ typedef union YYSTYPE
 
 
 /* Line 2058 of yacc.c  */
-#line 160 "c.tab.h"
+#line 161 "c.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
 #endif
 
-extern YYSTYPE yylval;
+#if ! defined YYLTYPE && ! defined YYLTYPE_IS_DECLARED
+typedef struct YYLTYPE
+{
+  int first_line;
+  int first_column;
+  int last_line;
+  int last_column;
+} YYLTYPE;
+# define yyltype YYLTYPE /* obsolescent; will be withdrawn */
+# define YYLTYPE_IS_DECLARED 1
+# define YYLTYPE_IS_TRIVIAL 1
+#endif
 
+extern YYSTYPE yylval;
+extern YYLTYPE yylloc;
 #ifdef YYPARSE_PARAM
 #if defined __STDC__ || defined __cplusplus
 int yyparse (void *YYPARSE_PARAM);

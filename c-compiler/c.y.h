@@ -9,4 +9,4 @@ extern int column;
 int initializeSyntacticAnalysis(char * fileOutput);
 int symanticAnalysis();
 int endSyntacticAnalysis();
-void yyerror(char * explanation);
+void yyerror(const char * explanation);
