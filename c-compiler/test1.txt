@@ -1,31 +1,20 @@
 UNSIGNED REDUCE to type_specifier
-INT REDUCE to type_specifier
+LONG REDUCE to type_specifier
 type_specifier REDUCE to declaration_specifiers
-1 3 => type_specifier declaration_specifiers REDUCE to declaration_specifiers
+1 4 => type_specifier declaration_specifiers REDUCE to declaration_specifiers
 'var1' => IDENTIFIER REDUCE to direct_declarator
 'var1' => direct_declarator REDUCE to declarator
 'var1' => declarator REDUCE to init_declarator
 'var1' => init_declarator REDUCE to init_declarator_list
-'0 1 3 var1' => declaration_specifiers init_declarator_list SEMI_OP REDUCE to declaration
-'0 1 3 var1' => declaration REDUCE to external_declaration
+'0 1 4 var1' => declaration_specifiers init_declarator_list SEMI_OP REDUCE to declaration
+'0 1 4 var1' => declaration REDUCE to external_declaration
 external_declaration REDUCE to translation_unit
-UNSIGNED REDUCE to type_specifier
-LONGLONG REDUCE to type_specifier
-type_specifier REDUCE to declaration_specifiers
-1 5 => type_specifier declaration_specifiers REDUCE to declaration_specifiers
-'var2' => IDENTIFIER REDUCE to direct_declarator
-'var2' => direct_declarator REDUCE to declarator
-'var2' => declarator REDUCE to init_declarator
-'var2' => init_declarator REDUCE to init_declarator_list
-'0 1 5 var2' => declaration_specifiers init_declarator_list SEMI_OP REDUCE to declaration
-'0 1 5 var2' => declaration REDUCE to external_declaration
-translation_unit external_declaration REDUCE to translation_unit
 INT REDUCE to type_specifier
 type_specifier REDUCE to declaration_specifiers
 'main' => IDENTIFIER REDUCE to direct_declarator
 direct_declarator OPENPAREN_OP CLOSEPAREN_OP REDUCE to direct_declarator
 'main' => direct_declarator REDUCE to declarator
-'0' CONSTANT REDUCE to primary_expression
+'main' CONSTANT REDUCE to primary_expression
 primary_expression REDUCE to postfix_expression
 postfix_expression REDUCE to unary_expression
 unary_expression REDUCE to cast_expression

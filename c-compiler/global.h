@@ -1,8 +1,6 @@
 #ifndef __GLOBAL_H__
 #define __GLOBAL_H__
 
-#define NOM_LEXIC_TAM                          100
-
 #define TRUE 1
 #define FALSE 0
 #define Boolean unsigned char
@@ -67,5 +65,22 @@ typedef struct _ExpressionList {
    Expression expression;
    struct _ExpressionList *next;
 } ExpressionList,*ExpressionListPtr; 
+
+int yylex();
+int yyparse();
+int yywrap();
+void comment();
+void count();
+int check_type();
+void yyerror(const char* s);
+int handleIndentifier();
+
+extern FILE * fileLexLog;
+extern int num_errors;
+extern int yylineno;
+extern int column;
+extern int num_errors;
+extern FILE* yyin;
+extern FILE* yyout;
 
 #endif

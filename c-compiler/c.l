@@ -1,3 +1,4 @@
+%option yylineno
 %e  1019
 %p  2807
 %n  371
@@ -5,298 +6,182 @@
 %a  1213
 %o  1117
 
-O   [0-7]
-D   [0-9]
-NZ  [1-9]
-L   [a-zA-Z_]
-A   [a-zA-Z_0-9]
-H   [a-fA-F0-9]
-HP  (0[xX])
-E   ([Ee][+-]?{D}+)
+D	[0-9]
+L	[a-zA-Z_]
+H	[a-fA-F0-9]
+E	([Ee][+-]?{D}+)
 P   ([Pp][+-]?{D}+)
-FS  (f|F|l|L)
-IS  (((u|U)(l|L|ll|LL)?)|((l|L|ll|LL)(u|U)?))
-CP  (u|U|L)
-SP  (u8|u|U|L)
-ES  (\\(['"\?\\abfnrtv]|[0-7]{1,3}|x[a-fA-F0-9]+))
-WS  [ \t\v\n\f]
+FS	(f|F|l|L)
+IS  ((u|U)|(u|U)?(l|L|ll|LL)|(l|L|ll|LL)(u|U))
 
 %{
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <stdarg.h>
 #include "global.h"
 #include "c.tab.h"
-#include "c.l.h"
-#include "symtab.h"
 
-#define FILE_LEX_LOG          "lexic.log"
-
+int column = 0;
 FILE * fileLexLog;
-
-int lineNumber = 1, numColumna = 1;
-int estat_tipus = 0;
+int num_errors;
 %}
 
 %%
-"/*"            { comment(); }
-"//".*          { /* consume //-comment */ }
-"auto"			 { return(AUTO); }
-"break"			 { return(BREAK); }
-"case"			 { return(CASE); }
-"char"			 { return(CHAR); }
-"const"			 { return(CONST); }
-"continue"		 { return(CONTINUE); }
-"default"		 { return(DEFAULT); }
-"do"			 { return(DO); }
-"double"		 { return(DOUBLE); }
-"else"			 { return(ELSE); }
-"enum"			 { return(ENUM); }
-"extern"		 { return(EXTERN); }
-"float"			 { return(FLOAT); }
-"for"			 { return(FOR); }
-"goto"			 { return(GOTO); }
-"if"			 { return(IF); }
-"inline"	     { return(INLINE); }
-"int"			 { return(INT); }
-"long"			 { return(LONG); }
-"long long"	     { return(LONGLONG); }
-"register"		 { return(REGISTER); }
-"restrict"		 { return(RESTRICT); }
-"return"		 { return(RETURN); }
-"short"			 { return(SHORT); }
-"signed"	     { return(SIGNED); }
-"sizeof"		 { return(SIZEOF); }
-"static"		 { return(STATIC); }
-"struct"		 { return(STRUCT); }
-"switch"		 { return(SWITCH); }
-"typedef"		 { return(TYPEDEF); }
-"union"			 { return(UNION); }
-"unsigned"		 { return(UNSIGNED); }
-"void"			 { return(VOID); }
-"volatile"		 { return(VOLATILE); }
-"while"			 { return(WHILE); }
-"_Bool"          { return BOOL; }
-"_Complex"       { return COMPLEX; }
-"_Imaginary"     { return IMAGINARY; }
+"/*"             { comment(); }
+"//".*           { /* consume //-comment */ }
+"auto"			 { count(); return(AUTO); }
+"break"			 { count(); return(BREAK); }
+"case"			 { count(); return(CASE); }
+"char"			 { count(); return(CHAR); }
+"const"			 { count(); return(CONST); }
+"continue"		 { count(); return(CONTINUE); }
+"default"		 { count(); return(DEFAULT); }
+"do"			 { count(); return(DO); }
+"double"		 { count(); return(DOUBLE); }
+"else"			 { count(); return(ELSE); }
+"enum"			 { count(); return(ENUM); }
+"extern"		 { count(); return(EXTERN); }
+"float"			 { count(); return(FLOAT); }
+"for"			 { count(); return(FOR); }
+"goto"			 { count(); return(GOTO); }
+"if"			 { count(); return(IF); }
+"inline"	     { count(); return(INLINE); }
+"int"			 { count(); return(INT); }
+"long"			 { count(); return(LONG); }
+"long long"	     { count(); return(LONGLONG); }
+"register"		 { count(); return(REGISTER); }
+"restrict"		 { count(); return(RESTRICT); }
+"return"		 { count(); return(RETURN); }
+"short"			 { count(); return(SHORT); }
+"signed"	     { count(); return(SIGNED); }
+"sizeof"		 { count(); return(SIZEOF); }
+"static"		 { count(); return(STATIC); }
+"struct"		 { count(); return(STRUCT); }
+"switch"		 { count(); return(SWITCH); }
+"typedef"		 { count(); return(TYPEDEF); }
+"union"			 { count(); return(UNION); }
+"unsigned"		 { count(); return(UNSIGNED); }
+"void"			 { count(); return(VOID); }
+"volatile"		 { count(); return(VOLATILE); }
+"while"			 { count(); return(WHILE); }
+"_Bool"          { count(); return BOOL; }
+"_Complex"       { count(); return COMPLEX; }
+"_Imaginary"     { count(); return IMAGINARY; }
 
-{L}{A}*		                { return(handleIndentifier()); }
+{L}({L}|{D})*		      { count(); return(handleIndentifier()); }
+0[xX]{H}+{IS}?		      { count(); return(CONSTANT); }
+0[0-7]*{IS}?		      { count(); return(CONSTANT); }
+[1-9]{D}*{IS}?		      { count(); return(CONSTANT); }
+L?'(\\.|[^\\'\n])+'	      { count(); return(CONSTANT); }
+{D}+{E}{FS}?		      { count(); return(CONSTANT); }
+{D}*"."{D}+{E}?{FS}?	  { count(); return(CONSTANT); }
+{D}+"."{D}*{E}?{FS}?	  { count(); return(CONSTANT); }
+0[xX]{H}+{P}{FS}?	      { count(); return(CONSTANT); }
+0[xX]{H}*"."{H}+{P}?{FS}? { count(); return(CONSTANT); }
+0[xX]{H}+"."{H}*{P}?{FS}? { count(); return(CONSTANT); }
+L?\"(\\.|[^\\"\n])*\"	  { count(); return(STRING_LITERAL); }
 
-{HP}{H}+{IS}?				{ 
-                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
-							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
-                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
-							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.type = TYPE_INTEGER;
-                             numColumna += yyleng;
-                             return(CONSTANT); 
-                            }
-{NZ}{D}*{IS}?				{ 
-                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
-							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
-                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
-							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.type = TYPE_INTEGER;
-                             numColumna += yyleng;
-                             return(CONSTANT); 
-                            }
-"0"{O}*{IS}?				{ 
-                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
-							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
-                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
-							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.type = TYPE_INTEGER;
-                             numColumna += yyleng;
-                             return(CONSTANT); 
-                            }
-{CP}?"'"([^'\\\n]|{ES})+"'" { 
-                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
-							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
-                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
-							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.type = TYPE_INTEGER;
-                             numColumna += yyleng;
-                             return(CONSTANT); 
-                            }
+"..."			{ count(); return(ELLIPSIS); }
+"?"			    { count(); return(QUESTION_OP); }
+";"			    { count(); return(SEMI_OP); }
+("{"|"<%")		{ count(); return(OCURLY_OP); }
+("}"|"%>")		{ count(); return(CCURLY_OP); }
+","			    { count(); return(COMMA_OP); }
+":"			    { count(); return(COLON_OP); }
+"("			    { count(); return(OPENPAREN_OP); }
+")"			    { count(); return(CLOSEPAREN_OP); }
+("["|"<:")		{ count(); return(OPENBRACE_OP); }
+("]"|":>")		{ count(); return(CLOSEBRACE_OP); }
+"."			    { count(); return(PERIOD_OP); }
+"~"			    { count(); return(TILDE_OP); }
 
-{D}+{E}{FS}?				{ 
-                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
-							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
-                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
-							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.type = TYPE_FLOAT;
-                             numColumna += yyleng;
-                             return(CONSTANT); 
-                            }
-{D}*"."{D}+{E}?{FS}?		{ 
-                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
-							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
-                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
-							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.type = TYPE_FLOAT;
-                             numColumna += yyleng;
-                             return(CONSTANT); 
-                            }
-{D}+"."{E}?{FS}?			{ 
-                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
-							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
-                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
-							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.type = TYPE_FLOAT;
-                             numColumna += yyleng;
-                             return(CONSTANT); 
-                            }
-{HP}{H}+{P}{FS}?			{ 
-                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
-							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
-                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
-							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.type = TYPE_FLOAT;
-                             numColumna += yyleng;
-                             return(CONSTANT); 
-                            }
-{HP}{H}*"."{H}+{P}{FS}?		{ 
-                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
-							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
-                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
-							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.type = TYPE_FLOAT;
-                             numColumna += yyleng;
-                             return(CONSTANT); 
-                            }
-{HP}{H}+"."{P}{FS}?			{ 
-                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
-							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
-                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
-							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.type = TYPE_FLOAT;
-                             numColumna += yyleng;
-                             return(CONSTANT); 
-                            }
+"="			    { count(); return(EQUAL_OP); }
+">>="			{ count(); return(RIGHT_ASSIGN); }
+"<<="			{ count(); return(LEFT_ASSIGN); }
+"+="			{ count(); return(ADD_ASSIGN); }
+"-="			{ count(); return(SUB_ASSIGN); }
+"*="			{ count(); return(MUL_ASSIGN); }
+"/="			{ count(); return(DIV_ASSIGN); }
+"%="			{ count(); return(MOD_ASSIGN); }
+"&="			{ count(); return(AND_ASSIGN); }
+"^="			{ count(); return(XOR_ASSIGN); }
+"|="			{ count(); return(OR_ASSIGN); }
+">>"			{ count(); return(RIGHT_OP); }
+"<<"			{ count(); return(LEFT_OP); }
+"++"			{ count(); return(INC_OP); }
+"--"			{ count(); return(DEC_OP); }
+"->"			{ count(); return(PTR_OP); }
 
-({SP}?\"([^"\\\n]|{ES})*\"{WS}*)+	{ 
-                             yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
-							 memset(yylval.CompilerInfo.identifier,0,yyleng + 1);
-                             strncpy(yylval.CompilerInfo.identifier, yytext, yyleng);
-							 yylval.CompilerInfo.constant = TRUE;
-							 yylval.CompilerInfo.type = TYPE_STRING;
-                             numColumna += yyleng;
-                             return(STRING_LITERAL); 
-						    }
-							
-"..."			{ return(ELLIPSIS); }
-"?"			    { return(QUESTION_OP); }
-";"			    { return(SEMI_OP); }
-("{"|"<%")		{ return(OCURLY_OP); }
-("}"|"%>")		{ return(CCURLY_OP); }
-","			    { return(COMMA_OP); }
-":"			    { return(COLON_OP); }
-"("			    { return(OPENPAREN_OP); }
-")"			    { return(CLOSEPAREN_OP); }
-("["|"<:")		{ return(OPENBRACE_OP); }
-("]"|":>")		{ return(CLOSEBRACE_OP); }
-"."			    { return(PERIOD_OP); }
-"~"			    { return(TILDE_OP); }
+"&&"			{ count(); return(AND_OP); }
+"||"			{ count(); return(OR_OP); }
+"<"			    { count(); return(LESS_OP); }
+">"			    { count(); return(GE_OP); }
+"<="			{ count(); return(LE_OP); }
+">="			{ count(); return(GE_OP); }
+"=="			{ count(); return(EQ_OP); }
+"!="			{ count(); return(NE_OP); }
+"!"			    { count(); return(NOT_OP); }
+"^"			    { count(); return(XOR_OP); }
+"&"			    { count(); return(BIT_AND); }
+"|"			    { count(); return(BIT_OR); }
 
-"="			    { return(EQUAL_OP); }
-">>="			{ return(RIGHT_ASSIGN); }
-"<<="			{ return(LEFT_ASSIGN); }
-"+="			{ return(ADD_ASSIGN); }
-"-="			{ return(SUB_ASSIGN); }
-"*="			{ return(MUL_ASSIGN); }
-"/="			{ return(DIV_ASSIGN); }
-"%="			{ return(MOD_ASSIGN); }
-"&="			{ return(AND_ASSIGN); }
-"^="			{ return(XOR_ASSIGN); }
-"|="			{ return(OR_ASSIGN); }
-">>"			{ return(RIGHT_OP); }
-"<<"			{ return(LEFT_OP); }
-"++"			{ return(INC_OP); }
-"--"			{ return(DEC_OP); }
-"->"			{ return(PTR_OP); }
-
-"&&"			{ return(AND_OP); }
-"||"			{ return(OR_OP); }
-"<"			    { return(LESS_OP); }
-">"			    { return(GREATER_OP); }
-"<="			{ return(LE_OP); }
-">="			{ return(GE_OP); }
-"=="			{ return(EQ_OP); }
-"!="			{ return(NE_OP); }
-"!"			    { return(NOT_OP); }
-"^"			    { return(XOR_OP); }
-"&"			    { return(BIT_AND); }
-"|"			    { return(BIT_OR); }
-
-"-"			    { return(MINUS_OP); }
-"+"			    { return(PLUS_OP); }
-"*"			    { return(TIMES_OP); }
-"/"			    { return(DIV_OP); }
-"%"			    { return(MOD_OP); }
-
+"-"			    { count(); return(MINUS_OP); }
+"+"			    { count(); return(PLUS_OP); }
+"*"			    { count(); return(TIMES_OP); }
+"/"			    { count(); return(DIV_OP); }
+"%"			    { count(); return(MOD_OP); }
 
 [ \t\v\n\f]		{ }
 .			    { /* Add code to complain about unmatched characters */ }
 
 %%
 
-int yywrap(){
- return 1;
+int yywrap(void)
+{
+	return 1;
 }
 
-void comment(){
-    int c;
 
-    while ((c = input()) != 0)
-        if (c == '*')
-        {
-            while ((c = input()) == '*')
-                ;
-
-            if (c == '/')
-                return;
-
-            if (c == 0)
-                break;
-        }
-    yyerror("unterminated comment");
+void comment(void)
+{
+	char c, prev = 0;
+  
+	while ((c = input()) != 0)      /* (EOF maps to 0) */
+	{
+		if (c == '/' && prev == '*')
+			return;
+		prev = c;
+	}
+	yyerror("unterminated comment");
 }
-
 
 int handleIndentifier() {
  yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
  strcpy(yylval.CompilerInfo.identifier, yytext);
  yylval.CompilerInfo.constant = FALSE;
  yylval.CompilerInfo.type = TYPE_NULL;
- numColumna += yyleng;
  printf("got here to handleIndentifier ==> %s\n",yylval.CompilerInfo.identifier);
  return IDENTIFIER;
 }
 
-int initializeLexicalAnalysis(char * fileInput) {
- int error; 
- yyin = fopen(fileInput, "r");
+void count(void)
+{
+	int i;
 
- if(yyin == NULL)
-  error = EXIT_FAILURE;
- else { 
-  error = EXIT_SUCCESS;
- }
- return error;
+	for (i = 0; yytext[i] != '\0'; i++)
+		if (yytext[i] == '\n')
+			column = 0;
+		else if (yytext[i] == '\t')
+			column += 8 - (column % 8);
+		else
+			column++;
+
+	//ECHO;
 }
 
-int endLexicalAnalysis() {
- int error; 
-   
- error = fclose(yyin);
- if (error == 0) { 
-  error = fclose(fileLexLog);
-  if (error == 0)
-   error = EXIT_SUCCESS;
-  else
-   error = EXIT_FAILURE;
- }
- else
-  error = EXIT_FAILURE;
- return error; 
+
+int check_type(void)
+{
+	return IDENTIFIER;
 }

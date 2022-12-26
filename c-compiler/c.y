@@ -4,10 +4,6 @@
 #include <string.h>
 #include <stdarg.h>
 #include "global.h"
-#include "c.y.h"
-#include "c.l.h"
-
-int num_errors;
 %}
 
 %union { 	   
@@ -32,7 +28,6 @@ int num_errors;
 %token<noDefinition> SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
 %token<noDefinition> XOR_ASSIGN OR_ASSIGN TYPE_NAME
 %token<noDefinition> PLUS_OP MINUS_OP TIMES_OP DIV_OP MOD_OP BIT_OR BIT_AND
-
 %token<noDefinition> TYPEDEF EXTERN STATIC AUTO REGISTER INLINE RESTRICT
 %token<noDefinition> CHAR SHORT INT LONG LONGLONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
 %token<noDefinition> SIZEOF BOOL COMPLEX IMAGINARY
@@ -48,6 +43,7 @@ int num_errors;
 %type<ExpressionPtr> equality_expression and_expression exclusive_or_expression inclusive_or_expression logical_and_expression
 %type<ExpressionPtr> logical_or_expression conditional_expression assignment_expression assignment_operator expression
 %type<ExpressionPtr> constant_expression 
+
 %type<CompilerInfo> declaration declaration_specifiers init_declarator_list init_declarator
 %type<CompilerInfo> storage_class_specifier type_specifier struct_or_union_specifier struct_declaration_list
 %type<CompilerInfo> struct_declaration struct_declarator_list struct_declarator enum_specifier
@@ -645,93 +641,9 @@ declaration_list
 	| declaration_list declaration  {fprintf(yyout,"declaration_list declaration REDUCE to declaration_list\n");}
 	;
 
-
 %%
 
-extern char yytext[];
-extern int column;
-
-int initializeSyntacticAnalysis(char * fileOutput) {
- int error; 
-   
- yyout = fopen(fileOutput, "w");
-
- num_errors = 0; 
- if (yyout == NULL) { 
-  error = EXIT_FAILURE; 
- } else { 
-  error = EXIT_SUCCESS; 
- }
- return error;
-}
-
-int symanticAnalysis() {
- int error;
-   
- if (yyparse() == 0){
-  error =  EXIT_SUCCESS;
- } else {
-  error =  EXIT_FAILURE;
- }
- return error;
-}
-
-
-int endSyntacticAnalysis() {
- int error;
-   
- error = fclose(yyout);
-   
- if (num_errors > 0) {
-  fprintf(stdout, "\n\n\t-----------------------------------------------------");
-  fprintf(stdout, "\n\t\t[ ERR ] Compiled with %d error/s\n", num_errors);
-  fprintf(stdout, "\t-----------------------------------------------------\n\n");
- }
- else {
-  fprintf(stdout, "\n\n\t-----------------------------------------------------");
-  fprintf(stdout, "\n\t\t[ OK ] Compilation generated successfully\n"); 
-  fprintf(stdout, "\t-----------------------------------------------------\n\n");
- }
- if (error == 0){
-  error = EXIT_SUCCESS; 
- } else { 
-  error = EXIT_FAILURE;
- }
- return error; 
-}
-
-int main(int argc, char *argv[]) {
- if (argc == 3) {
-  if (initializeLexicalAnalysis(argv[1]) == EXIT_SUCCESS) {
-   if (initializeSyntacticAnalysis(argv[2]) == EXIT_SUCCESS) {
-    symanticAnalysis();
-    endLexicalAnalysis(); 
-    endSyntacticAnalysis();
-   } else {
-    printf("\n\n###########################################################\n");
-    printf("###\t\t\t\t\t\t\t###\n");
-    printf("###\t[ ERR ] El fitxers de sortida %s no s'han creat\t###\n", argv[2]);
-    printf("###\t\t\t\t\t\t\t###\n");      
-    printf("###########################################################\n\n");       
-   }
-  } else {
-   printf("\n\n###########################################################\n");
-   printf("###\t\t\t\t\t\t\t###\n");
-   printf("###\t[ ERR ] El fitxer d'entrada %s no existeix\t###\n", argv[1]);
-   printf("###\t\t\t\t\t\t\t###\n");      
-   printf("###########################################################\n\n");       
-  }
- } else {
-  printf("\n\n###########################################################################\n");
-  printf("###\t\t\t\t\t\t\t\t\t###\n");
-  printf("###\t[ USE ] %s [ F_IN ] [ F_OUT ]      \t\t\t###\n", argv[0]);
-  printf("###\t[ EX  ] %s input.txt output.txt\t\t\t###\n", argv[0]);
-  printf("###\t\t\t\t\t\t\t\t\t###\n");      
-  printf("###########################################################################\n\n");
- }
-}
-
-void yyerror(const char * explanation){
- fprintf(stderr,"** Line %d: %s\n", yylloc.first_line, explanation);
- exit(1);
+void yyerror(const char* s) {
+	fprintf(stderr, "Parse error on line %d column %d : %s\n", yylineno, column, s);
+	num_errors++;
 }
