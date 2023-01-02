@@ -13,7 +13,8 @@
 	   VariableSignType sign;
 	   StorageType storage;
 	   DeclarationType declarationType;
-	   Boolean constant;
+	   Boolean constant; 
+
        void *noDefinition;	
     } CompilerInfo;
 }
@@ -585,9 +586,13 @@ jump_statement
 translation_unit
 	: external_declaration                  {
                                              $<CompilerInfo>$ = $<CompilerInfo>1;
+											 addToSymbolTable($<CompilerInfo>1.identifier, $<CompilerInfo>1.type, $<CompilerInfo>1.sign, $<CompilerInfo>1.storage, $<CompilerInfo>1.declarationType, $<CompilerInfo>1.constant);
 	                                         fprintf(yyout,"<EXP> external_declaration REDUCE to translation_unit\n");
 											}
-	| translation_unit external_declaration {fprintf(yyout,"translation_unit external_declaration REDUCE to translation_unit\n");}
+	| translation_unit external_declaration {
+											 addToSymbolTable($<CompilerInfo>2.identifier, $<CompilerInfo>2.type, $<CompilerInfo>2.sign, $<CompilerInfo>2.storage, $<CompilerInfo>2.declarationType, $<CompilerInfo>2.constant);
+		                                     fprintf(yyout,"<EXP> translation_unit external_declaration REDUCE to translation_unit\n");
+											}
 	;
 
 external_declaration

@@ -66,6 +66,19 @@ typedef struct _ExpressionList {
    struct _ExpressionList *next;
 } ExpressionList,*ExpressionListPtr; 
 
+typedef struct _Declaration {
+   char *identifier;     
+   VariableType type;
+   VariableSignType sign;
+   StorageType storage;
+   DeclarationType declarationType;
+} Declaration,*DeclarationPtr; 
+
+typedef struct _DeclarationList {
+   DeclarationPtr var;
+   struct _DeclarationList *next;
+} DeclarationList,*DeclarationListPtr; 
+
 int yylex();
 int yyparse();
 int yywrap();
@@ -75,6 +88,9 @@ int check_type();
 void yyerror(const char* s);
 int handleIndentifier();
 
+void addToSymbolTable(char *identifier, VariableType type, VariableSignType sign, StorageType storage, DeclarationType declarationType, Boolean constant); 
+
+extern DeclarationListPtr symbolTable;
 extern FILE * fileLexLog;
 extern int num_errors;
 extern int yylineno;
