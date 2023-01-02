@@ -13,7 +13,6 @@
 	   VariableSignType sign;
 	   StorageType storage;
 	   DeclarationType declarationType;
-	   ExpressionPtr expression;
 	   Boolean constant;
        void *noDefinition;	
     } CompilerInfo;
@@ -38,11 +37,11 @@
 %type <noDefinition> expression_statement iteration_statement labeled_statement    
 %type <noDefinition> unary_operator external_declaration translation_unit
 
-%type<ExpressionPtr> primary_expression postfix_expression argument_expression_list unary_expression
-%type<ExpressionPtr> cast_expression multiplicative_expression additive_expression shift_expression relational_expression
-%type<ExpressionPtr> equality_expression and_expression exclusive_or_expression inclusive_or_expression logical_and_expression
-%type<ExpressionPtr> logical_or_expression conditional_expression assignment_expression assignment_operator expression
-%type<ExpressionPtr> constant_expression 
+%type<CompilerInfo> primary_expression postfix_expression argument_expression_list unary_expression
+%type<CompilerInfo> cast_expression multiplicative_expression additive_expression shift_expression relational_expression
+%type<CompilerInfo> equality_expression and_expression exclusive_or_expression inclusive_or_expression logical_and_expression
+%type<CompilerInfo> logical_or_expression conditional_expression assignment_expression assignment_operator expression
+%type<CompilerInfo> constant_expression 
 
 %type<CompilerInfo> declaration declaration_specifiers init_declarator_list init_declarator
 %type<CompilerInfo> storage_class_specifier type_specifier struct_or_union_specifier struct_declaration_list
@@ -62,33 +61,28 @@
 
 primary_expression
 	: IDENTIFIER                            {
-                                             $<CompilerInfo>$.expression = (ExpressionPtr)malloc(sizeof(Expression));
-											 $<CompilerInfo>$.expression->node.string = (char *) malloc(strlen($<CompilerInfo>1.identifier)+1);
-                                             strcpy($<CompilerInfo>$.expression->node.string, $<CompilerInfo>1.identifier);
-                                             $<CompilerInfo>$.expression->node.type = TYPE_NULL;
-                                             $<CompilerInfo>$.expression->node.constant = FALSE;
+											 $<CompilerInfo>$.identifier = (char *) malloc(strlen($<CompilerInfo>1.identifier)+1);
+                                             strcpy($<CompilerInfo>$.identifier, $<CompilerInfo>1.identifier);
+                                             $<CompilerInfo>$.type = TYPE_NULL;
+                                             $<CompilerInfo>$.constant = FALSE;
 	                                         fprintf(yyout,"IDENTIFIER REDUCE to primary_expression\n");
 											}
 	| CONSTANT                              {
-                                             $<CompilerInfo>$.expression = (ExpressionPtr)malloc(sizeof(Expression));
-											 $<CompilerInfo>$.expression->node.string = (char *) malloc(strlen($<CompilerInfo>1.identifier));
-											 memset($<CompilerInfo>$.expression->node.string,0,strlen($<CompilerInfo>1.identifier));
-                                             strcpy($<CompilerInfo>$.expression->node.string, $<CompilerInfo>1.identifier);
-                                             $<CompilerInfo>$.expression->node.type = $<CompilerInfo>1.type;
-                                             $<CompilerInfo>$.expression->node.constant = TRUE;
-	                                         fprintf(yyout,"'%s' CONSTANT REDUCE to primary_expression\n",$<CompilerInfo>$.expression->node.string);
+											 $<CompilerInfo>$.identifier = (char *) malloc(strlen($<CompilerInfo>1.identifier)+1);
+                                             strcpy($<CompilerInfo>$.identifier, $<CompilerInfo>1.identifier);
+                                             $<CompilerInfo>$.type = TYPE_NULL;
+                                             $<CompilerInfo>$.constant = TRUE;
+	                                         fprintf(yyout,"'%s' CONSTANT REDUCE to primary_expression\n",$<CompilerInfo>$.identifier);
 											}
 	| STRING_LITERAL                        {
-                                             $<CompilerInfo>$.expression = (ExpressionPtr)malloc(sizeof(Expression));
-											 $<CompilerInfo>$.expression->node.string = (char *) malloc(strlen($<CompilerInfo>1.identifier));
-											 memset($<CompilerInfo>$.expression->node.string,0,strlen($<CompilerInfo>1.identifier));
-                                             strcpy($<CompilerInfo>$.expression->node.string, $<CompilerInfo>1.identifier);
-                                             $<CompilerInfo>$.expression->node.type = $<CompilerInfo>1.type;
-                                             $<CompilerInfo>$.expression->node.constant = TRUE;
-	                                         fprintf(yyout,"'%s' STRING_LITERAL REDUCE to primary_expression\n",$<CompilerInfo>$.expression->node.string);
+											 $<CompilerInfo>$.identifier = (char *) malloc(strlen($<CompilerInfo>1.identifier)+1);
+                                             strcpy($<CompilerInfo>$.identifier, $<CompilerInfo>1.identifier);
+                                             $<CompilerInfo>$.type = TYPE_NULL;
+                                             $<CompilerInfo>$.constant = TRUE;
+	                                         fprintf(yyout,"'%s' STRING_LITERAL REDUCE to primary_expression\n",$<CompilerInfo>$.identifier);
 											}
 	| OPENPAREN_OP expression CLOSEPAREN_OP {
-                                             $<CompilerInfo>$.expression = $<CompilerInfo>2.expression;
+                                             $<CompilerInfo>$ = $<CompilerInfo>2;
 	                                         fprintf(yyout,"OPENPAREN_OP expression CLOSEPAREN_OP REDUCE to primary_expression\n");
 											}
 	;
@@ -277,11 +271,7 @@ declaration
 	                                                         $<CompilerInfo>$.type = $<CompilerInfo>1.type;
 	                                                         $<CompilerInfo>$.storage = $<CompilerInfo>1.storage;
 	                                                         $<CompilerInfo>$.identifier = $<CompilerInfo>2.identifier;
-	                                                         $<CompilerInfo>$.expression = $<CompilerInfo>2.expression;
-															 if ($<CompilerInfo>$.expression==NULL)
-															   fprintf(yyout,"'%d %d %d %s' => declaration_specifiers init_declarator_list SEMI_OP REDUCE to declaration\n",$<CompilerInfo>$.storage,$<CompilerInfo>$.sign,$<CompilerInfo>$.type,$<CompilerInfo>$.identifier);
-															 else
-															   fprintf(yyout,"'%d %d %d %s <Array>' => declaration_specifiers init_declarator_list SEMI_OP REDUCE to declaration\n",$<CompilerInfo>$.storage,$<CompilerInfo>$.sign,$<CompilerInfo>$.type,$<CompilerInfo>$.identifier);
+															 fprintf(yyout,"'%d %d %d %s' => declaration_specifiers init_declarator_list SEMI_OP REDUCE to declaration\n",$<CompilerInfo>$.storage,$<CompilerInfo>$.sign,$<CompilerInfo>$.type,$<CompilerInfo>$.identifier);
 															}
 	;
 
@@ -295,7 +285,7 @@ declaration_specifiers
 													 }
 	| type_specifier                                 {
 	                                                   $<CompilerInfo>$ = $<CompilerInfo>1;
-													   fprintf(yyout,"type_specifier REDUCE to declaration_specifiers\n");
+													   fprintf(yyout,"%d %d type_specifier REDUCE to declaration_specifiers\n",$<CompilerInfo>$.sign,$<CompilerInfo>$.type);
 													 }
 	| type_specifier declaration_specifiers          {
 	                                                   $<CompilerInfo>$.sign = $<CompilerInfo>1.sign;
@@ -311,10 +301,7 @@ declaration_specifiers
 init_declarator_list
 	: init_declarator                               {
                                                      $<CompilerInfo>$ = $<CompilerInfo>1;
-								                     if ($<CompilerInfo>1.expression==NULL)
-	                                                   fprintf(yyout,"'%s' => init_declarator REDUCE to init_declarator_list\n",$<CompilerInfo>$.identifier);
-												     else
-	                                                   fprintf(yyout,"'%s' <Array> => init_declarator REDUCE to init_declarator_list\n",$<CompilerInfo>$.identifier);
+	                                                 fprintf(yyout,"'%s' => init_declarator REDUCE to init_declarator_list\n",$<CompilerInfo>$.identifier);
 													}
 	| init_declarator_list COMMA_OP init_declarator {fprintf(yyout,"init_declarator_list COMMA_OP init_declarator REDUCE to init_declarator_list\n");}
 	;
@@ -322,34 +309,31 @@ init_declarator_list
 init_declarator
 	: declarator                      {
                                        $<CompilerInfo>$ = $<CompilerInfo>1;
-								       if ($<CompilerInfo>1.expression==NULL)
-	                                     fprintf(yyout,"'%s' => declarator REDUCE to init_declarator\n",$<CompilerInfo>$.identifier);
-									   else	 
-	                                     fprintf(yyout,"'%s' <Array> => declarator REDUCE to init_declarator\n",$<CompilerInfo>$.identifier);
+	                                   fprintf(yyout,"'%s' => declarator REDUCE to init_declarator\n",$<CompilerInfo>$.identifier);
 									  }
 	| declarator EQUAL_OP initializer {fprintf(yyout,"declarator EQUAL_OP initializer REDUCE to init_declarator\n");}
 	;
 
 storage_class_specifier
-	: TYPEDEF  {$<CompilerInfo>$.storage = STORAGE_NONE;fprintf(yyout,"TYPEDEF REDUCE to storage_class_specifier\n");}
-	| EXTERN   {$<CompilerInfo>$.storage = STORAGE_EXTERN;fprintf(yyout,"EXTERN REDUCE to storage_class_specifier\n");}
-	| STATIC   {$<CompilerInfo>$.storage = STORAGE_STATIC;fprintf(yyout,"STATIC REDUCE to storage_class_specifier\n");}
-	| AUTO     {$<CompilerInfo>$.storage = STORAGE_AUTO;fprintf(yyout,"AUTO REDUCE to storage_class_specifier\n");}
-	| REGISTER {$<CompilerInfo>$.storage = STORAGE_REGISTER;fprintf(yyout,"REGISTER REDUCE to storage_class_specifier\n");}
+	: TYPEDEF  {$<CompilerInfo>$.storage = STORAGE_NONE;     fprintf(yyout,"TYPEDEF REDUCE to storage_class_specifier\n");}
+	| EXTERN   {$<CompilerInfo>$.storage = STORAGE_EXTERN;   fprintf(yyout,"EXTERN REDUCE to storage_class_specifier\n");}
+	| STATIC   {$<CompilerInfo>$.storage = STORAGE_STATIC;   fprintf(yyout,"STATIC REDUCE to storage_class_specifier\n");}
+	| AUTO     {$<CompilerInfo>$.storage = STORAGE_AUTO;     fprintf(yyout,"AUTO REDUCE to storage_class_specifier\n");}
+	| REGISTER {$<CompilerInfo>$.storage = STORAGE_REGISTER; fprintf(yyout,"REGISTER REDUCE to storage_class_specifier\n");}
 	;
 
 type_specifier
-	: VOID                      {fprintf(yyout,"VOID REDUCE to type_specifier\n"); $<CompilerInfo>$.type = TYPE_VOID;}
-	| CHAR                      {fprintf(yyout,"CHAR REDUCE to type_specifier\n"); $<CompilerInfo>$.type = TYPE_CHARACTER;}
-	| SHORT                     {fprintf(yyout,"SHORT REDUCE to type_specifier\n"); $<CompilerInfo>$.type = TYPE_SHORT;}
-	| INT                       {fprintf(yyout,"INT REDUCE to type_specifier\n"); $<CompilerInfo>$.type = TYPE_INTEGER;}
-	| LONG                      {fprintf(yyout,"LONG REDUCE to type_specifier\n"); $<CompilerInfo>$.type = TYPE_LONG;}
-	| LONGLONG                  {fprintf(yyout,"LONGLONG REDUCE to type_specifier\n"); $<CompilerInfo>$.type = TYPE_LONG64;}
-	| FLOAT                     {fprintf(yyout,"FLOAT REDUCE to type_specifier\n"); $<CompilerInfo>$.type = TYPE_FLOAT;}
-	| DOUBLE                    {fprintf(yyout,"DOUBLE REDUCE to type_specifier\n"); $<CompilerInfo>$.type = TYPE_DOUBLE;}
-	| SIGNED                    {fprintf(yyout,"SIGNED REDUCE to type_specifier\n"); $<CompilerInfo>$.sign = TYPE_SIGNED;}
-	| UNSIGNED                  {fprintf(yyout,"UNSIGNED REDUCE to type_specifier\n"); $<CompilerInfo>$.sign = TYPE_UNSIGNED;}
-	| BOOL                      {fprintf(yyout,"BOOL REDUCE to type_specifier\n"); $<CompilerInfo>$.type = TYPE_INTEGER;}
+	: VOID                      {$<CompilerInfo>$.type = TYPE_VOID;      fprintf(yyout,"%d REDUCE to type_specifier\n",$<CompilerInfo>$.type); }
+	| CHAR                      {$<CompilerInfo>$.type = TYPE_CHARACTER; fprintf(yyout,"%d REDUCE to type_specifier\n",$<CompilerInfo>$.type); }
+	| SHORT                     {$<CompilerInfo>$.type = TYPE_SHORT;     fprintf(yyout,"%d REDUCE to type_specifier\n",$<CompilerInfo>$.type); }
+	| INT                       {$<CompilerInfo>$.type = TYPE_INTEGER;   fprintf(yyout,"%d REDUCE to type_specifier\n",$<CompilerInfo>$.type); }
+	| LONG                      {$<CompilerInfo>$.type = TYPE_LONG;      fprintf(yyout,"%d REDUCE to type_specifier\n",$<CompilerInfo>$.type); }
+	| LONGLONG                  {$<CompilerInfo>$.type = TYPE_LONG64;    fprintf(yyout,"%d REDUCE to type_specifier\n",$<CompilerInfo>$.type); }
+	| FLOAT                     {$<CompilerInfo>$.type = TYPE_FLOAT;     fprintf(yyout,"%d REDUCE to type_specifier\n",$<CompilerInfo>$.type); }
+	| DOUBLE                    {$<CompilerInfo>$.type = TYPE_DOUBLE;    fprintf(yyout,"%d REDUCE to type_specifier\n",$<CompilerInfo>$.type); }
+	| SIGNED                    {$<CompilerInfo>$.sign = TYPE_SIGNED;    fprintf(yyout,"%d REDUCE to type_specifier\n",$<CompilerInfo>$.sign); }
+	| UNSIGNED                  {$<CompilerInfo>$.sign = TYPE_UNSIGNED;  fprintf(yyout,"%d REDUCE to type_specifier\n",$<CompilerInfo>$.sign); }
+	| BOOL                      {$<CompilerInfo>$.type = TYPE_INTEGER;   fprintf(yyout,"%d REDUCE to type_specifier\n",$<CompilerInfo>$.type); }
 	| COMPLEX                   {fprintf(yyout,"COMPLEX REDUCE to type_specifier\n");}
 	| IMAGINARY                 {fprintf(yyout,"IMAGINARY REDUCE to type_specifier\n");}
 	| struct_or_union_specifier {fprintf(yyout,"struct_or_union_specifier REDUCE to type_specifier\n");}
@@ -427,10 +411,7 @@ declarator
 	: pointer direct_declarator  {fprintf(yyout,"pointer direct_declarator REDUCE to declarator\n");}
 	| direct_declarator          {
                                   $<CompilerInfo>$ = $<CompilerInfo>1;
-								  if ($<CompilerInfo>1.expression==NULL)
-	                                fprintf(yyout,"'%s' => direct_declarator REDUCE to declarator\n",$<CompilerInfo>$.identifier);
-								  else
-	                                fprintf(yyout,"'%s' <Array> => direct_declarator REDUCE to declarator\n",$<CompilerInfo>$.identifier);
+	                              fprintf(yyout,"'%s' => direct_declarator REDUCE to declarator\n",$<CompilerInfo>$.identifier);
 								 }
 	;
 
@@ -445,7 +426,6 @@ direct_declarator
 	| direct_declarator OPENBRACE_OP type_qualifier_list CLOSEBRACE_OP                                {fprintf(yyout,"direct_declarator OPENBRACE_OP type_qualifier_list CLOSEBRACE_OP REDUCE to direct_declarator\n");}
 	| direct_declarator OPENBRACE_OP assignment_expression CLOSEBRACE_OP                              {
 	                                                                                                   $<CompilerInfo>$ = $<CompilerInfo>1;
-	                                                                                                   $<CompilerInfo>$.expression = $<CompilerInfo>3.expression;
 	                                                                                                   fprintf(yyout,"direct_declarator OPENBRACE_OP assignment_expression CLOSEBRACE_OP REDUCE to direct_declarator\n");
 																									  }
 	| direct_declarator OPENBRACE_OP STATIC type_qualifier_list assignment_expression CLOSEBRACE_OP   {fprintf(yyout,"direct_declarator OPENBRACE_OP STATIC type_qualifier_list assignment_expression CLOSEBRACE_OP REDUCE to direct_declarator\n");}
@@ -605,7 +585,7 @@ jump_statement
 translation_unit
 	: external_declaration                  {
                                              $<CompilerInfo>$ = $<CompilerInfo>1;
-	                                         fprintf(yyout,"external_declaration REDUCE to translation_unit\n");
+	                                         fprintf(yyout,"<EXP> external_declaration REDUCE to translation_unit\n");
 											}
 	| translation_unit external_declaration {fprintf(yyout,"translation_unit external_declaration REDUCE to translation_unit\n");}
 	;
@@ -623,11 +603,7 @@ external_declaration
                            $<CompilerInfo>$.type = $<CompilerInfo>1.type;
                            $<CompilerInfo>$.storage = $<CompilerInfo>1.storage;
                            $<CompilerInfo>$.identifier = $<CompilerInfo>1.identifier;															 
-                           $<CompilerInfo>$.expression = $<CompilerInfo>1.expression;
-						   if ($<CompilerInfo>$.expression==NULL)
-	                         fprintf(yyout,"'%d %d %d %s' => declaration REDUCE to external_declaration\n",$<CompilerInfo>$.storage,$<CompilerInfo>$.sign,$<CompilerInfo>$.type,$<CompilerInfo>$.identifier);
-						   else
-	                         fprintf(yyout,"'%d %d %d %s <Array>' => declaration REDUCE to external_declaration\n",$<CompilerInfo>$.storage,$<CompilerInfo>$.sign,$<CompilerInfo>$.type,$<CompilerInfo>$.identifier);
+	                       fprintf(yyout,"'%d %d %d %s' => declaration REDUCE to external_declaration\n",$<CompilerInfo>$.storage,$<CompilerInfo>$.sign,$<CompilerInfo>$.type,$<CompilerInfo>$.identifier);
 						  }
 	;
 

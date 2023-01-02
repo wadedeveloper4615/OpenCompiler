@@ -11,20 +11,20 @@ typedef enum _VariableSignType{
 } VariableSignType;
 
 typedef enum _VariableType{
-    TYPE_NULL = -1,
-    TYPE_VOID = 0,
-    TYPE_CHARACTER = 1,
-    TYPE_SHORT = 2,
-	TYPE_INTEGER = 3,
-	TYPE_LONG = 4,
-	TYPE_LONG64 = 5,
-	TYPE_FLOAT = 6,
-	TYPE_DOUBLE = 7,
-	TYPE_STRING = 8,
-	TYPE_STRUCT = 9,
-	TYPE_BOOLEAN = 10,
-	TYPE_COMPLEX = 11,
-	TYPE_IMAGINARY = 12
+    TYPE_NULL = 0,
+    TYPE_VOID = 1,
+    TYPE_CHARACTER = 2,
+    TYPE_SHORT = 3,
+	TYPE_INTEGER = 4,
+	TYPE_LONG = 5,
+	TYPE_LONG64 = 6,
+	TYPE_FLOAT = 7,
+	TYPE_DOUBLE = 8,
+	TYPE_STRING = 9,
+	TYPE_STRUCT = 10,
+	TYPE_BOOLEAN = 11,
+	TYPE_COMPLEX = 12,
+	TYPE_IMAGINARY = 13
 } VariableType;
 
 typedef enum _StorageType {

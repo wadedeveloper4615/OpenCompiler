@@ -1,41 +1,11 @@
-UNSIGNED REDUCE to type_specifier
-LONG REDUCE to type_specifier
-type_specifier REDUCE to declaration_specifiers
-1 4 => type_specifier declaration_specifiers REDUCE to declaration_specifiers
+1 REDUCE to type_specifier
+5 REDUCE to type_specifier
+0 5 type_specifier REDUCE to declaration_specifiers
+1 5 => type_specifier declaration_specifiers REDUCE to declaration_specifiers
 'var1' => IDENTIFIER REDUCE to direct_declarator
 'var1' => direct_declarator REDUCE to declarator
 'var1' => declarator REDUCE to init_declarator
 'var1' => init_declarator REDUCE to init_declarator_list
-'0 1 4 var1' => declaration_specifiers init_declarator_list SEMI_OP REDUCE to declaration
-'0 1 4 var1' => declaration REDUCE to external_declaration
-external_declaration REDUCE to translation_unit
-INT REDUCE to type_specifier
-type_specifier REDUCE to declaration_specifiers
-'main' => IDENTIFIER REDUCE to direct_declarator
-direct_declarator OPENPAREN_OP CLOSEPAREN_OP REDUCE to direct_declarator
-'main' => direct_declarator REDUCE to declarator
-'main' CONSTANT REDUCE to primary_expression
-primary_expression REDUCE to postfix_expression
-postfix_expression REDUCE to unary_expression
-unary_expression REDUCE to cast_expression
-cast_expression REDUCE to multiplicative_expression
-multiplicative_expression REDUCE to additive_expression
-additive_expression REDUCE to shift_expression
-shift_expression REDUCE to relational_expression
-relational_expression REDUCE to equality_expression
-equality_expression REDUCE to and_expression
-and_expression REDUCE to exclusive_or_expression
-exclusive_or_expression REDUCE to inclusive_or_expression
-inclusive_or_expression REDUCE to logical_and_expression
-logical_and_expression REDUCE to logical_or_expression
-logical_or_expression REDUCE to conditional_expression
-conditional_expression REDUCE to assignment_expression
-assignment_expression REDUCE to expression
-RETURN expression SEMI_OP REDUCE to jump_statement
-jump_statement REDUCE to statement
-statement REDUCE to block_item
-block_item REDUCE to block_item_list
-OCURLY_OP block_item_list CCURLY_OP REDUCE to compound_statement
-declaration_specifiers declarator compound_statement REDUCE to function_definition
-function_definition REDUCE to external_declaration
-translation_unit external_declaration REDUCE to translation_unit
+'0 1 5 var1' => declaration_specifiers init_declarator_list SEMI_OP REDUCE to declaration
+'0 1 5 var1' => declaration REDUCE to external_declaration
+<EXP> external_declaration REDUCE to translation_unit
