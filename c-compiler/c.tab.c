@@ -2951,13 +2951,13 @@ yyreduce:
   case 108:
 /* Line 1792 of yacc.c  */
 #line 341 "c.y"
-    {fprintf(yyout,"COMPLEX REDUCE to type_specifier\n");}
+    {(yyval.CompilerInfo).type = TYPE_COMPLEX;   fprintf(yyout,"%d REDUCE to type_specifier\n",(yyval.CompilerInfo).type); }
     break;
 
   case 109:
 /* Line 1792 of yacc.c  */
 #line 342 "c.y"
-    {fprintf(yyout,"IMAGINARY REDUCE to type_specifier\n");}
+    {(yyval.CompilerInfo).type = TYPE_IMAGINARY; fprintf(yyout,"%d REDUCE to type_specifier\n",(yyval.CompilerInfo).type); }
     break;
 
   case 110:

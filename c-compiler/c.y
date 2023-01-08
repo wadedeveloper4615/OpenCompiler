@@ -338,8 +338,8 @@ type_specifier
 	| SIGNED                    {$<CompilerInfo>$.sign = TYPE_SIGNED;    fprintf(yyout,"%d REDUCE to type_specifier\n",$<CompilerInfo>$.sign); }
 	| UNSIGNED                  {$<CompilerInfo>$.sign = TYPE_UNSIGNED;  fprintf(yyout,"%d REDUCE to type_specifier\n",$<CompilerInfo>$.sign); }
 	| BOOL                      {$<CompilerInfo>$.type = TYPE_INTEGER;   fprintf(yyout,"%d REDUCE to type_specifier\n",$<CompilerInfo>$.type); }
-	| COMPLEX                   {fprintf(yyout,"COMPLEX REDUCE to type_specifier\n");}
-	| IMAGINARY                 {fprintf(yyout,"IMAGINARY REDUCE to type_specifier\n");}
+	| COMPLEX                   {$<CompilerInfo>$.type = TYPE_COMPLEX;   fprintf(yyout,"%d REDUCE to type_specifier\n",$<CompilerInfo>$.type); }
+	| IMAGINARY                 {$<CompilerInfo>$.type = TYPE_IMAGINARY; fprintf(yyout,"%d REDUCE to type_specifier\n",$<CompilerInfo>$.type); }
 	| struct_or_union_specifier {fprintf(yyout,"struct_or_union_specifier REDUCE to type_specifier\n");}
 	| enum_specifier            {fprintf(yyout,"enum_specifier REDUCE to type_specifier\n");}
 	| TYPE_NAME                 {fprintf(yyout,"type_specifier TYPE_NAME REDUCE to type_specifier\n");}
