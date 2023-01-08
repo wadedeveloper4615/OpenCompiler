@@ -69,19 +69,18 @@ int num_errors;
 "_Complex"       { count(); return COMPLEX; }
 "_Imaginary"     { count(); return IMAGINARY; }
 
-{L}({L}|{D})*		      { count(); return(handleIndentifier()); }
-0[xX]{H}+{IS}?		      { count(); return(CONSTANT); }
-0[0-7]*{IS}?		      { count(); return(CONSTANT); }
-[1-9]{D}*{IS}?		      { count(); return(CONSTANT); }
-L?'(\\.|[^\\'\n])+'	      { count(); return(CONSTANT); }
-{D}+{E}{FS}?		      { count(); return(CONSTANT); }
-{D}*"."{D}+{E}?{FS}?	  { count(); return(CONSTANT); }
-{D}+"."{D}*{E}?{FS}?	  { count(); return(CONSTANT); }
-0[xX]{H}+{P}{FS}?	      { count(); return(CONSTANT); }
-0[xX]{H}*"."{H}+{P}?{FS}? { count(); return(CONSTANT); }
-0[xX]{H}+"."{H}*{P}?{FS}? { count(); return(CONSTANT); }
-L?\"(\\.|[^\\"\n])*\"	  { count(); return(STRING_LITERAL); }
-
+{L}({L}|{D})*		      { count(); return(handleIndentifier(IDENTIFIER)); }
+0[xX]{H}+{IS}?		      { count(); return(handleIndentifier(CONSTANT)); }
+0[0-7]*{IS}?		      { count(); return(handleIndentifier(CONSTANT)); }
+[1-9]{D}*{IS}?		      { count(); return(handleIndentifier(CONSTANT)); }
+L?'(\\.|[^\\'\n])+'	      { count(); return(handleIndentifier(CONSTANT)); }
+{D}+{E}{FS}?		      { count(); return(handleIndentifier(CONSTANT)); }
+{D}*"."{D}+{E}?{FS}?	  { count(); return(handleIndentifier(CONSTANT)); }
+{D}+"."{D}*{E}?{FS}?	  { count(); return(handleIndentifier(CONSTANT)); }
+0[xX]{H}+{P}{FS}?	      { count(); return(handleIndentifier(CONSTANT)); }
+0[xX]{H}*"."{H}+{P}?{FS}? { count(); return(handleIndentifier(CONSTANT)); }
+0[xX]{H}+"."{H}*{P}?{FS}? { count(); return(handleIndentifier(CONSTANT)); }
+L?\"(\\.|[^\\"\n])*\"	  { count(); return(handleIndentifier(STRING_LITERAL)); }
 "..."			{ count(); return(ELLIPSIS); }
 "?"			    { count(); return(QUESTION_OP); }
 ";"			    { count(); return(SEMI_OP); }
@@ -156,13 +155,12 @@ void comment(void)
 	yyerror("unterminated comment");
 }
 
-int handleIndentifier() {
+int handleIndentifier(int result) {
  yylval.CompilerInfo.identifier = (char *) malloc((sizeof(char) * (yyleng + 1)));
  strcpy(yylval.CompilerInfo.identifier, yytext);
- yylval.CompilerInfo.constant = FALSE;
+ yylval.CompilerInfo.constant = (result==IDENTIFIER) ? (FALSE) : (TRUE);
  yylval.CompilerInfo.type = TYPE_NULL;
- printf("got here to handleIndentifier ==> %s\n",yylval.CompilerInfo.identifier);
- return IDENTIFIER;
+ return result;
 }
 
 void count(void)

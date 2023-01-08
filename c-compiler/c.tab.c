@@ -664,23 +664,23 @@ static const yytype_uint16 yyrline[] =
      165,   166,   170,   174,   175,   176,   177,   181,   185,   186,
      190,   194,   198,   202,   206,   210,   214,   218,   222,   226,
      230,   234,   238,   242,   246,   247,   248,   249,   250,   251,
-     252,   253,   254,   255,   256,   260,   261,   265,   269,   270,
-     280,   281,   287,   291,   296,   297,   298,   299,   303,   307,
-     311,   315,   319,   320,   321,   322,   323,   327,   328,   329,
-     330,   331,   332,   333,   334,   335,   336,   337,   338,   339,
-     340,   341,   342,   346,   347,   348,   352,   353,   357,   358,
-     362,   366,   367,   368,   369,   373,   374,   378,   379,   380,
-     384,   385,   386,   387,   388,   392,   393,   397,   398,   402,
-     403,   404,   408,   412,   413,   421,   425,   426,   427,   428,
-     432,   433,   434,   435,   436,   437,   438,   439,   443,   444,
-     445,   446,   450,   451,   456,   457,   461,   462,   466,   467,
-     468,   472,   473,   477,   478,   482,   483,   484,   488,   489,
-     490,   491,   492,   493,   494,   495,   496,   497,   498,   502,
-     503,   504,   508,   509,   510,   511,   515,   519,   520,   524,
-     525,   529,   530,   531,   532,   533,   534,   538,   539,   540,
-     544,   545,   549,   550,   554,   555,   559,   560,   564,   565,
-     566,   570,   571,   572,   573,   574,   575,   579,   580,   581,
-     582,   583,   587,   592,   599,   604,   616,   617,   621,   622
+     252,   253,   254,   255,   256,   260,   264,   268,   272,   273,
+     283,   284,   290,   294,   299,   300,   301,   302,   306,   310,
+     314,   318,   322,   323,   324,   325,   326,   330,   331,   332,
+     333,   334,   335,   336,   337,   338,   339,   340,   341,   342,
+     343,   344,   345,   349,   350,   351,   355,   356,   360,   361,
+     365,   369,   370,   371,   372,   376,   377,   381,   382,   383,
+     387,   388,   389,   390,   391,   395,   396,   400,   401,   405,
+     406,   407,   411,   415,   416,   424,   428,   429,   430,   431,
+     435,   436,   437,   438,   439,   440,   441,   442,   449,   450,
+     451,   452,   456,   457,   462,   463,   467,   468,   472,   473,
+     474,   478,   479,   483,   484,   488,   489,   490,   494,   495,
+     496,   497,   498,   499,   500,   501,   502,   503,   504,   508,
+     509,   510,   514,   515,   516,   517,   521,   525,   526,   530,
+     531,   535,   536,   537,   538,   539,   540,   547,   548,   549,
+     553,   554,   561,   565,   569,   570,   577,   578,   582,   583,
+     584,   588,   589,   590,   591,   592,   593,   597,   598,   599,
+     600,   601,   608,   613,   620,   625,   637,   638,   649,   650
 };
 #endif
 
@@ -2269,7 +2269,7 @@ yyreduce:
 #line 92 "c.y"
     {
                                                                                           (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
-	                                                                                      fprintf(yyout,"primary_expression REDUCE to postfix_expression\n");
+	                                                                                      fprintf(yyout,"<EXP> primary_expression REDUCE to postfix_expression\n");
 																						 }
     break;
 
@@ -2344,7 +2344,7 @@ yyreduce:
 #line 113 "c.y"
     {
                                                      (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
-	                                                 fprintf(yyout,"postfix_expression REDUCE to unary_expression\n");
+	                                                 fprintf(yyout,"<EXP> postfix_expression REDUCE to unary_expression\n");
 													}
     break;
 
@@ -2419,7 +2419,7 @@ yyreduce:
 #line 134 "c.y"
     {
                                                              (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
-	                                                         fprintf(yyout,"unary_expression REDUCE to cast_expression\n");
+	                                                         fprintf(yyout,"<EXP> unary_expression REDUCE to cast_expression\n");
 															}
     break;
 
@@ -2434,7 +2434,7 @@ yyreduce:
 #line 142 "c.y"
     {
                                                            (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
-	                                                       fprintf(yyout,"cast_expression REDUCE to multiplicative_expression\n");
+	                                                       fprintf(yyout,"<EXP> cast_expression REDUCE to multiplicative_expression\n");
 														  }
     break;
 
@@ -2461,7 +2461,7 @@ yyreduce:
 #line 152 "c.y"
     {
                                                                (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
-	                                                           fprintf(yyout,"multiplicative_expression REDUCE to additive_expression\n");
+	                                                           fprintf(yyout,"<EXP> multiplicative_expression REDUCE to additive_expression\n");
 															  }
     break;
 
@@ -2482,7 +2482,7 @@ yyreduce:
 #line 161 "c.y"
     {
                                                      (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
-	                                                 fprintf(yyout,"additive_expression REDUCE to shift_expression\n");
+	                                                 fprintf(yyout,"<EXP> additive_expression REDUCE to shift_expression\n");
 													}
     break;
 
@@ -2503,7 +2503,7 @@ yyreduce:
 #line 170 "c.y"
     {
                                                          (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
-	                                                     fprintf(yyout,"shift_expression REDUCE to relational_expression\n");
+	                                                     fprintf(yyout,"<EXP> shift_expression REDUCE to relational_expression\n");
 														}
     break;
 
@@ -2536,7 +2536,7 @@ yyreduce:
 #line 181 "c.y"
     {
                                                          (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
-	                                                     fprintf(yyout,"relational_expression REDUCE to equality_expression\n");
+	                                                     fprintf(yyout,"<EXP> relational_expression REDUCE to equality_expression\n");
 														}
     break;
 
@@ -2557,7 +2557,7 @@ yyreduce:
 #line 190 "c.y"
     {
                                                     (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
-	                                                fprintf(yyout,"equality_expression REDUCE to and_expression\n");
+	                                                fprintf(yyout,"<EXP> equality_expression REDUCE to and_expression\n");
 												   }
     break;
 
@@ -2572,7 +2572,7 @@ yyreduce:
 #line 198 "c.y"
     {
                                                        (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
-	                                                   fprintf(yyout,"and_expression REDUCE to exclusive_or_expression\n");
+	                                                   fprintf(yyout,"<EXP> and_expression REDUCE to exclusive_or_expression\n");
 													  }
     break;
 
@@ -2587,7 +2587,7 @@ yyreduce:
 #line 206 "c.y"
     {
                                                                 (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
-	                                                            fprintf(yyout,"exclusive_or_expression REDUCE to inclusive_or_expression\n");
+	                                                            fprintf(yyout,"<EXP> exclusive_or_expression REDUCE to inclusive_or_expression\n");
 															   }
     break;
 
@@ -2602,7 +2602,7 @@ yyreduce:
 #line 214 "c.y"
     {
                                                              (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
-	                                                         fprintf(yyout,"inclusive_or_expression REDUCE to logical_and_expression\n");
+	                                                         fprintf(yyout,"<EXP> inclusive_or_expression REDUCE to logical_and_expression\n");
 															}
     break;
 
@@ -2617,7 +2617,7 @@ yyreduce:
 #line 222 "c.y"
     {
                                                           (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
-	                                                      fprintf(yyout,"logical_and_expression REDUCE to logical_or_expression\n");
+	                                                      fprintf(yyout,"<EXP> logical_and_expression REDUCE to logical_or_expression\n");
 														 }
     break;
 
@@ -2632,7 +2632,7 @@ yyreduce:
 #line 230 "c.y"
     {
                                                                                     (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
-	                                                                                fprintf(yyout,"logical_or_expression REDUCE to conditional_expression\n");
+	                                                                                fprintf(yyout,"<EXP> logical_or_expression REDUCE to conditional_expression\n");
 																				   }
     break;
 
@@ -2647,7 +2647,7 @@ yyreduce:
 #line 238 "c.y"
     {
                                                                   (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
-	                                                              fprintf(yyout,"conditional_expression REDUCE to assignment_expression\n");
+	                                                              fprintf(yyout,"<EXP> conditional_expression REDUCE to assignment_expression\n");
 																 }
     break;
 
@@ -2726,30 +2726,33 @@ yyreduce:
   case 75:
 /* Line 1792 of yacc.c  */
 #line 260 "c.y"
-    {fprintf(yyout,"assignment_expression REDUCE to expression\n");}
+    {
+		                                         (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
+		                                         fprintf(yyout,"<EXP> assignment_expression REDUCE to expression\n");
+											    }
     break;
 
   case 76:
 /* Line 1792 of yacc.c  */
-#line 261 "c.y"
+#line 264 "c.y"
     {fprintf(yyout," expression COMMA_OP assignment_expression REDUCE to expression\n");}
     break;
 
   case 77:
 /* Line 1792 of yacc.c  */
-#line 265 "c.y"
+#line 268 "c.y"
     {fprintf(yyout,"conditional_expression REDUCE to constant_expression\n");}
     break;
 
   case 78:
 /* Line 1792 of yacc.c  */
-#line 269 "c.y"
+#line 272 "c.y"
     {fprintf(yyout,"declaration_specifiers SEMI_OP REDUCE to declaration\n");}
     break;
 
   case 79:
 /* Line 1792 of yacc.c  */
-#line 270 "c.y"
+#line 273 "c.y"
     {
                                                              (yyval.CompilerInfo).sign = (yyvsp[(1) - (3)].CompilerInfo).sign;
 	                                                         (yyval.CompilerInfo).type = (yyvsp[(1) - (3)].CompilerInfo).type;
@@ -2761,13 +2764,13 @@ yyreduce:
 
   case 80:
 /* Line 1792 of yacc.c  */
-#line 280 "c.y"
+#line 283 "c.y"
     {fprintf(yyout,"storage_class_specifier REDUCE to declaration_specifiers\n");}
     break;
 
   case 81:
 /* Line 1792 of yacc.c  */
-#line 281 "c.y"
+#line 284 "c.y"
     {
 	                                                  (yyval.CompilerInfo).sign = (yyvsp[(2) - (2)].CompilerInfo).sign;
 	                                                  (yyval.CompilerInfo).type = (yyvsp[(2) - (2)].CompilerInfo).type;
@@ -2778,7 +2781,7 @@ yyreduce:
 
   case 82:
 /* Line 1792 of yacc.c  */
-#line 287 "c.y"
+#line 290 "c.y"
     {
 	                                                   (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
 													   fprintf(yyout,"%d %d type_specifier REDUCE to declaration_specifiers\n",(yyval.CompilerInfo).sign,(yyval.CompilerInfo).type);
@@ -2787,7 +2790,7 @@ yyreduce:
 
   case 83:
 /* Line 1792 of yacc.c  */
-#line 291 "c.y"
+#line 294 "c.y"
     {
 	                                                   (yyval.CompilerInfo).sign = (yyvsp[(1) - (2)].CompilerInfo).sign;
 	                                                   (yyval.CompilerInfo).type = (yyvsp[(2) - (2)].CompilerInfo).type;
@@ -2797,31 +2800,31 @@ yyreduce:
 
   case 84:
 /* Line 1792 of yacc.c  */
-#line 296 "c.y"
+#line 299 "c.y"
     {fprintf(yyout,"type_qualifier REDUCE to declaration_specifiers\n");}
     break;
 
   case 85:
 /* Line 1792 of yacc.c  */
-#line 297 "c.y"
+#line 300 "c.y"
     {fprintf(yyout,"type_qualifier declaration_specifiers SEMI_OP REDUCE to declaration_specifiers\n");}
     break;
 
   case 86:
 /* Line 1792 of yacc.c  */
-#line 298 "c.y"
+#line 301 "c.y"
     {fprintf(yyout,"function_specifier REDUCE to declaration_specifiers\n");}
     break;
 
   case 87:
 /* Line 1792 of yacc.c  */
-#line 299 "c.y"
+#line 302 "c.y"
     {fprintf(yyout,"function_specifier declaration_specifiers REDUCE to declaration_specifiers\n");}
     break;
 
   case 88:
 /* Line 1792 of yacc.c  */
-#line 303 "c.y"
+#line 306 "c.y"
     {
                                                      (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
 	                                                 fprintf(yyout,"'%s' => init_declarator REDUCE to init_declarator_list\n",(yyval.CompilerInfo).identifier);
@@ -2830,13 +2833,13 @@ yyreduce:
 
   case 89:
 /* Line 1792 of yacc.c  */
-#line 307 "c.y"
+#line 310 "c.y"
     {fprintf(yyout,"init_declarator_list COMMA_OP init_declarator REDUCE to init_declarator_list\n");}
     break;
 
   case 90:
 /* Line 1792 of yacc.c  */
-#line 311 "c.y"
+#line 314 "c.y"
     {
                                        (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
 	                                   fprintf(yyout,"'%s' => declarator REDUCE to init_declarator\n",(yyval.CompilerInfo).identifier);
@@ -2845,325 +2848,325 @@ yyreduce:
 
   case 91:
 /* Line 1792 of yacc.c  */
-#line 315 "c.y"
+#line 318 "c.y"
     {fprintf(yyout,"declarator EQUAL_OP initializer REDUCE to init_declarator\n");}
     break;
 
   case 92:
 /* Line 1792 of yacc.c  */
-#line 319 "c.y"
+#line 322 "c.y"
     {(yyval.CompilerInfo).storage = STORAGE_NONE;     fprintf(yyout,"TYPEDEF REDUCE to storage_class_specifier\n");}
     break;
 
   case 93:
 /* Line 1792 of yacc.c  */
-#line 320 "c.y"
+#line 323 "c.y"
     {(yyval.CompilerInfo).storage = STORAGE_EXTERN;   fprintf(yyout,"EXTERN REDUCE to storage_class_specifier\n");}
     break;
 
   case 94:
 /* Line 1792 of yacc.c  */
-#line 321 "c.y"
+#line 324 "c.y"
     {(yyval.CompilerInfo).storage = STORAGE_STATIC;   fprintf(yyout,"STATIC REDUCE to storage_class_specifier\n");}
     break;
 
   case 95:
 /* Line 1792 of yacc.c  */
-#line 322 "c.y"
+#line 325 "c.y"
     {(yyval.CompilerInfo).storage = STORAGE_AUTO;     fprintf(yyout,"AUTO REDUCE to storage_class_specifier\n");}
     break;
 
   case 96:
 /* Line 1792 of yacc.c  */
-#line 323 "c.y"
+#line 326 "c.y"
     {(yyval.CompilerInfo).storage = STORAGE_REGISTER; fprintf(yyout,"REGISTER REDUCE to storage_class_specifier\n");}
     break;
 
   case 97:
 /* Line 1792 of yacc.c  */
-#line 327 "c.y"
+#line 330 "c.y"
     {(yyval.CompilerInfo).type = TYPE_VOID;      fprintf(yyout,"%d REDUCE to type_specifier\n",(yyval.CompilerInfo).type); }
     break;
 
   case 98:
 /* Line 1792 of yacc.c  */
-#line 328 "c.y"
+#line 331 "c.y"
     {(yyval.CompilerInfo).type = TYPE_CHARACTER; fprintf(yyout,"%d REDUCE to type_specifier\n",(yyval.CompilerInfo).type); }
     break;
 
   case 99:
 /* Line 1792 of yacc.c  */
-#line 329 "c.y"
+#line 332 "c.y"
     {(yyval.CompilerInfo).type = TYPE_SHORT;     fprintf(yyout,"%d REDUCE to type_specifier\n",(yyval.CompilerInfo).type); }
     break;
 
   case 100:
 /* Line 1792 of yacc.c  */
-#line 330 "c.y"
+#line 333 "c.y"
     {(yyval.CompilerInfo).type = TYPE_INTEGER;   fprintf(yyout,"%d REDUCE to type_specifier\n",(yyval.CompilerInfo).type); }
     break;
 
   case 101:
 /* Line 1792 of yacc.c  */
-#line 331 "c.y"
+#line 334 "c.y"
     {(yyval.CompilerInfo).type = TYPE_LONG;      fprintf(yyout,"%d REDUCE to type_specifier\n",(yyval.CompilerInfo).type); }
     break;
 
   case 102:
 /* Line 1792 of yacc.c  */
-#line 332 "c.y"
+#line 335 "c.y"
     {(yyval.CompilerInfo).type = TYPE_LONG64;    fprintf(yyout,"%d REDUCE to type_specifier\n",(yyval.CompilerInfo).type); }
     break;
 
   case 103:
 /* Line 1792 of yacc.c  */
-#line 333 "c.y"
+#line 336 "c.y"
     {(yyval.CompilerInfo).type = TYPE_FLOAT;     fprintf(yyout,"%d REDUCE to type_specifier\n",(yyval.CompilerInfo).type); }
     break;
 
   case 104:
 /* Line 1792 of yacc.c  */
-#line 334 "c.y"
+#line 337 "c.y"
     {(yyval.CompilerInfo).type = TYPE_DOUBLE;    fprintf(yyout,"%d REDUCE to type_specifier\n",(yyval.CompilerInfo).type); }
     break;
 
   case 105:
 /* Line 1792 of yacc.c  */
-#line 335 "c.y"
+#line 338 "c.y"
     {(yyval.CompilerInfo).sign = TYPE_SIGNED;    fprintf(yyout,"%d REDUCE to type_specifier\n",(yyval.CompilerInfo).sign); }
     break;
 
   case 106:
 /* Line 1792 of yacc.c  */
-#line 336 "c.y"
+#line 339 "c.y"
     {(yyval.CompilerInfo).sign = TYPE_UNSIGNED;  fprintf(yyout,"%d REDUCE to type_specifier\n",(yyval.CompilerInfo).sign); }
     break;
 
   case 107:
 /* Line 1792 of yacc.c  */
-#line 337 "c.y"
+#line 340 "c.y"
     {(yyval.CompilerInfo).type = TYPE_INTEGER;   fprintf(yyout,"%d REDUCE to type_specifier\n",(yyval.CompilerInfo).type); }
     break;
 
   case 108:
 /* Line 1792 of yacc.c  */
-#line 338 "c.y"
+#line 341 "c.y"
     {fprintf(yyout,"COMPLEX REDUCE to type_specifier\n");}
     break;
 
   case 109:
 /* Line 1792 of yacc.c  */
-#line 339 "c.y"
+#line 342 "c.y"
     {fprintf(yyout,"IMAGINARY REDUCE to type_specifier\n");}
     break;
 
   case 110:
 /* Line 1792 of yacc.c  */
-#line 340 "c.y"
+#line 343 "c.y"
     {fprintf(yyout,"struct_or_union_specifier REDUCE to type_specifier\n");}
     break;
 
   case 111:
 /* Line 1792 of yacc.c  */
-#line 341 "c.y"
+#line 344 "c.y"
     {fprintf(yyout,"enum_specifier REDUCE to type_specifier\n");}
     break;
 
   case 112:
 /* Line 1792 of yacc.c  */
-#line 342 "c.y"
+#line 345 "c.y"
     {fprintf(yyout,"type_specifier TYPE_NAME REDUCE to type_specifier\n");}
     break;
 
   case 113:
 /* Line 1792 of yacc.c  */
-#line 346 "c.y"
+#line 349 "c.y"
     {fprintf(yyout,"struct_or_union IDENTIFIER OCURLY_OP struct_declaration_list CCURLY_OP REDUCE to struct_or_union_specifier\n");}
     break;
 
   case 114:
 /* Line 1792 of yacc.c  */
-#line 347 "c.y"
+#line 350 "c.y"
     {fprintf(yyout,"struct_or_union OCURLY_OP struct_declaration_list CCURLY_OP REDUCE to struct_or_union_specifier\n");}
     break;
 
   case 115:
 /* Line 1792 of yacc.c  */
-#line 348 "c.y"
+#line 351 "c.y"
     {fprintf(yyout,"struct_or_union IDENTIFIER REDUCE to struct_or_union_specifier\n");}
     break;
 
   case 116:
 /* Line 1792 of yacc.c  */
-#line 352 "c.y"
+#line 355 "c.y"
     {fprintf(yyout,"STRUCT REDUCE to struct_or_union\n");}
     break;
 
   case 117:
 /* Line 1792 of yacc.c  */
-#line 353 "c.y"
+#line 356 "c.y"
     {fprintf(yyout,"UNION REDUCE to struct_or_union\n");}
     break;
 
   case 118:
 /* Line 1792 of yacc.c  */
-#line 357 "c.y"
+#line 360 "c.y"
     {fprintf(yyout,"struct_declaration REDUCE to struct_declaration_list\n");}
     break;
 
   case 119:
 /* Line 1792 of yacc.c  */
-#line 358 "c.y"
+#line 361 "c.y"
     {fprintf(yyout,"struct_declaration_list struct_declaration REDUCE to struct_declaration_list\n");}
     break;
 
   case 120:
 /* Line 1792 of yacc.c  */
-#line 362 "c.y"
+#line 365 "c.y"
     {fprintf(yyout,"specifier_qualifier_list struct_declarator_list SEMI_OP REDUCE to struct_declaration\n");}
     break;
 
   case 121:
 /* Line 1792 of yacc.c  */
-#line 366 "c.y"
+#line 369 "c.y"
     {fprintf(yyout,"type_specifier specifier_qualifier_list REDUCE to specifier_qualifier_list\n");}
     break;
 
   case 122:
 /* Line 1792 of yacc.c  */
-#line 367 "c.y"
+#line 370 "c.y"
     {fprintf(yyout,"type_specifier REDUCE to specifier_qualifier_list\n");}
     break;
 
   case 123:
 /* Line 1792 of yacc.c  */
-#line 368 "c.y"
+#line 371 "c.y"
     {fprintf(yyout,"type_qualifier specifier_qualifier_list REDUCE to specifier_qualifier_list\n");}
     break;
 
   case 124:
 /* Line 1792 of yacc.c  */
-#line 369 "c.y"
+#line 372 "c.y"
     {fprintf(yyout,"type_qualifier REDUCE to specifier_qualifier_list\n");}
     break;
 
   case 125:
 /* Line 1792 of yacc.c  */
-#line 373 "c.y"
+#line 376 "c.y"
     {fprintf(yyout,"struct_declarator REDUCE to struct_declarator_list\n");}
     break;
 
   case 126:
 /* Line 1792 of yacc.c  */
-#line 374 "c.y"
+#line 377 "c.y"
     {fprintf(yyout,"struct_declarator_list COMMA_OP struct_declarator REDUCE to struct_declarator_list\n");}
     break;
 
   case 127:
 /* Line 1792 of yacc.c  */
-#line 378 "c.y"
+#line 381 "c.y"
     {fprintf(yyout,"declarator REDUCE to struct_declarator\n");}
     break;
 
   case 128:
 /* Line 1792 of yacc.c  */
-#line 379 "c.y"
+#line 382 "c.y"
     {fprintf(yyout,"COLON_OP constant_expression REDUCE to struct_declarator\n");}
     break;
 
   case 129:
 /* Line 1792 of yacc.c  */
-#line 380 "c.y"
+#line 383 "c.y"
     {fprintf(yyout,"declarator COLON_OP constant_expression REDUCE to struct_declarator\n");}
     break;
 
   case 130:
 /* Line 1792 of yacc.c  */
-#line 384 "c.y"
+#line 387 "c.y"
     {fprintf(yyout,"ENUM OCURLY_OP enumerator_list CCURLY_OP REDUCE to enum_specifier\n");}
     break;
 
   case 131:
 /* Line 1792 of yacc.c  */
-#line 385 "c.y"
+#line 388 "c.y"
     {fprintf(yyout,"ENUM IDENTIFIER OCURLY_OP enumerator_list CCURLY_OP REDUCE to enum_specifier\n");}
     break;
 
   case 132:
 /* Line 1792 of yacc.c  */
-#line 386 "c.y"
+#line 389 "c.y"
     {fprintf(yyout,"ENUM OCURLY_OP enumerator_list COMMA_OP CCURLY_OP REDUCE to enum_specifier\n");}
     break;
 
   case 133:
 /* Line 1792 of yacc.c  */
-#line 387 "c.y"
+#line 390 "c.y"
     {fprintf(yyout,"ENUM IDENTIFIER OCURLY_OP enumerator_list COMMA_OP CCURLY_OP REDUCE to enum_specifier\n");}
     break;
 
   case 134:
 /* Line 1792 of yacc.c  */
-#line 388 "c.y"
+#line 391 "c.y"
     {fprintf(yyout,"ENUM IDENTIFIER REDUCE to enum_specifier\n");}
     break;
 
   case 135:
 /* Line 1792 of yacc.c  */
-#line 392 "c.y"
+#line 395 "c.y"
     {fprintf(yyout,"enumerator REDUCE to enumerator_list\n");}
     break;
 
   case 136:
 /* Line 1792 of yacc.c  */
-#line 393 "c.y"
+#line 396 "c.y"
     {fprintf(yyout,"enumerator_list COMMA_OP enumerator REDUCE to enumerator_list\n");}
     break;
 
   case 137:
 /* Line 1792 of yacc.c  */
-#line 397 "c.y"
+#line 400 "c.y"
     {fprintf(yyout,"IDENTIFIER REDUCE to enumerator\n");}
     break;
 
   case 138:
 /* Line 1792 of yacc.c  */
-#line 398 "c.y"
+#line 401 "c.y"
     {fprintf(yyout,"IDENTIFIER EQUAL_OP constant_expression REDUCE to enumerator\n");}
     break;
 
   case 139:
 /* Line 1792 of yacc.c  */
-#line 402 "c.y"
+#line 405 "c.y"
     {fprintf(yyout,"CONST REDUCE to type_qualifier\n");}
     break;
 
   case 140:
 /* Line 1792 of yacc.c  */
-#line 403 "c.y"
+#line 406 "c.y"
     {fprintf(yyout,"RESTRICT REDUCE to type_qualifier\n");}
     break;
 
   case 141:
 /* Line 1792 of yacc.c  */
-#line 404 "c.y"
+#line 407 "c.y"
     {fprintf(yyout,"VOLATILE REDUCE to type_qualifier\n");}
     break;
 
   case 142:
 /* Line 1792 of yacc.c  */
-#line 408 "c.y"
+#line 411 "c.y"
     {fprintf(yyout,"INLINE REDUCE to function_specifier\n");}
     break;
 
   case 143:
 /* Line 1792 of yacc.c  */
-#line 412 "c.y"
+#line 415 "c.y"
     {fprintf(yyout,"pointer direct_declarator REDUCE to declarator\n");}
     break;
 
   case 144:
 /* Line 1792 of yacc.c  */
-#line 413 "c.y"
+#line 416 "c.y"
     {
                                   (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
 	                              fprintf(yyout,"'%s' => direct_declarator REDUCE to declarator\n",(yyval.CompilerInfo).identifier);
@@ -3172,7 +3175,7 @@ yyreduce:
 
   case 145:
 /* Line 1792 of yacc.c  */
-#line 421 "c.y"
+#line 424 "c.y"
     {
 	                                                                                                   (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
 	                                                                                                   fprintf(yyout,"'%s' => IDENTIFIER REDUCE to direct_declarator\n",(yyval.CompilerInfo).identifier);
@@ -3181,25 +3184,25 @@ yyreduce:
 
   case 146:
 /* Line 1792 of yacc.c  */
-#line 425 "c.y"
+#line 428 "c.y"
     {fprintf(yyout,"OPENPAREN_OP declarator CLOSEPAREN_OP REDUCE to direct_declarator\n");}
     break;
 
   case 147:
 /* Line 1792 of yacc.c  */
-#line 426 "c.y"
+#line 429 "c.y"
     {fprintf(yyout,"direct_declarator OPENBRACE_OP type_qualifier_list assignment_expression CLOSEBRACE_OP REDUCE to direct_declarator\n");}
     break;
 
   case 148:
 /* Line 1792 of yacc.c  */
-#line 427 "c.y"
+#line 430 "c.y"
     {fprintf(yyout,"direct_declarator OPENBRACE_OP type_qualifier_list CLOSEBRACE_OP REDUCE to direct_declarator\n");}
     break;
 
   case 149:
 /* Line 1792 of yacc.c  */
-#line 428 "c.y"
+#line 431 "c.y"
     {
 	                                                                                                   (yyval.CompilerInfo) = (yyvsp[(1) - (4)].CompilerInfo);
 	                                                                                                   fprintf(yyout,"direct_declarator OPENBRACE_OP assignment_expression CLOSEBRACE_OP REDUCE to direct_declarator\n");
@@ -3208,499 +3211,517 @@ yyreduce:
 
   case 150:
 /* Line 1792 of yacc.c  */
-#line 432 "c.y"
+#line 435 "c.y"
     {fprintf(yyout,"direct_declarator OPENBRACE_OP STATIC type_qualifier_list assignment_expression CLOSEBRACE_OP REDUCE to direct_declarator\n");}
     break;
 
   case 151:
 /* Line 1792 of yacc.c  */
-#line 433 "c.y"
+#line 436 "c.y"
     {fprintf(yyout,"direct_declarator OPENBRACE_OP type_qualifier_list STATIC assignment_expression CLOSEBRACE_OP REDUCE to direct_declarator\n");}
     break;
 
   case 152:
 /* Line 1792 of yacc.c  */
-#line 434 "c.y"
+#line 437 "c.y"
     {fprintf(yyout,"direct_declarator OPENBRACE_OP type_qualifier_list TIMES_OP CLOSEBRACE_OP REDUCE to direct_declarator\n");}
     break;
 
   case 153:
 /* Line 1792 of yacc.c  */
-#line 435 "c.y"
+#line 438 "c.y"
     {fprintf(yyout,"direct_declarator OPENBRACE_OP TIMES_OP CLOSEBRACE_OP REDUCE to direct_declarator\n");}
     break;
 
   case 154:
 /* Line 1792 of yacc.c  */
-#line 436 "c.y"
+#line 439 "c.y"
     {fprintf(yyout,"direct_declarator OPENBRACE_OP CLOSEBRACE_OP REDUCE to direct_declarator\n");}
     break;
 
   case 155:
 /* Line 1792 of yacc.c  */
-#line 437 "c.y"
+#line 440 "c.y"
     {fprintf(yyout,"direct_declarator OPENPAREN_OP parameter_type_list CLOSEPAREN_OP REDUCE to direct_declarator\n");}
     break;
 
   case 156:
 /* Line 1792 of yacc.c  */
-#line 438 "c.y"
+#line 441 "c.y"
     {fprintf(yyout,"direct_declarator OPENPAREN_OP identifier_list CLOSEPAREN_OP REDUCE to direct_declarator\n");}
     break;
 
   case 157:
 /* Line 1792 of yacc.c  */
-#line 439 "c.y"
-    {fprintf(yyout,"direct_declarator OPENPAREN_OP CLOSEPAREN_OP REDUCE to direct_declarator\n");}
+#line 442 "c.y"
+    {
+		                                                                                               (yyval.CompilerInfo) = (yyvsp[(1) - (3)].CompilerInfo);
+		                                                                                               fprintf(yyout,"'%s' => direct_declarator OPENPAREN_OP CLOSEPAREN_OP REDUCE to direct_declarator\n",(yyval.CompilerInfo).identifier);
+																									  }
     break;
 
   case 158:
 /* Line 1792 of yacc.c  */
-#line 443 "c.y"
+#line 449 "c.y"
     {fprintf(yyout,"TIMES_OP REDUCE to pointer\n");}
     break;
 
   case 159:
 /* Line 1792 of yacc.c  */
-#line 444 "c.y"
+#line 450 "c.y"
     {fprintf(yyout,"TIMES_OP type_qualifier_list REDUCE to pointer\n");}
     break;
 
   case 160:
 /* Line 1792 of yacc.c  */
-#line 445 "c.y"
+#line 451 "c.y"
     {fprintf(yyout,"TIMES_OP pointer REDUCE to pointer\n");}
     break;
 
   case 161:
 /* Line 1792 of yacc.c  */
-#line 446 "c.y"
+#line 452 "c.y"
     {fprintf(yyout,"TIMES_OP type_qualifier_list pointer REDUCE to pointer\n");}
     break;
 
   case 162:
 /* Line 1792 of yacc.c  */
-#line 450 "c.y"
+#line 456 "c.y"
     {fprintf(yyout,"type_qualifier REDUCE to type_qualifier_list\n");}
     break;
 
   case 163:
 /* Line 1792 of yacc.c  */
-#line 451 "c.y"
+#line 457 "c.y"
     {fprintf(yyout,"type_qualifier_list type_qualifier REDUCE to type_qualifier_list\n");}
     break;
 
   case 164:
 /* Line 1792 of yacc.c  */
-#line 456 "c.y"
+#line 462 "c.y"
     {fprintf(yyout,"parameter_list REDUCE to parameter_type_list\n");}
     break;
 
   case 165:
 /* Line 1792 of yacc.c  */
-#line 457 "c.y"
+#line 463 "c.y"
     {fprintf(yyout,"parameter_list COMMA_OP ELLIPSIS REDUCE to parameter_type_list\n");}
     break;
 
   case 166:
 /* Line 1792 of yacc.c  */
-#line 461 "c.y"
+#line 467 "c.y"
     {fprintf(yyout,"parameter_declaration REDUCE to parameter_list\n");}
     break;
 
   case 167:
 /* Line 1792 of yacc.c  */
-#line 462 "c.y"
+#line 468 "c.y"
     {fprintf(yyout,"parameter_list COMMA_OP parameter_declaration REDUCE to parameter_list\n");}
     break;
 
   case 168:
 /* Line 1792 of yacc.c  */
-#line 466 "c.y"
+#line 472 "c.y"
     {fprintf(yyout,"declaration_specifiers declarator REDUCE to parameter_declaration\n");}
     break;
 
   case 169:
 /* Line 1792 of yacc.c  */
-#line 467 "c.y"
+#line 473 "c.y"
     {fprintf(yyout,"declaration_specifiers abstract_declarator REDUCE to parameter_declaration\n");}
     break;
 
   case 170:
 /* Line 1792 of yacc.c  */
-#line 468 "c.y"
+#line 474 "c.y"
     {fprintf(yyout,"declaration_specifiers REDUCE to parameter_declaration\n");}
     break;
 
   case 171:
 /* Line 1792 of yacc.c  */
-#line 472 "c.y"
+#line 478 "c.y"
     {fprintf(yyout,"IDENTIFIER REDUCE to identifier_list\n");}
     break;
 
   case 172:
 /* Line 1792 of yacc.c  */
-#line 473 "c.y"
+#line 479 "c.y"
     {fprintf(yyout,"identifier_list COMMA_OP IDENTIFIER REDUCE to identifier_list\n");}
     break;
 
   case 173:
 /* Line 1792 of yacc.c  */
-#line 477 "c.y"
+#line 483 "c.y"
     {fprintf(yyout,"specifier_qualifier_list REDUCE to type_name\n");}
     break;
 
   case 174:
 /* Line 1792 of yacc.c  */
-#line 478 "c.y"
+#line 484 "c.y"
     {fprintf(yyout,"specifier_qualifier_list abstract_declarator REDUCE to type_name\n");}
     break;
 
   case 175:
 /* Line 1792 of yacc.c  */
-#line 482 "c.y"
+#line 488 "c.y"
     {fprintf(yyout,"pointer REDUCE to abstract_declarator\n");}
     break;
 
   case 176:
 /* Line 1792 of yacc.c  */
-#line 483 "c.y"
+#line 489 "c.y"
     {fprintf(yyout,"direct_abstract_declarator REDUCE to abstract_declarator\n");}
     break;
 
   case 177:
 /* Line 1792 of yacc.c  */
-#line 484 "c.y"
+#line 490 "c.y"
     {fprintf(yyout,"pointer direct_abstract_declarator REDUCE to abstract_declarator\n");}
     break;
 
   case 178:
 /* Line 1792 of yacc.c  */
-#line 488 "c.y"
+#line 494 "c.y"
     {fprintf(yyout,"OPENPAREN_OP abstract_declarator CLOSEPAREN_OP REDUCE to direct_abstract_declarator\n");}
     break;
 
   case 179:
 /* Line 1792 of yacc.c  */
-#line 489 "c.y"
+#line 495 "c.y"
     {fprintf(yyout,"OPENBRACE_OP CLOSEBRACE_OP REDUCE to direct_abstract_declarator\n");}
     break;
 
   case 180:
 /* Line 1792 of yacc.c  */
-#line 490 "c.y"
+#line 496 "c.y"
     {fprintf(yyout,"OPENBRACE_OP assignment_expression CLOSEBRACE_OP REDUCE to direct_abstract_declarator\n");}
     break;
 
   case 181:
 /* Line 1792 of yacc.c  */
-#line 491 "c.y"
+#line 497 "c.y"
     {fprintf(yyout,"direct_abstract_declarator OPENBRACE_OP CLOSEBRACE_OP REDUCE to direct_abstract_declarator\n");}
     break;
 
   case 182:
 /* Line 1792 of yacc.c  */
-#line 492 "c.y"
+#line 498 "c.y"
     {fprintf(yyout,"direct_abstract_declarator OPENBRACE_OP assignment_expression CLOSEBRACE_OP REDUCE to direct_abstract_declarator\n");}
     break;
 
   case 183:
 /* Line 1792 of yacc.c  */
-#line 493 "c.y"
+#line 499 "c.y"
     {fprintf(yyout,"OPENBRACE_OP TIMES_OP CLOSEBRACE_OP REDUCE to direct_abstract_declarator\n");}
     break;
 
   case 184:
 /* Line 1792 of yacc.c  */
-#line 494 "c.y"
+#line 500 "c.y"
     {fprintf(yyout,"direct_abstract_declarator OPENBRACE_OP TIMES_OP CLOSEBRACE_OP REDUCE to direct_abstract_declarator\n");}
     break;
 
   case 185:
 /* Line 1792 of yacc.c  */
-#line 495 "c.y"
+#line 501 "c.y"
     {fprintf(yyout,"OPENPAREN_OP CLOSEPAREN_OP REDUCE to direct_abstract_declarator\n");}
     break;
 
   case 186:
 /* Line 1792 of yacc.c  */
-#line 496 "c.y"
+#line 502 "c.y"
     {fprintf(yyout,"OPENPAREN_OP parameter_type_list CLOSEPAREN_OP REDUCE to direct_abstract_declarator\n");}
     break;
 
   case 187:
 /* Line 1792 of yacc.c  */
-#line 497 "c.y"
+#line 503 "c.y"
     {fprintf(yyout,"direct_abstract_declarator OPENPAREN_OP CLOSEPAREN_OP REDUCE to direct_abstract_declarator\n");}
     break;
 
   case 188:
 /* Line 1792 of yacc.c  */
-#line 498 "c.y"
+#line 504 "c.y"
     {fprintf(yyout,"direct_abstract_declarator OPENPAREN_OP parameter_type_list CLOSEPAREN_OP REDUCE to direct_abstract_declarator\n");}
     break;
 
   case 189:
 /* Line 1792 of yacc.c  */
-#line 502 "c.y"
+#line 508 "c.y"
     {fprintf(yyout,"assignment_expression REDUCE to initializer\n");}
     break;
 
   case 190:
 /* Line 1792 of yacc.c  */
-#line 503 "c.y"
+#line 509 "c.y"
     {fprintf(yyout,"OCURLY_OP initializer_list CCURLY_OP REDUCE to initializer\n");}
     break;
 
   case 191:
 /* Line 1792 of yacc.c  */
-#line 504 "c.y"
+#line 510 "c.y"
     {fprintf(yyout,"OCURLY_OP initializer_list COMMA_OP CCURLY_OP REDUCE to initializer\n");}
     break;
 
   case 192:
 /* Line 1792 of yacc.c  */
-#line 508 "c.y"
+#line 514 "c.y"
     {fprintf(yyout,"initializer REDUCE to initializer_list\n");}
     break;
 
   case 193:
 /* Line 1792 of yacc.c  */
-#line 509 "c.y"
+#line 515 "c.y"
     {fprintf(yyout,"designation initializer REDUCE to initializer_list\n");}
     break;
 
   case 194:
 /* Line 1792 of yacc.c  */
-#line 510 "c.y"
+#line 516 "c.y"
     {fprintf(yyout,"initializer_list COMMA_OP initializer REDUCE to initializer_list\n");}
     break;
 
   case 195:
 /* Line 1792 of yacc.c  */
-#line 511 "c.y"
+#line 517 "c.y"
     {fprintf(yyout,"initializer_list COMMA_OP designation initializer REDUCE to initializer_list\n");}
     break;
 
   case 196:
 /* Line 1792 of yacc.c  */
-#line 515 "c.y"
+#line 521 "c.y"
     {fprintf(yyout,"designator_list EQUAL_OP REDUCE to designation\n");}
     break;
 
   case 197:
 /* Line 1792 of yacc.c  */
-#line 519 "c.y"
+#line 525 "c.y"
     {fprintf(yyout,"designator REDUCE to designator_list\n");}
     break;
 
   case 198:
 /* Line 1792 of yacc.c  */
-#line 520 "c.y"
+#line 526 "c.y"
     {fprintf(yyout,"designator_list designator EQUAL_OP REDUCE to designator_list\n");}
     break;
 
   case 199:
 /* Line 1792 of yacc.c  */
-#line 524 "c.y"
+#line 530 "c.y"
     {fprintf(yyout,"labeled_statement REDUCE to statement\n");}
     break;
 
   case 200:
 /* Line 1792 of yacc.c  */
-#line 525 "c.y"
+#line 531 "c.y"
     {fprintf(yyout,"labeled_statement REDUCE to statement\n");}
     break;
 
   case 201:
 /* Line 1792 of yacc.c  */
-#line 529 "c.y"
+#line 535 "c.y"
     {fprintf(yyout,"labeled_statement REDUCE to statement\n");}
     break;
 
   case 202:
 /* Line 1792 of yacc.c  */
-#line 530 "c.y"
+#line 536 "c.y"
     {fprintf(yyout,"compound_statement REDUCE to statement\n");}
     break;
 
   case 203:
 /* Line 1792 of yacc.c  */
-#line 531 "c.y"
+#line 537 "c.y"
     {fprintf(yyout,"expression_statement REDUCE to statement\n");}
     break;
 
   case 204:
 /* Line 1792 of yacc.c  */
-#line 532 "c.y"
+#line 538 "c.y"
     {fprintf(yyout,"selection_statement REDUCE to statement\n");}
     break;
 
   case 205:
 /* Line 1792 of yacc.c  */
-#line 533 "c.y"
+#line 539 "c.y"
     {fprintf(yyout,"iteration_statement REDUCE to statement\n");}
     break;
 
   case 206:
 /* Line 1792 of yacc.c  */
-#line 534 "c.y"
-    {fprintf(yyout,"jump_statement REDUCE to statement\n");}
+#line 540 "c.y"
+    {
+		                     (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
+		                     fprintf(yyout,"<EXP> jump_statement REDUCE to statement\n");
+							}
     break;
 
   case 207:
 /* Line 1792 of yacc.c  */
-#line 538 "c.y"
+#line 547 "c.y"
     {fprintf(yyout,"IDENTIFIER COLON_OP statement REDUCE to labeled_statement\n");}
     break;
 
   case 208:
 /* Line 1792 of yacc.c  */
-#line 539 "c.y"
+#line 548 "c.y"
     {fprintf(yyout,"CASE constant_expression COLON_OP statement REDUCE to labeled_statement\n");}
     break;
 
   case 209:
 /* Line 1792 of yacc.c  */
-#line 540 "c.y"
+#line 549 "c.y"
     {fprintf(yyout,"DEFAULT COLON_OP statement REDUCE to labeled_statement\n");}
     break;
 
   case 210:
 /* Line 1792 of yacc.c  */
-#line 544 "c.y"
+#line 553 "c.y"
     {fprintf(yyout,"OCURLY_OP CCURLY_OP REDUCE to compound_statement\n");}
     break;
 
   case 211:
 /* Line 1792 of yacc.c  */
-#line 545 "c.y"
-    {fprintf(yyout,"OCURLY_OP block_item_list CCURLY_OP REDUCE to compound_statement\n");}
+#line 554 "c.y"
+    {
+		                                   (yyval.CompilerInfo) = (yyvsp[(2) - (3)].CompilerInfo);
+		                                   fprintf(yyout,"<EXP> OCURLY_OP block_item_list CCURLY_OP REDUCE to compound_statement\n");
+										  }
     break;
 
   case 212:
 /* Line 1792 of yacc.c  */
-#line 549 "c.y"
-    {fprintf(yyout,"block_item REDUCE to block_item_list\n");}
+#line 561 "c.y"
+    {
+		                          (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
+		                          fprintf(yyout,"<EXP> block_item REDUCE to block_item_list\n");
+								 }
     break;
 
   case 213:
 /* Line 1792 of yacc.c  */
-#line 550 "c.y"
+#line 565 "c.y"
     {fprintf(yyout,"block_item_list block_item REDUCE to block_item_list\n");}
     break;
 
   case 214:
 /* Line 1792 of yacc.c  */
-#line 554 "c.y"
+#line 569 "c.y"
     {fprintf(yyout,"declaration REDUCE to block_item\n");}
     break;
 
   case 215:
 /* Line 1792 of yacc.c  */
-#line 555 "c.y"
-    {fprintf(yyout,"statement REDUCE to block_item\n");}
+#line 570 "c.y"
+    {
+		            (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
+		            fprintf(yyout,"<EXP> statement REDUCE to block_item\n");
+				   }
     break;
 
   case 216:
 /* Line 1792 of yacc.c  */
-#line 559 "c.y"
+#line 577 "c.y"
     {fprintf(yyout,"SEMI_OP REDUCE to expression_statement\n");}
     break;
 
   case 217:
 /* Line 1792 of yacc.c  */
-#line 560 "c.y"
+#line 578 "c.y"
     {fprintf(yyout,"expression SEMI_OP REDUCE to expression_statement\n");}
     break;
 
   case 218:
 /* Line 1792 of yacc.c  */
-#line 564 "c.y"
+#line 582 "c.y"
     {fprintf(yyout,"IF OPENPAREN_OP expression CLOSEPAREN_OP statement REDUCE to selection_statement\n");}
     break;
 
   case 219:
 /* Line 1792 of yacc.c  */
-#line 565 "c.y"
+#line 583 "c.y"
     {fprintf(yyout,"IF OPENPAREN_OP expression CLOSEPAREN_OP statement ELSE statement REDUCE to selection_statement\n");}
     break;
 
   case 220:
 /* Line 1792 of yacc.c  */
-#line 566 "c.y"
+#line 584 "c.y"
     {fprintf(yyout,"SWITCH OPENPAREN_OP expression CLOSEPAREN_OP statement REDUCE to selection_statement\n");}
     break;
 
   case 221:
 /* Line 1792 of yacc.c  */
-#line 570 "c.y"
+#line 588 "c.y"
     {fprintf(yyout,"WHILE OPENPAREN_OP expression CLOSEPAREN_OP statement REDUCE to iteration_statement\n");}
     break;
 
   case 222:
 /* Line 1792 of yacc.c  */
-#line 571 "c.y"
+#line 589 "c.y"
     {fprintf(yyout,"DO statement WHILE OPENPAREN_OP expression CLOSEPAREN_OP SEMI_OP REDUCE to iteration_statement\n");}
     break;
 
   case 223:
 /* Line 1792 of yacc.c  */
-#line 572 "c.y"
+#line 590 "c.y"
     {fprintf(yyout,"FOR OPENPAREN_OP expression_statement expression_statement CLOSEPAREN_OP statement REDUCE to iteration_statement\n");}
     break;
 
   case 224:
 /* Line 1792 of yacc.c  */
-#line 573 "c.y"
+#line 591 "c.y"
     {fprintf(yyout,"FOR OPENPAREN_OP expression_statement expression_statement expression CLOSEPAREN_OP statement REDUCE to iteration_statement\n");}
     break;
 
   case 225:
 /* Line 1792 of yacc.c  */
-#line 574 "c.y"
+#line 592 "c.y"
     {fprintf(yyout,"FOR OPENPAREN_OP declaration expression_statement CLOSEPAREN_OP statement REDUCE to iteration_statement\n");}
     break;
 
   case 226:
 /* Line 1792 of yacc.c  */
-#line 575 "c.y"
+#line 593 "c.y"
     {fprintf(yyout,"FOR OPENPAREN_OP declaration expression_statement expression CLOSEPAREN_OP statement REDUCE to iteration_statement\n");}
     break;
 
   case 227:
 /* Line 1792 of yacc.c  */
-#line 579 "c.y"
+#line 597 "c.y"
     {fprintf(yyout,"GOTO IDENTIFIER SEMI_OP REDUCE to jump_statement\n");}
     break;
 
   case 228:
 /* Line 1792 of yacc.c  */
-#line 580 "c.y"
+#line 598 "c.y"
     {fprintf(yyout,"CONTINUE SEMI_OP REDUCE to jump_statement\n");}
     break;
 
   case 229:
 /* Line 1792 of yacc.c  */
-#line 581 "c.y"
+#line 599 "c.y"
     {fprintf(yyout,"BREAK SEMI_OP REDUCE to jump_statement\n");}
     break;
 
   case 230:
 /* Line 1792 of yacc.c  */
-#line 582 "c.y"
+#line 600 "c.y"
     {fprintf(yyout,"RETURN SEMI_OP REDUCE to jump_statement\n");}
     break;
 
   case 231:
 /* Line 1792 of yacc.c  */
-#line 583 "c.y"
-    {fprintf(yyout,"RETURN expression SEMI_OP REDUCE to jump_statement\n");}
+#line 601 "c.y"
+    {
+		                         (yyval.CompilerInfo) = (yyvsp[(2) - (3)].CompilerInfo);
+		                         fprintf(yyout,"<EXP> RETURN expression SEMI_OP REDUCE to jump_statement\n");
+								}
     break;
 
   case 232:
 /* Line 1792 of yacc.c  */
-#line 587 "c.y"
+#line 608 "c.y"
     {
                                              (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
 											 addToSymbolTable((yyvsp[(1) - (1)].CompilerInfo).identifier, (yyvsp[(1) - (1)].CompilerInfo).type, (yyvsp[(1) - (1)].CompilerInfo).sign, (yyvsp[(1) - (1)].CompilerInfo).storage, (yyvsp[(1) - (1)].CompilerInfo).declarationType, (yyvsp[(1) - (1)].CompilerInfo).constant);
@@ -3710,7 +3731,7 @@ yyreduce:
 
   case 233:
 /* Line 1792 of yacc.c  */
-#line 592 "c.y"
+#line 613 "c.y"
     {
 											 addToSymbolTable((yyvsp[(2) - (2)].CompilerInfo).identifier, (yyvsp[(2) - (2)].CompilerInfo).type, (yyvsp[(2) - (2)].CompilerInfo).sign, (yyvsp[(2) - (2)].CompilerInfo).storage, (yyvsp[(2) - (2)].CompilerInfo).declarationType, (yyvsp[(2) - (2)].CompilerInfo).constant);
 		                                     fprintf(yyout,"<EXP> translation_unit external_declaration REDUCE to translation_unit\n");
@@ -3719,17 +3740,17 @@ yyreduce:
 
   case 234:
 /* Line 1792 of yacc.c  */
-#line 599 "c.y"
+#line 620 "c.y"
     {
                            (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
 						   (yyval.CompilerInfo).declarationType = DECLARATION_FUNCTION;
-	                       fprintf(yyout,"function_definition REDUCE to external_declaration\n");
+						   fprintf(yyout,"'%d %d %d %s' => function_definition REDUCE to external_declaration\n",(yyval.CompilerInfo).storage,(yyval.CompilerInfo).sign,(yyval.CompilerInfo).type,(yyval.CompilerInfo).identifier);
 						  }
     break;
 
   case 235:
 /* Line 1792 of yacc.c  */
-#line 604 "c.y"
+#line 625 "c.y"
     {
                            (yyval.CompilerInfo) = (yyvsp[(1) - (1)].CompilerInfo);
 						   (yyval.CompilerInfo).declarationType = DECLARATION_VARIABLE;
@@ -3743,31 +3764,38 @@ yyreduce:
 
   case 236:
 /* Line 1792 of yacc.c  */
-#line 616 "c.y"
+#line 637 "c.y"
     {fprintf(yyout,"declaration_specifiers declarator declaration_list compound_statement REDUCE to function_definition\n");}
     break;
 
   case 237:
 /* Line 1792 of yacc.c  */
-#line 617 "c.y"
-    {fprintf(yyout,"declaration_specifiers declarator compound_statement REDUCE to function_definition\n");}
+#line 638 "c.y"
+    { 
+		                                                                     
+		                                                                     (yyval.CompilerInfo).sign = (yyvsp[(1) - (3)].CompilerInfo).sign;
+                                                                             (yyval.CompilerInfo).type = (yyvsp[(1) - (3)].CompilerInfo).type;
+																			 (yyval.CompilerInfo).storage = (yyvsp[(1) - (3)].CompilerInfo).storage;
+																			 (yyval.CompilerInfo).identifier = (yyvsp[(2) - (3)].CompilerInfo).identifier;	
+		                                                                     fprintf(yyout,"<EXP> declaration_specifiers declarator compound_statement REDUCE to function_definition\n");
+																			}
     break;
 
   case 238:
 /* Line 1792 of yacc.c  */
-#line 621 "c.y"
+#line 649 "c.y"
     {fprintf(yyout,"declaration REDUCE to declaration_list\n");}
     break;
 
   case 239:
 /* Line 1792 of yacc.c  */
-#line 622 "c.y"
+#line 650 "c.y"
     {fprintf(yyout,"declaration_list declaration REDUCE to declaration_list\n");}
     break;
 
 
 /* Line 1792 of yacc.c  */
-#line 3771 "c.tab.c"
+#line 3799 "c.tab.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -4006,7 +4034,7 @@ yyreturn:
 
 
 /* Line 2055 of yacc.c  */
-#line 625 "c.y"
+#line 653 "c.y"
 
 
 void yyerror(const char* s) {

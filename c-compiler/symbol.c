@@ -36,7 +36,12 @@ void add(DeclarationPtr declaration){
  }
 }
 
+void printDeclaration(DeclarationPtr declaration){
+ printf("'%d %d %d %s' added to symboltable\n",declaration->storage,declaration->sign,declaration->type,declaration->identifier);
+}
+
 void addToSymbolTable(char *identifier, VariableType type, VariableSignType sign, StorageType storage, DeclarationType declarationType, Boolean constant){
  DeclarationPtr declaration = createDeclaration (identifier, type, sign, storage, declarationType);
  if (declarationType == DECLARATION_VARIABLE) add(declaration);
+ printDeclaration(declaration);
 }

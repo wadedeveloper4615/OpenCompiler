@@ -91,7 +91,7 @@ primary_expression
 postfix_expression
 	: primary_expression                                                                 {
                                                                                           $<CompilerInfo>$ = $<CompilerInfo>1;
-	                                                                                      fprintf(yyout,"primary_expression REDUCE to postfix_expression\n");
+	                                                                                      fprintf(yyout,"<EXP> primary_expression REDUCE to postfix_expression\n");
 																						 }
 	| postfix_expression OPENBRACE_OP expression CLOSEBRACE_OP                           {fprintf(yyout,"postfix_expression OPENBRACE_OP expression CLOSEBRACE_OP REDUCE to postfix_expression\n");}
 	| postfix_expression OPENPAREN_OP CLOSEPAREN_OP                                      {fprintf(yyout,"postfix_expression OPENPAREN_OP CLOSEPAREN_OP REDUCE to postfix_expression\n");}
@@ -112,7 +112,7 @@ argument_expression_list
 unary_expression
 	: postfix_expression                            {
                                                      $<CompilerInfo>$ = $<CompilerInfo>1;
-	                                                 fprintf(yyout,"postfix_expression REDUCE to unary_expression\n");
+	                                                 fprintf(yyout,"<EXP> postfix_expression REDUCE to unary_expression\n");
 													}
 	| INC_OP unary_expression                       {fprintf(yyout,"INC_OP unary_expression REDUCE to unary_expression\n");}
 	| DEC_OP unary_expression                       {fprintf(yyout,"DEC_OP unary_expression REDUCE to unary_expression\n");}
@@ -133,7 +133,7 @@ unary_operator
 cast_expression
 	: unary_expression                                      {
                                                              $<CompilerInfo>$ = $<CompilerInfo>1;
-	                                                         fprintf(yyout,"unary_expression REDUCE to cast_expression\n");
+	                                                         fprintf(yyout,"<EXP> unary_expression REDUCE to cast_expression\n");
 															}
 	| OPENPAREN_OP type_name CLOSEPAREN_OP cast_expression  {fprintf(yyout,"OPENPAREN_OP type_name CLOSEPAREN_OP cast_expression REDUCE to cast_expression\n");}
 	;
@@ -141,7 +141,7 @@ cast_expression
 multiplicative_expression
 	: cast_expression                                     {
                                                            $<CompilerInfo>$ = $<CompilerInfo>1;
-	                                                       fprintf(yyout,"cast_expression REDUCE to multiplicative_expression\n");
+	                                                       fprintf(yyout,"<EXP> cast_expression REDUCE to multiplicative_expression\n");
 														  }
 	| multiplicative_expression TIMES_OP cast_expression  {fprintf(yyout,"multiplicative_expression TIMES_OP cast_expression REDUCE to multiplicative_expression\n");}
 	| multiplicative_expression DIV_OP cast_expression    {fprintf(yyout,"multiplicative_expression DIV_OP cast_expression REDUCE to multiplicative_expression\n");}
@@ -151,7 +151,7 @@ multiplicative_expression
 additive_expression
 	: multiplicative_expression                               {
                                                                $<CompilerInfo>$ = $<CompilerInfo>1;
-	                                                           fprintf(yyout,"multiplicative_expression REDUCE to additive_expression\n");
+	                                                           fprintf(yyout,"<EXP> multiplicative_expression REDUCE to additive_expression\n");
 															  }
 	| additive_expression PLUS_OP multiplicative_expression   {fprintf(yyout,"additive_expression PLUS_OP multiplicative_expression REDUCE to additive_expression\n");}
 	| additive_expression MINUS_OP multiplicative_expression  {fprintf(yyout,"additive_expression MINUS_OP multiplicative_expression REDUCE to additive_expression\n");}
@@ -160,7 +160,7 @@ additive_expression
 shift_expression
 	: additive_expression                           {
                                                      $<CompilerInfo>$ = $<CompilerInfo>1;
-	                                                 fprintf(yyout,"additive_expression REDUCE to shift_expression\n");
+	                                                 fprintf(yyout,"<EXP> additive_expression REDUCE to shift_expression\n");
 													}
 	| shift_expression LEFT_OP additive_expression  {fprintf(yyout,"shift_expression LEFT_OP additive_expression REDUCE to shift_expression\n");}
 	| shift_expression RIGHT_OP additive_expression {fprintf(yyout,"shift_expression RIGHT_OP additive_expression REDUCE to shift_expression\n");}
@@ -169,7 +169,7 @@ shift_expression
 relational_expression
 	: shift_expression                                  {
                                                          $<CompilerInfo>$ = $<CompilerInfo>1;
-	                                                     fprintf(yyout,"shift_expression REDUCE to relational_expression\n");
+	                                                     fprintf(yyout,"<EXP> shift_expression REDUCE to relational_expression\n");
 														}
 	| relational_expression LESS_OP shift_expression    {fprintf(yyout,"relational_expression LESS_OP shift_expression REDUCE to relational_expression\n");}
 	| relational_expression GREATER_OP shift_expression {fprintf(yyout,"relational_expression GREATER_OP shift_expression REDUCE to relational_expression\n");}
@@ -180,7 +180,7 @@ relational_expression
 equality_expression
 	: relational_expression                             {
                                                          $<CompilerInfo>$ = $<CompilerInfo>1;
-	                                                     fprintf(yyout,"relational_expression REDUCE to equality_expression\n");
+	                                                     fprintf(yyout,"<EXP> relational_expression REDUCE to equality_expression\n");
 														}
 	| equality_expression EQ_OP relational_expression   {fprintf(yyout,"equality_expression EQ_OP relational_expression REDUCE to equality_expression\n");}
 	| equality_expression NE_OP relational_expression   {fprintf(yyout,"equality_expression NE_OP relational_expression REDUCE to equality_expression\n");}
@@ -189,7 +189,7 @@ equality_expression
 and_expression
 	: equality_expression                          {
                                                     $<CompilerInfo>$ = $<CompilerInfo>1;
-	                                                fprintf(yyout,"equality_expression REDUCE to and_expression\n");
+	                                                fprintf(yyout,"<EXP> equality_expression REDUCE to and_expression\n");
 												   }
 	| and_expression BIT_AND equality_expression   {fprintf(yyout,"and_expression BIT_AND equality_expression REDUCE to and_expression\n");}
 	;
@@ -197,7 +197,7 @@ and_expression
 exclusive_or_expression
 	: and_expression                                  {
                                                        $<CompilerInfo>$ = $<CompilerInfo>1;
-	                                                   fprintf(yyout,"and_expression REDUCE to exclusive_or_expression\n");
+	                                                   fprintf(yyout,"<EXP> and_expression REDUCE to exclusive_or_expression\n");
 													  }
 	| exclusive_or_expression XOR_OP and_expression   {fprintf(yyout,"exclusive_or_expression XOR_OP and_expression REDUCE to exclusive_or_expression\n");}
 	;
@@ -205,7 +205,7 @@ exclusive_or_expression
 inclusive_or_expression
 	: exclusive_or_expression                                  {
                                                                 $<CompilerInfo>$ = $<CompilerInfo>1;
-	                                                            fprintf(yyout,"exclusive_or_expression REDUCE to inclusive_or_expression\n");
+	                                                            fprintf(yyout,"<EXP> exclusive_or_expression REDUCE to inclusive_or_expression\n");
 															   }
 	| inclusive_or_expression BIT_OR exclusive_or_expression   {fprintf(yyout,"inclusive_or_expression BIT_OR exclusive_or_expression REDUCE to inclusive_or_expression\n");}
 	;
@@ -213,7 +213,7 @@ inclusive_or_expression
 logical_and_expression
 	: inclusive_or_expression                               {
                                                              $<CompilerInfo>$ = $<CompilerInfo>1;
-	                                                         fprintf(yyout,"inclusive_or_expression REDUCE to logical_and_expression\n");
+	                                                         fprintf(yyout,"<EXP> inclusive_or_expression REDUCE to logical_and_expression\n");
 															}
 	| logical_and_expression AND_OP inclusive_or_expression {fprintf(yyout,"logical_and_expression AND_OP inclusive_or_expression REDUCE to logical_and_expression\n");}
 	;
@@ -221,7 +221,7 @@ logical_and_expression
 logical_or_expression
 	: logical_and_expression                             {
                                                           $<CompilerInfo>$ = $<CompilerInfo>1;
-	                                                      fprintf(yyout,"logical_and_expression REDUCE to logical_or_expression\n");
+	                                                      fprintf(yyout,"<EXP> logical_and_expression REDUCE to logical_or_expression\n");
 														 }
 	| logical_or_expression OR_OP logical_and_expression {fprintf(yyout,"logical_or_expression OR_OP logical_and_expression REDUCE to logical_or_expression\n");}
 	;
@@ -229,7 +229,7 @@ logical_or_expression
 conditional_expression
 	: logical_or_expression                                                        {
                                                                                     $<CompilerInfo>$ = $<CompilerInfo>1;
-	                                                                                fprintf(yyout,"logical_or_expression REDUCE to conditional_expression\n");
+	                                                                                fprintf(yyout,"<EXP> logical_or_expression REDUCE to conditional_expression\n");
 																				   }
 	| logical_or_expression QUESTION_OP expression COLON_OP conditional_expression {fprintf(yyout,"logical_or_expression QUESTION_OP expression COLON_OP conditional_expression REDUCE to conditional_expression\n");}
 	;
@@ -237,7 +237,7 @@ conditional_expression
 assignment_expression
 	: conditional_expression                                     {
                                                                   $<CompilerInfo>$ = $<CompilerInfo>1;
-	                                                              fprintf(yyout,"conditional_expression REDUCE to assignment_expression\n");
+	                                                              fprintf(yyout,"<EXP> conditional_expression REDUCE to assignment_expression\n");
 																 }
 	| unary_expression assignment_operator assignment_expression {fprintf(yyout,"unary_expression assignment_operator assignment_expression REDUCE to assignment_expression\n");}
 	;
@@ -257,7 +257,10 @@ assignment_operator
 	;
 
 expression
-	: assignment_expression                     {fprintf(yyout,"assignment_expression REDUCE to expression\n");}
+	: assignment_expression                     {
+		                                         $<CompilerInfo>$ = $<CompilerInfo>1;
+		                                         fprintf(yyout,"<EXP> assignment_expression REDUCE to expression\n");
+											    }
 	| expression COMMA_OP assignment_expression {fprintf(yyout," expression COMMA_OP assignment_expression REDUCE to expression\n");}
 	;
 
@@ -436,7 +439,10 @@ direct_declarator
 	| direct_declarator OPENBRACE_OP CLOSEBRACE_OP                                                    {fprintf(yyout,"direct_declarator OPENBRACE_OP CLOSEBRACE_OP REDUCE to direct_declarator\n");}
 	| direct_declarator OPENPAREN_OP parameter_type_list CLOSEPAREN_OP                                {fprintf(yyout,"direct_declarator OPENPAREN_OP parameter_type_list CLOSEPAREN_OP REDUCE to direct_declarator\n");}
 	| direct_declarator OPENPAREN_OP identifier_list CLOSEPAREN_OP                                    {fprintf(yyout,"direct_declarator OPENPAREN_OP identifier_list CLOSEPAREN_OP REDUCE to direct_declarator\n");}
-	| direct_declarator OPENPAREN_OP CLOSEPAREN_OP                                                    {fprintf(yyout,"direct_declarator OPENPAREN_OP CLOSEPAREN_OP REDUCE to direct_declarator\n");}
+	| direct_declarator OPENPAREN_OP CLOSEPAREN_OP                                                    {
+		                                                                                               $<CompilerInfo>$ = $<CompilerInfo>1;
+		                                                                                               fprintf(yyout,"'%s' => direct_declarator OPENPAREN_OP CLOSEPAREN_OP REDUCE to direct_declarator\n",$<CompilerInfo>$.identifier);
+																									  }
 	;
 
 pointer
@@ -531,7 +537,10 @@ statement
 	| expression_statement  {fprintf(yyout,"expression_statement REDUCE to statement\n");}
 	| selection_statement   {fprintf(yyout,"selection_statement REDUCE to statement\n");}
 	| iteration_statement   {fprintf(yyout,"iteration_statement REDUCE to statement\n");}
-	| jump_statement        {fprintf(yyout,"jump_statement REDUCE to statement\n");}
+	| jump_statement        {
+		                     $<CompilerInfo>$ = $<CompilerInfo>1;
+		                     fprintf(yyout,"<EXP> jump_statement REDUCE to statement\n");
+							}
 	;
 
 labeled_statement
@@ -542,17 +551,26 @@ labeled_statement
 
 compound_statement
 	: OCURLY_OP CCURLY_OP                 {fprintf(yyout,"OCURLY_OP CCURLY_OP REDUCE to compound_statement\n");}
-	| OCURLY_OP block_item_list CCURLY_OP {fprintf(yyout,"OCURLY_OP block_item_list CCURLY_OP REDUCE to compound_statement\n");}
+	| OCURLY_OP block_item_list CCURLY_OP {
+		                                   $<CompilerInfo>$ = $<CompilerInfo>2;
+		                                   fprintf(yyout,"<EXP> OCURLY_OP block_item_list CCURLY_OP REDUCE to compound_statement\n");
+										  }
 	;
 
 block_item_list
-	: block_item                 {fprintf(yyout,"block_item REDUCE to block_item_list\n");}
+	: block_item                 {
+		                          $<CompilerInfo>$ = $<CompilerInfo>1;
+		                          fprintf(yyout,"<EXP> block_item REDUCE to block_item_list\n");
+								 }
 	| block_item_list block_item {fprintf(yyout,"block_item_list block_item REDUCE to block_item_list\n");}
 	;
 
 block_item
 	: declaration  {fprintf(yyout,"declaration REDUCE to block_item\n");}
-	| statement    {fprintf(yyout,"statement REDUCE to block_item\n");}
+	| statement    {
+		            $<CompilerInfo>$ = $<CompilerInfo>1;
+		            fprintf(yyout,"<EXP> statement REDUCE to block_item\n");
+				   }
 	;
 
 expression_statement
@@ -580,7 +598,10 @@ jump_statement
 	| CONTINUE SEMI_OP          {fprintf(yyout,"CONTINUE SEMI_OP REDUCE to jump_statement\n");}
 	| BREAK SEMI_OP             {fprintf(yyout,"BREAK SEMI_OP REDUCE to jump_statement\n");}
 	| RETURN SEMI_OP            {fprintf(yyout,"RETURN SEMI_OP REDUCE to jump_statement\n");}
-	| RETURN expression SEMI_OP {fprintf(yyout,"RETURN expression SEMI_OP REDUCE to jump_statement\n");}
+	| RETURN expression SEMI_OP {
+		                         $<CompilerInfo>$ = $<CompilerInfo>2;
+		                         fprintf(yyout,"<EXP> RETURN expression SEMI_OP REDUCE to jump_statement\n");
+								}
 	;
 
 translation_unit
@@ -599,7 +620,7 @@ external_declaration
 	: function_definition {
                            $<CompilerInfo>$ = $<CompilerInfo>1;
 						   $<CompilerInfo>$.declarationType = DECLARATION_FUNCTION;
-	                       fprintf(yyout,"function_definition REDUCE to external_declaration\n");
+						   fprintf(yyout,"'%d %d %d %s' => function_definition REDUCE to external_declaration\n",$<CompilerInfo>$.storage,$<CompilerInfo>$.sign,$<CompilerInfo>$.type,$<CompilerInfo>$.identifier);
 						  }
 	| declaration         {
                            $<CompilerInfo>$ = $<CompilerInfo>1;
@@ -614,7 +635,14 @@ external_declaration
 
 function_definition
 	: declaration_specifiers declarator declaration_list compound_statement {fprintf(yyout,"declaration_specifiers declarator declaration_list compound_statement REDUCE to function_definition\n");}
-	| declaration_specifiers declarator compound_statement                  {fprintf(yyout,"declaration_specifiers declarator compound_statement REDUCE to function_definition\n");}
+	| declaration_specifiers declarator compound_statement                  { 
+		                                                                     
+		                                                                     $<CompilerInfo>$.sign = $<CompilerInfo>1.sign;
+                                                                             $<CompilerInfo>$.type = $<CompilerInfo>1.type;
+																			 $<CompilerInfo>$.storage = $<CompilerInfo>1.storage;
+																			 $<CompilerInfo>$.identifier = $<CompilerInfo>2.identifier;	
+		                                                                     fprintf(yyout,"<EXP> declaration_specifiers declarator compound_statement REDUCE to function_definition\n");
+																			}
 	;
 
 declaration_list

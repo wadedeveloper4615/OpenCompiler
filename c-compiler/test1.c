@@ -1,2 +1,3 @@
-unsigned long var1;
-char var2;
+int main() {
+ return 0;
+}
